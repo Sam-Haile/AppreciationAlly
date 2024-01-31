@@ -15,24 +15,34 @@ public class Onboarding : MonoBehaviour
     #region Step 1
     private Color selectedColor;
     public GameObject[] colorOptions;
+    public Image backgroundColor;
+    public Image buttonPrefab;
+    public Image inputPrefab;
+    private string name;
     #endregion
 
     private void Start()
     {
         SetupOnboardingSteps();
-
     }
 
     private void SetupOnboardingSteps()
     {
         // Example of setting up steps
-        OnboardingStep step1 = new OnboardingStep("Welcome!", "Choose your favorite color", colorOptions);
-        OnboardingStep step2 = new OnboardingStep("Step 2", "Subheader for step 2", null); // Replace null with relevant UI elements for step 2
+        OnboardingStep step1 = new OnboardingStep("Welcome Aboard!", "Begin your journey towards better mental well-being with Appreciation Alley. Cultivating daily gratitude and positivity.", null, 1);
+        OnboardingStep step2 = new OnboardingStep("Choose your favorite color", "You can change this later", null, 2); // Replace null with relevant UI elements for step 2
+        OnboardingStep step3 = new OnboardingStep("Tell me about yourself!", "You can change this later", null, 3); // Replace null with relevant UI elements for step 2
+        OnboardingStep step4 = new OnboardingStep("!", "You can change this later", null, 3); // Replace null with relevant UI elements for step 2
         // ... More steps as needed
 
         // Linking the steps
         step1.NextStep = step2;
-        // ... Link more steps as needed
+        step2.PreviousStep = step1;
+        step2.NextStep = step3;
+        step3.PreviousStep = step2;
+        step3.NextStep= step4;
+        step4.PreviousStep = step3;
+
 
         // Set the current step
         currentStep = step1;
@@ -43,10 +53,18 @@ public class Onboarding : MonoBehaviour
 
     public void GoToNextStep()
     {
-        Debug.Log(currentStep.ToString());
-        if (currentStep != null && currentStep.NextStep != null)
+        if (currentStep.ToString() != null && currentStep.NextStep.ToString() != null)
         {
             currentStep = currentStep.NextStep;
+            UpdateUIForCurrentStep();
+        }
+    }
+
+    public void GoToPreviousStep()
+    {
+        if (currentStep.ToString() != null && currentStep.PreviousStep.ToString() != null)
+        {
+            currentStep = currentStep.PreviousStep;
             UpdateUIForCurrentStep();
         }
     }
@@ -58,10 +76,10 @@ public class Onboarding : MonoBehaviour
 
         // Update UI elements specific to the current step
         // For example, activate/deactivate certain UI elements
-        foreach (var element in colorOptions)
-        {
-            element.SetActive(false);
-        }
+        //foreach (var element in colorOptions)
+        //{
+        //    element.SetActive(false);
+        //}
 
         if (currentStep.UiElements != null)
         {
@@ -73,12 +91,46 @@ public class Onboarding : MonoBehaviour
     }
 
 
+    public void UpdatePreferences()
+    {
+        switch (currentStep.currentStepIndex)
+        {
+            case 1:
+                break;
+            case 2:
+                PlayerPrefs.SetString("FavoriteColor", ColorUtility.ToHtmlStringRGBA(selectedColor));
+                PlayerPrefs.Save();
+                break;
+            case 3:
+                PlayerPrefs.SetString("Name", name);
+                PlayerPrefs.Save();
+                break;
+            case 4:
+                break;
+        }
 
+    }
+
+    public void TurnOffPage(GameObject obj)
+    {
+        obj.SetActive(false);
+    }
+
+    public void MoveHeaders()
+    {
+        header.transform.position = new Vector2(header.transform.position.x , 755);
+        subHeader.transform.position = new Vector2(subHeader.transform.position.x ,  735);
+    }
 
     #region Step 1 (Color Selection)
     public void SetColor(BackgroundColor color)
     {
-        ColorUtility.TryParseHtmlString("#" + color, out selectedColor);
+        ColorUtility.TryParseHtmlString("#" + color.hexCode, out selectedColor);
+        backgroundColor.color = selectedColor;
+        header.color = selectedColor;
+        subHeader.color = selectedColor;
+        buttonPrefab.color = selectedColor;
+        inputPrefab.color = selectedColor;
 
         foreach (var colorOption in colorOptions)
         {
@@ -88,7 +140,6 @@ public class Onboarding : MonoBehaviour
                 StartCoroutine(InterpolateScale(colorOption, new Vector3(1f, 1f, 1f), .15f));
         }
 
-        SetFavoriteColor();
     }
 
     private IEnumerator InterpolateScale(GameObject objToTransform, Vector3 targetScale, float duration)
@@ -108,10 +159,25 @@ public class Onboarding : MonoBehaviour
 
     }
 
-    private void SetFavoriteColor()
+    #endregion
+
+
+    #region Step2
+    public void CheckNameValid(TextMeshProUGUI input)
     {
-        PlayerPrefs.SetString("FavoriteColor", ColorUtility.ToHtmlStringRGBA(selectedColor));
-        //PlayerPrefs.Save();
+        Button nextButton = buttonPrefab.GetComponent<Button>();
+
+        // Check if input is valid and enable/disable the button accordingly
+        if (input != null && input.text.Length >= 3)
+        {
+            nextButton.interactable = true;
+            name = input.text;
+            // Consider saving the input when it is valid and, typically, after some user action like a button press
+        }
+        else
+        {
+            nextButton.interactable = false;
+        }
     }
     #endregion
 
