@@ -5,6 +5,7 @@ using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Onboarding : MonoBehaviour
@@ -75,13 +76,11 @@ public class Onboarding : MonoBehaviour
 
             if (currentStep.currentStepIndex == 5 && userChoice)
             {
-                Debug.Log("changing to yes path");
                 currentStep = currentStep.YesPath;
                 UpdateUIForCurrentStep();
             }
             else if (currentStep.currentStepIndex == 5 && !userChoice)
             {
-                Debug.Log("changing to no path");
                 currentStep = currentStep.NoPath;
                 UpdateUIForCurrentStep();
             }
@@ -163,6 +162,11 @@ public class Onboarding : MonoBehaviour
     {
         header.transform.position = new Vector2(header.transform.position.x, 535);
         subHeader.transform.position = new Vector2(subHeader.transform.position.x, 515);
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(1);
     }
 
     #region Step 1 (Color Selection)

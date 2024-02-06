@@ -11,7 +11,6 @@ public class OnboardingStep : MonoBehaviour
 
     public OnboardingStep NextStep { get; set; }
     public OnboardingStep PreviousStep { get; set; }
-
     public OnboardingStep YesPath { get; set; } // For tutorial
     public OnboardingStep NoPath { get; set; }   // For skipping tutorial
 

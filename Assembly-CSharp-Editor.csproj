@@ -1289,9 +1289,25 @@
       <Project>{EF07FA26-A9CB-2ABE-78AF-7843130EDB69}</Project>
       <Name>MK.RampCreator</Name>
     </ProjectReference>
+    <ProjectReference Include="MK.Toon.URP.csproj">
+      <Project>{D9C4FA41-C1CD-F5B0-BCF2-0D3F02C66FBF}</Project>
+      <Name>MK.Toon.URP</Name>
+    </ProjectReference>
+    <ProjectReference Include="MK.Toon.csproj">
+      <Project>{B74A761D-A654-5371-0864-3B2A27B53593}</Project>
+      <Name>MK.Toon</Name>
+    </ProjectReference>
     <ProjectReference Include="MK.MKTextureChannelPacker.csproj">
       <Project>{476367A1-90DA-BD0F-FE87-076099D79856}</Project>
       <Name>MK.MKTextureChannelPacker</Name>
+    </ProjectReference>
+    <ProjectReference Include="MK.Toon.Editor.csproj">
+      <Project>{D8B12CC7-4CC1-5FA5-A512-ACE4E8F6E9BB}</Project>
+      <Name>MK.Toon.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="MK.Toon.URP.Editor.csproj">
+      <Project>{3F29C484-28FC-3CD6-E4F1-F857045286AD}</Project>
+      <Name>MK.Toon.URP.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
