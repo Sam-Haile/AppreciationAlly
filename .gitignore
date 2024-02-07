@@ -1,3 +1,10 @@
 
 Library
 Temp
+.vs
+bin/
+obj/
+*.user
+*.userprefs
+*.vsidx
+*.suo
