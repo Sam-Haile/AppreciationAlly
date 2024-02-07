@@ -460,7 +460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -887,6 +887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69a3c7bb124ba44993114ffe354aa15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridImage: {fileID: 7161435044477754040, guid: 34c19ff9934867641897b92a50fef6d9, type: 3}
+  canvas: {fileID: 966315550}
 --- !u!1 &995729124
 GameObject:
   m_ObjectHideFlags: 0
