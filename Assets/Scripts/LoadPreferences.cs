@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LoadMainMenu : MonoBehaviour
+public class LoadPreferences : MonoBehaviour
 {
     public Image selectedPfp;
     public Sprite[] pfps;
@@ -15,22 +16,29 @@ public class LoadMainMenu : MonoBehaviour
     {
 
         //Apply users pfp
-        int userPfpId = PlayerPrefs.GetInt("PlayerPfp", -1);
 
-        if(userPfpId >= 0 && userPfpId < pfps.Length)
+        if (selectedPfp != null && pfps != null)
         {
-            selectedPfp.sprite = pfps[userPfpId];
+
+            int userPfpId = PlayerPrefs.GetInt("PlayerPfp", -1);
+
+            if (userPfpId >= 0 && userPfpId < pfps.Length)
+            {
+                selectedPfp.sprite = pfps[userPfpId];
+            }
+            else
+            {
+                Debug.LogWarning("Pfp Index Out of Range");
+                selectedPfp.sprite = pfps[0];
+            }
         }
-        else
+
+        if (greeting != null)
         {
-            Debug.LogWarning("Pfp Index Out of Range");
-            selectedPfp.sprite = pfps[0];
+            //Apply users username
+            string userName = PlayerPrefs.GetString("Name", "Friend");
+            greeting.text = "Hello " + userName + "!";
         }
-
-
-        //Apply users username
-        string userName = PlayerPrefs.GetString("Name", "Friend");
-        greeting.text = "Hello " + userName + "!";
 
 
         //Apply users color
@@ -42,7 +50,7 @@ public class LoadMainMenu : MonoBehaviour
         Color primColor;
         Color secColor;
 
-        if(ColorUtility.TryParseHtmlString("#"+primaryColor, out primColor) && ColorUtility.TryParseHtmlString("#" + secondaryColor, out secColor))
+        if (ColorUtility.TryParseHtmlString("#" + primaryColor, out primColor) && ColorUtility.TryParseHtmlString("#" + secondaryColor, out secColor))
         {
 
             foreach (var uiElement in uiElementsPrimary)
@@ -50,7 +58,7 @@ public class LoadMainMenu : MonoBehaviour
                 uiElement.GetComponent<Image>().color = primColor;
             }
 
-            foreach(var uiElement in uiElementsSecondary)
+            foreach (var uiElement in uiElementsSecondary)
             {
                 uiElement.GetComponent<Image>().color = secColor;
             }
@@ -61,4 +69,9 @@ public class LoadMainMenu : MonoBehaviour
         }
 
     }
+    public void LoadScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
 }

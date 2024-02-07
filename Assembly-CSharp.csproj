@@ -61,11 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\ScreenTransitions.cs" />
     <Compile Include="Assets\Scripts\Onboarding.cs" />
     <Compile Include="Assets\Scripts\ModifyColor.cs" />
     <Compile Include="Assets\Scripts\BackgroundColor.cs" />
+    <Compile Include="Assets\Scripts\LoadPreferences.cs" />
+    <Compile Include="Assets\GridGame.cs" />
     <Compile Include="Assets\Scripts\ProfilePicture.cs" />
-    <Compile Include="Assets\Scripts\LoadMainMenu.cs" />
     <Compile Include="Assets\Scripts\OnboardingStep.cs" />
   </ItemGroup>
   <ItemGroup>
