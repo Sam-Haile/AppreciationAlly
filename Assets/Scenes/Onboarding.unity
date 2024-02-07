@@ -419,7 +419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 73.399994, y: -308.3}
+  m_AnchoredPosition: {x: 73.399994, y: -308.30005}
   m_SizeDelta: {x: -209.44, y: -670.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &231228987
@@ -759,7 +759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ff26be2a31f7f479d9b95d08175200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexCode: 0E46A7
+  primaryColor: 0E46A7
+  secondaryColor: 3D72CF
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +1069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100.5, y: 50.070007}
+  m_AnchoredPosition: {x: -100.5, y: 50.07007}
   m_SizeDelta: {x: 117, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &622271412
@@ -2182,7 +2183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ff26be2a31f7f479d9b95d08175200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexCode: A70E0E
+  primaryColor: A70E0E
+  secondaryColor: CF3D3D
 --- !u!1 &2011946946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,7 +2220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100.5, y: 50.070007}
+  m_AnchoredPosition: {x: 100.5, y: 50.07007}
   m_SizeDelta: {x: 117, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2011946948
@@ -2602,7 +2604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ff26be2a31f7f479d9b95d08175200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexCode: 0EA71D
+  primaryColor: 3FA70E
+  secondaryColor: 7DCF3D
 --- !u!1 &130429232423900686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,7 +2723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2010699009242890524, guid: 3ff1c8497eef702498fe44a46bd60a31, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Textt
+      value: UpdatePreferences
       objectReference: {fileID: 0}
     - target: {fileID: 2010699009242890524, guid: 3ff1c8497eef702498fe44a46bd60a31, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -4336,6 +4339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7382265033621247999}
   - component: {fileID: 5036121692533075330}
+  - component: {fileID: 7382265033621248000}
   m_Layer: 0
   m_Name: pCylinder1.009
   m_TagString: Untagged
@@ -5338,6 +5342,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1313783934288751028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7382265033621248000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192703709468428052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f0f99cbff5b8049bcc7a6dda971d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 30
+  chromoColor: {fileID: 2100000, guid: bbbdcb2e62c5507468e6ce7adc7e6ded, type: 2}
 --- !u!1 &7392516625175462950
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,4 @@ using UnityEngine;
 public class ProfilePicture : MonoBehaviour
 {
     public int id;
-
-
-
 }

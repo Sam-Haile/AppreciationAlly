@@ -15,7 +15,8 @@ public class Onboarding : MonoBehaviour
     public TextMeshProUGUI header;
     public TextMeshProUGUI subHeader;
     #region Step 1
-    private UnityEngine.Color selectedColor;
+    private UnityEngine.Color selectedPrimaryColor;
+    private UnityEngine.Color selectedSecondaryColor;
     public GameObject[] colorOptions;
     public GameObject[] profilePictures;
     public Image backgroundColor;
@@ -41,7 +42,6 @@ public class Onboarding : MonoBehaviour
         OnboardingStep step2 = new OnboardingStep("Choose your favorite color", "You can change this later", null, 2);
         OnboardingStep step3 = new OnboardingStep("Tell me about yourself!", "You can change this later", null, 3);
         OnboardingStep step4 = new OnboardingStep("", "Hi friend! I'm Chromo, your guide to a world of fun, feelings, and fantastic adventures!", null, 4);
-
         OnboardingStep step5 = new OnboardingStep("", "Would you like a tour of the app?", null, 5);
 
         OnboardingStep yesPath = new OnboardingStep("", "Great! Let's get this adventure rolling!", null, 6);
@@ -57,15 +57,19 @@ public class Onboarding : MonoBehaviour
         step4.NextStep = step5;
         step5.PreviousStep = step4;
         step5.NextStep = noPath;
-
         step5.YesPath = yesPath;
         step5.NoPath = noPath;
 
         // Set the current step
         currentStep = step1;
 
-        UpdateUIForCurrentStep();
 
+        //Defalt values
+        userPfpId = 1;
+        userName = "Friend";
+
+
+        UpdateUIForCurrentStep();
     }
 
 
@@ -120,8 +124,6 @@ public class Onboarding : MonoBehaviour
         userChoice = choice;
     }
 
-
-
     public void UpdatePreferences()
     {
         switch (currentStep.currentStepIndex)
@@ -129,7 +131,8 @@ public class Onboarding : MonoBehaviour
             case 1:
                 break;
             case 2:
-                PlayerPrefs.SetString("FavoriteColor", ColorUtility.ToHtmlStringRGBA(selectedColor));
+                PlayerPrefs.SetString("PrimaryColor", ColorUtility.ToHtmlStringRGBA(selectedPrimaryColor));
+                PlayerPrefs.SetString("SecondaryColor", ColorUtility.ToHtmlStringRGBA(selectedSecondaryColor));
                 PlayerPrefs.Save();
                 break;
             case 3:
@@ -140,18 +143,21 @@ public class Onboarding : MonoBehaviour
         }
     }
 
-
     public void SetPfp(ProfilePicture selectedPfp)
     {
         foreach (var pfp in profilePictures)
         {
-            if (pfp.GetComponent<ProfilePicture>().id != selectedPfp.id)
+            int id = pfp.GetComponent<ProfilePicture>().id;
+
+            if (id != selectedPfp.id)
                 StartCoroutine(InterpolateScale(pfp.gameObject, new Vector3(.75f, .75f, 1f), .15f));
             else
+            {
                 StartCoroutine(InterpolateScale(pfp.gameObject, new Vector3(1f, 1f, 1f), .15f));
+                userPfpId = id;
+            }
         }
     }
-
 
     public void TurnOffPage(GameObject obj)
     {
@@ -172,16 +178,17 @@ public class Onboarding : MonoBehaviour
     #region Step 1 (Color Selection)
     public void SetColor(BackgroundColor color)
     {
-        ColorUtility.TryParseHtmlString("#" + color.hexCode, out selectedColor);
-        backgroundColor.color = selectedColor;
-        header.color = selectedColor;
-        subHeader.color = selectedColor;
-        buttonPrefab.color = selectedColor;
-        inputPrefab.color = selectedColor;
+        ColorUtility.TryParseHtmlString("#" + color.primaryColor, out selectedPrimaryColor);
+        ColorUtility.TryParseHtmlString("#" + color.secondaryColor, out selectedSecondaryColor);
+        backgroundColor.color = selectedPrimaryColor;
+        header.color = selectedPrimaryColor;
+        subHeader.color = selectedPrimaryColor;
+        buttonPrefab.color = selectedPrimaryColor;
+        inputPrefab.color = selectedSecondaryColor;
 
         foreach (var colorOption in colorOptions)
         {
-            if (colorOption.GetComponent<BackgroundColor>().hexCode != color.hexCode)
+            if (colorOption.GetComponent<BackgroundColor>().primaryColor != color.primaryColor)
                 StartCoroutine(InterpolateScale(colorOption, new Vector3(.75f, .75f, 1f), .15f));
             else
                 StartCoroutine(InterpolateScale(colorOption, new Vector3(1f, 1f, 1f), .15f));
@@ -209,14 +216,14 @@ public class Onboarding : MonoBehaviour
     #endregion
 
 
-    #region Step2
+    #region Step2 (Name Selection)
     public void CheckNameValid(TextMeshProUGUI input)
     {
         // Check if input is valid and enable/disable the button accordingly
         if (input != null && input.text.Length >= 3)
         {
             nextButton.interactable = true;
-            name = input.text;
+            userName = input.text;
             // Consider saving the input when it is valid and, typically, after some user action like a button press
         }
         else

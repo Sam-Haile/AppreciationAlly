@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class BackgroundColor : MonoBehaviour
 {
-    public string hexCode;
+    public string primaryColor;
+    public string secondaryColor;
 }
