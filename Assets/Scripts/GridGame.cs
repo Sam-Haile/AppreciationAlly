@@ -24,6 +24,7 @@ public class GridGame : MonoBehaviour
 
     //Timer fields
     public TextMeshProUGUI timerText;
+    public GameObject timerGameObj;
     private float timer = 120.0f;
     private float timeRemaining;
     private bool timerIsRunning = false;
@@ -32,14 +33,22 @@ public class GridGame : MonoBehaviour
 
     private void Start()
     {
-        timeRemaining = timer;
-        timerIsRunning = true;
-        selectedGridCounter = 0;
         highscoreText.text = PlayerPrefs.GetInt("Highscore", 0).ToString();
         RandomizeImages();
         PopulateGrid();
+    }
+
+    public void PlayWithTimer()
+    {
+        timeRemaining = timer;
+        selectedGridCounter = 0;
+        timerIsRunning = true;
+    }
 
 
+    public void TurnTimerOnOff(bool isOn)
+    {
+        timerGameObj.SetActive(isOn);
     }
 
     private void Update()
