@@ -69,9 +69,10 @@ public class LoadPreferences : MonoBehaviour
         }
 
     }
-    public void LoadScene(int sceneIndex)
-    {
-        SceneManager.LoadScene(sceneIndex);
-    }
 
+
+    public void LoadSceneIndex(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
 }

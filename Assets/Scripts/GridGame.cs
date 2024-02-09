@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GridGame : MonoBehaviour
 {
     public GameObject gridImage;
+    public GameObject gameOverUI;
     public Canvas canvas;
 
     //Grid fields
@@ -19,8 +20,10 @@ public class GridGame : MonoBehaviour
     // Score fields
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highscoreText;
+    public TextMeshProUGUI gameEndScoreText;
+    public TextMeshProUGUI gameEndHighscoreText;
     public int score;
-
+    public int highscore;
 
     //Timer fields
     public TextMeshProUGUI timerText;
@@ -30,10 +33,13 @@ public class GridGame : MonoBehaviour
     private bool timerIsRunning = false;
     public bool playWithTimer;
 
+    //UI Color Application
+    public GameObject[] inactiveObjects;
 
     private void Start()
     {
         highscoreText.text = PlayerPrefs.GetInt("Highscore", 0).ToString();
+        highscore = PlayerPrefs.GetInt("Highscore", 0);
         RandomizeImages();
         PopulateGrid();
     }
@@ -51,6 +57,15 @@ public class GridGame : MonoBehaviour
         timerGameObj.SetActive(isOn);
     }
 
+    public void SetObjectInactive()
+    {
+        foreach (GameObject obj in inactiveObjects)
+        {
+            obj.SetActive(false);
+        }
+    }
+
+
     private void Update()
     {
         if(timerIsRunning)
@@ -66,9 +81,12 @@ public class GridGame : MonoBehaviour
                 Debug.Log("Done");
             }
         }
-        
     }
 
+    public void SetTimerActive(bool isActive)
+    {
+        timerIsRunning=isActive;
+    }
 
     private void DisplayTime(float timeRemaining, TextMeshProUGUI text)
     {
@@ -113,30 +131,70 @@ public class GridGame : MonoBehaviour
 
     public void OnTap()
     {
+
         selectedGridCounter++;
 
-
-        if (selectedGridCounter <= numOfGrids)
+        if (selectedGridCounter < numOfGrids)
         {
-            progressSlider.value = (float)selectedGridCounter / (float)numOfGrids;
+            StartCoroutine(SmoothProgressChange(progressSlider.value, (float)selectedGridCounter / (float)numOfGrids, 0.25f));
             score += 100;
             scoreText.text = "SCORE: " + score.ToString();
             RandomizeImages();
             PopulateGrid();
-        }
-        else{
-            progressSlider.value = 1;
-            int currentHighscore = PlayerPrefs.GetInt("Highscore", 0);
 
-            if(currentHighscore < score)
+            if (highscore < score)
             {
-                PlayerPrefs.SetInt("Highscore", score);
                 highscoreText.text = score.ToString();
             }
+        }
+        else{
+
+            score += 100;
+            scoreText.text = "SCORE: " + score.ToString();
+            EndGame();
         }
 
 
     }
-    
+
+    public void EndGame()
+    {
+        progressSlider.value = 1;
+
+        if (highscore < score)
+        {
+            PlayerPrefs.SetInt("Highscore", score);
+            highscoreText.text = score.ToString();
+        }
+
+        gameEndHighscoreText.text = highscoreText.text;
+        gameEndScoreText.text = score.ToString();
+
+        gameOverUI.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        selectedGridCounter = 0;
+        progressSlider.value = 0;
+        score = 0;
+        scoreText.text = "";
+        timer = 120.0f;
+        timerText.text = "2:00";
+    }
+
+    IEnumerator SmoothProgressChange(float startValue, float endValue, float duration)
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            progressSlider.value = Mathf.Lerp(startValue, endValue, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+
+        progressSlider.value = endValue; // Ensure the slider reaches the final value
+    }
 
 }
