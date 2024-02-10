@@ -1288,6 +1288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chromo1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 09ad42d61e5e56d4e92a013e51b19c5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1268173722399238365, guid: 09ad42d61e5e56d4e92a013e51b19c5a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.306893
