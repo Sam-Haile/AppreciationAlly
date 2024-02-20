@@ -22,12 +22,12 @@ public class LoadPreferences : MonoBehaviour
             //Apply users username
             userName = PlayerPrefs.GetString("Name", "Friend");
             greeting.text = "Hello " + userName + "!";
+            settingsName.text = userName;
         }
 
-        settingsName.text = userName;
 
         //Apply users pfp
-        foreach(var p in selectedPfp)
+        foreach (var p in selectedPfp)
         {
             if (p != null && pfps != null)
             {
