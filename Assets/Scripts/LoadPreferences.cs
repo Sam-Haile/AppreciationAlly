@@ -7,39 +7,44 @@ using UnityEngine.UI;
 
 public class LoadPreferences : MonoBehaviour
 {
-    public Image selectedPfp;
+    public Image[] selectedPfp;
+
     public Sprite[] pfps;
 
     public TextMeshProUGUI greeting;
-
+    public TextMeshProUGUI settingsName;
+    private string userName;
     private void Start()
     {
-
-        //Apply users pfp
-
-        if (selectedPfp != null && pfps != null)
-        {
-
-            int userPfpId = PlayerPrefs.GetInt("PlayerPfp", -1);
-
-            if (userPfpId >= 0 && userPfpId < pfps.Length)
-            {
-                selectedPfp.sprite = pfps[userPfpId];
-            }
-            else
-            {
-                Debug.LogWarning("Pfp Index Out of Range");
-                selectedPfp.sprite = pfps[0];
-            }
-        }
 
         if (greeting != null)
         {
             //Apply users username
-            string userName = PlayerPrefs.GetString("Name", "Friend");
+            userName = PlayerPrefs.GetString("Name", "Friend");
             greeting.text = "Hello " + userName + "!";
         }
 
+        settingsName.text = userName;
+
+        //Apply users pfp
+        foreach(var p in selectedPfp)
+        {
+            if (p != null && pfps != null)
+            {
+
+                int userPfpId = PlayerPrefs.GetInt("PlayerPfp", -1);
+
+                if (userPfpId >= 0 && userPfpId < pfps.Length)
+                {
+                    p.sprite = pfps[userPfpId];
+                }
+                else
+                {
+                    Debug.LogWarning("Pfp Index Out of Range");
+                    p.sprite = pfps[0];
+                }
+            }
+        }
 
         //Apply users color
         string primaryColor = PlayerPrefs.GetString("PrimaryColor", "0E46A7");
@@ -47,12 +52,12 @@ public class LoadPreferences : MonoBehaviour
         var uiElementsPrimary = GameObject.FindGameObjectsWithTag("PrimaryColor");
         var uiElementsSecondary = GameObject.FindGameObjectsWithTag("SecondaryColor");
 
+
         Color primColor;
         Color secColor;
 
         if (ColorUtility.TryParseHtmlString("#" + primaryColor, out primColor) && ColorUtility.TryParseHtmlString("#" + secondaryColor, out secColor))
         {
-
             foreach (var uiElement in uiElementsPrimary)
             {
                 uiElement.GetComponent<Image>().color = primColor;

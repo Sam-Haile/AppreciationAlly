@@ -803,6 +803,7 @@ PlayerSettings:
     VisionOS: 
     WebGL: 
     XboxOne: 
+    iPhone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
     tvOS: 
   additionalCompilerArguments: {}
   platformArchitecture: {}
