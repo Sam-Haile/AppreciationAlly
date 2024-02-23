@@ -38,14 +38,14 @@ public class Onboarding : MonoBehaviour
     private void SetupOnboardingSteps()
     {
         // Example of setting up steps
-        OnboardingStep step1 = new OnboardingStep("Welcome Aboard!", "Begin your journey towards better mental well-being with Appreciation Alley. Cultivating daily gratitude and positivity.", null, 1);
-        OnboardingStep step2 = new OnboardingStep("Choose your favorite color", "You can change this later", null, 2);
-        OnboardingStep step3 = new OnboardingStep("Tell me about yourself!", "You can change this later", null, 3);
-        OnboardingStep step4 = new OnboardingStep("", "Hi friend! I'm Chromo, your guide to a world of fun, feelings, and fantastic adventures!", null, 4);
-        OnboardingStep step5 = new OnboardingStep("", "Would you like a tour of the app?", null, 5);
+        OnboardingStep step1 = new OnboardingStep("Welcome Aboard!", "Begin your journey towards better mental well-being with Appreciation Alley. Cultivating daily gratitude and positivity.",   1);
+        OnboardingStep step2 = new OnboardingStep("Choose your favorite color", "You can change this later",   2);
+        OnboardingStep step3 = new OnboardingStep("Tell me about yourself!", "You can change this later",   3);
+        OnboardingStep step4 = new OnboardingStep("", "Hi friend! I'm Chromo, your guide to a world of fun, feelings, and fantastic adventures!",   4);
+        OnboardingStep step5 = new OnboardingStep("", "Would you like a tour of the app?",   5);
 
-        OnboardingStep yesPath = new OnboardingStep("", "Great! Let's get this adventure rolling!", null, 6);
-        OnboardingStep noPath = new OnboardingStep("", "Alright, If you ever want to do the tutorial head over to the settings!", null, 6);
+        OnboardingStep yesPath = new OnboardingStep("", "Great! Let's get this adventure rolling!",   6);
+        OnboardingStep noPath = new OnboardingStep("", "Alright, If you ever want to do the tutorial head over to the settings!",   6);
 
         // Linking the steps
         step1.NextStep = step2;
@@ -108,14 +108,6 @@ public class Onboarding : MonoBehaviour
     {
         header.text = currentStep.HeaderText;
         subHeader.text = currentStep.SubHeaderText;
-
-        if (currentStep.UiElements != null)
-        {
-            foreach (var element in currentStep.UiElements)
-            {
-                element.SetActive(true);
-            }
-        }
 
     }
 

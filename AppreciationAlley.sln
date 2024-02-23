@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MK.Toon.Editor", "MK.Toon.Editor.csproj", "{D8B12CC7-4CC1-5FA5-A512-ACE4E8F6E9BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{381B0C00-786A-619A-E43D-58D03F7D7012}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MK.RampCreator", "MK.RampCreator.csproj", "{EF07FA26-A9CB-2ABE-78AF-7843130EDB69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MK.Toon", "MK.Toon.csproj", "{B74A761D-A654-5371-0864-3B2A27B53593}"
@@ -12,8 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MK.Toon.URP.Editor", "MK.Toon.URP.Editor.csproj", "{3F29C484-28FC-3CD6-E4F1-F857045286AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeGallery.Runtime", "NativeGallery.Runtime.csproj", "{D4BCFEC5-DFA1-F3D1-18FB-9B46D69577BB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{381B0C00-786A-619A-E43D-58D03F7D7012}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MK.MKTextureChannelPacker", "MK.MKTextureChannelPacker.csproj", "{476367A1-90DA-BD0F-FE87-076099D79856}"
 EndProject
@@ -31,6 +31,10 @@ Global
 		{D8B12CC7-4CC1-5FA5-A512-ACE4E8F6E9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8B12CC7-4CC1-5FA5-A512-ACE4E8F6E9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8B12CC7-4CC1-5FA5-A512-ACE4E8F6E9BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{381B0C00-786A-619A-E43D-58D03F7D7012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{381B0C00-786A-619A-E43D-58D03F7D7012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{381B0C00-786A-619A-E43D-58D03F7D7012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{381B0C00-786A-619A-E43D-58D03F7D7012}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF07FA26-A9CB-2ABE-78AF-7843130EDB69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF07FA26-A9CB-2ABE-78AF-7843130EDB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF07FA26-A9CB-2ABE-78AF-7843130EDB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,10 +55,6 @@ Global
 		{D4BCFEC5-DFA1-F3D1-18FB-9B46D69577BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4BCFEC5-DFA1-F3D1-18FB-9B46D69577BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4BCFEC5-DFA1-F3D1-18FB-9B46D69577BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{381B0C00-786A-619A-E43D-58D03F7D7012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{381B0C00-786A-619A-E43D-58D03F7D7012}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{381B0C00-786A-619A-E43D-58D03F7D7012}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{381B0C00-786A-619A-E43D-58D03F7D7012}.Release|Any CPU.Build.0 = Release|Any CPU
 		{476367A1-90DA-BD0F-FE87-076099D79856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{476367A1-90DA-BD0F-FE87-076099D79856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{476367A1-90DA-BD0F-FE87-076099D79856}.Release|Any CPU.ActiveCfg = Release|Any CPU

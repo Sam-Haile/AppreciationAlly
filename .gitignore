@@ -4,7 +4,9 @@ Temp
 .vs
 bin/
 obj/
+Logs/
 *.user
 *.userprefs
 *.vsidx
 *.suo
+*.log

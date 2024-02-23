@@ -6,7 +6,6 @@ public class OnboardingStep : MonoBehaviour
 {
     public string HeaderText;
     public string SubHeaderText;
-    public GameObject[] UiElements;
     public int currentStepIndex;
 
     public OnboardingStep NextStep { get; set; }
@@ -17,11 +16,10 @@ public class OnboardingStep : MonoBehaviour
 
 
 
-    public OnboardingStep(string headerText, string subHeaderText, GameObject[] uiElements, int currentStepIndex)
+    public OnboardingStep(string headerText, string subHeaderText, int currentStepIndex)
     {
         HeaderText = headerText;
         SubHeaderText = subHeaderText;
-        UiElements = uiElements;
         this.currentStepIndex = currentStepIndex;
     }
 

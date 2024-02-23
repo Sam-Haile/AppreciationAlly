@@ -4354,7 +4354,7 @@ GameObject:
   - component: {fileID: 455392233}
   - component: {fileID: 455392232}
   m_Layer: 5
-  m_Name: GridGameTransition
+  m_Name: Circle
   m_TagString: PrimaryColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
