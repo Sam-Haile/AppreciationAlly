@@ -6,6 +6,11 @@ TagManager:
   tags:
   - PrimaryColor
   - SecondaryColor
+  - 4
+  - 3
+  - 2
+  - 1
+  - 0
   layers:
   - Default
   - TransparentFX
