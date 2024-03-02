@@ -8,7 +8,6 @@ public class GridGame : MonoBehaviour
 {
     public GameObject gridImage;
     public GameObject gameOverUI;
-    public Canvas canvas;
 
     //Grid fields
     public Sprite[] images;
@@ -18,6 +17,8 @@ public class GridGame : MonoBehaviour
     public int numOfGrids;
     private int selectedGridCounter;
 
+    public RawImage enlargedGrid;
+    public GameObject enlargedGridParent;
     //UI Color Application
     public GameObject[] inactiveObjects;
 
@@ -62,7 +63,12 @@ public class GridGame : MonoBehaviour
     public void SetSelectedGrid(int gridIndex)
     {
         selectedGrid = gridIndex;
-        Debug.Log(gridObjs[selectedGrid]);
+        Debug.Log($"Setting selected grid: {selectedGrid}");
+
+        Texture texture = grids[selectedGrid].texture;
+        Debug.Log($"Selected texture: {texture.name}");
+
+        enlargedGrid.texture = texture;
     }
 
     public void SetObjectInactive()
@@ -75,19 +81,26 @@ public class GridGame : MonoBehaviour
 
     public void OnTap()
     {
+        StartCoroutine(ModifySizes(gridObjs, enlargedGridParent));
+        RandomizeImages();
+        PopulateGrid();
+
+    }
+
+    public void OnEnlargedImageTapped()
+    {
         selectedGridCounter++;
 
         if (selectedGridCounter < numOfGrids)
         {
             StartCoroutine(SmoothProgressChange(progressSlider.value, (float)selectedGridCounter / (float)numOfGrids, 0.25f));
-            foreach (GameObject obj in gridObjs)
-                StartCoroutine(ShrinkGrids(obj));
-            SetSelectedImage();
+            StartCoroutine(NextGrids(gridObjs, enlargedGridParent, true));
             RandomizeImages();
             PopulateGrid();
         }
         else
         {
+            StartCoroutine(NextGrids(gridObjs, enlargedGridParent, false));
             EndGame();
         }
     }
@@ -108,33 +121,58 @@ public class GridGame : MonoBehaviour
         progressSlider.value = endValue; // Ensure the slider reaches the final value
     }
 
-    private void SetSelectedImage()
-    {
 
-    }
-
-    IEnumerator ShrinkGrids(GameObject obj)
-    {
-        float elapsedTime = 0;
-
-        while (elapsedTime < .20f)
-        {
-            obj.transform.localScale = new Vector2(Mathf.Lerp(1, 0, elapsedTime/ .20f), Mathf.Lerp(1, 0, elapsedTime/ .20f));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    IEnumerator EnlargeSelection(GameObject obj)
+    /// <summary>
+    /// This method shrinks the grid of images once one is selected
+    /// It also enlarges the selected images, allowing the user to view it
+    /// </summary>
+    /// <param name="objsToShrink"></param>
+    /// <param name="objToEnlarge"></param>
+    /// <returns></returns>
+    IEnumerator ModifySizes(GameObject[] gridImages, GameObject enlargedImage)
     {
         float elapsedTime = 0;
 
         while (elapsedTime < .20f)
         {
-            obj.transform.localScale = new Vector2(Mathf.Lerp(0, 1, elapsedTime / .20f), Mathf.Lerp(0, 1, elapsedTime / .20f));
+            //Shrink all grid images
+            foreach (GameObject obj in gridImages)
+            {
+                obj.transform.localScale = new Vector2(Mathf.Lerp(1, 0, elapsedTime / .20f), Mathf.Lerp(1, 0, elapsedTime / .20f));
+                obj.SetActive(false);
+            }
+
+            enlargedImage.SetActive(true);
+            enlargedImage.transform.localScale = new Vector2(Mathf.Lerp(0, 1, elapsedTime / .20f), Mathf.Lerp(0, 1, elapsedTime / .20f));
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+    }
+
+    IEnumerator NextGrids(GameObject[] gridImages, GameObject enlargedImage, bool enlarge)
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < .20f)
+        {
+            if (enlarge)
+            {
+
+                foreach (GameObject obj in gridImages)
+                {
+                    obj.SetActive(true);
+                    obj.transform.localScale = new Vector2(Mathf.Lerp(0, 1, elapsedTime / .20f), Mathf.Lerp(0, 1, elapsedTime / .20f));
+                }
+            }
+
+            enlargedImage.transform.localScale = new Vector2(Mathf.Lerp(1, 0, elapsedTime / .20f), Mathf.Lerp(1, 0, elapsedTime / .20f));
+            enlargedImage.SetActive(false);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
     }
 
     public void EndGame()
