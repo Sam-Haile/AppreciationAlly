@@ -61,7 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\JournalStep.cs" />
+    <Compile Include="Assets\DailyTasks.cs" />
     <Compile Include="Assets\Scripts\ScreenTransitions.cs" />
+    <Compile Include="Assets\DailyTaskChecker.cs" />
     <Compile Include="Assets\Scripts\Onboarding.cs" />
     <Compile Include="Assets\Scripts\Journal.cs" />
     <Compile Include="Assets\Scripts\ModifyColor.cs" />
