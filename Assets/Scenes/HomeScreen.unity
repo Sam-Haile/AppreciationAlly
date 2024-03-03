@@ -359,7 +359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 8.779999, y: -209.22998}
+  m_AnchoredPosition: {x: 8.780029, y: -209.22998}
   m_SizeDelta: {x: 17.57, y: 1925.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &43031282
@@ -5411,7 +5411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7399142900584523900, guid: 90e45ad40e9117f4297884cd335ad2ab, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: gridGame
+      value: journal
       objectReference: {fileID: 0}
     - target: {fileID: 7399142900584523900, guid: 90e45ad40e9117f4297884cd335ad2ab, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -21019,7 +21019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 14.099998, y: 0.23999977}
+  m_AnchoredPosition: {x: 14.100006, y: 0.23999977}
   m_SizeDelta: {x: 42.81, y: -0.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054365075
@@ -22301,8 +22301,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 170854066}
   m_HandleRect: {fileID: 170854065}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

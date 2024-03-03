@@ -22,15 +22,29 @@ public class Journal : MonoBehaviour
     public GameObject[] stepUIs;
     public TextMeshProUGUI chromosSpeechBubble;
 
+    public List<GratefulButton> gratefulButtons;
+    public List<GratefulButton> selectedButtons;
+
+    // "Let's reflect on your day fields"
+    
+    public TextMeshProUGUI slot1;
+    public TextMeshProUGUI slot2;
+    public TextMeshProUGUI slot3;
+    public string[] gratefulFor;
+
+
+    //Final Display fields
+
     private string[] ungratefulResponses = { "It's okay to feel that way sometimes. Lets try finding small things that might be good in your day",
                                              "It's alright to have days when we don't feel grateful. What's one thing you like about your day, even if it's tiny?",
                                              "It’s perfectly okay to feel less grateful some days. Do you remember seeing something today that was pretty or interesting?"
     };
 
-    private string[] gratefulResponses = {"That's great to hear! Can you share what's making you feel this way?"};
-    
+    private string[] gratefulResponses = { "That's great to hear! Can you share what's making you feel this way?" };
+
     void Start()
     {
+        gratefulFor = new string[2];
         SetupJournal();
     }
 
@@ -42,23 +56,24 @@ public class Journal : MonoBehaviour
         step2Grtfl = new JournalStep("", null, /*add the text box here*/stepUIs[1], 1);
         JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose 3 or More", stepUIs[2], 2);
         JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
-        
+        JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
+
         step1.PreviousStep = null;
         step1.NextStep = step2Grtfl;
         step1.gratefulPath = step2Grtfl;
         step1.ungratefulPath = step2Ungrtfl;
-        
+
         step2Ungrtfl.NextStep = step3;
         step2Grtfl.NextStep = step3;
         step2Ungrtfl.PreviousStep = step1;
         step2Grtfl.PreviousStep = step1;
         step3.NextStep = step4;
         step3.PreviousStep = step1;
-        
+
         step4.NextStep = null;
         step4.PreviousStep = step3;
 
-        currentStep = step1; 
+        currentStep = step1;
         UpdateUI();
     }
 
@@ -70,9 +85,9 @@ public class Journal : MonoBehaviour
         else
             journalSubheader.text = "";
 
-        foreach(var step in stepUIs)
+        foreach (var step in stepUIs)
         {
-            if(step != currentStep.stepUI)
+            if (step != currentStep.stepUI)
                 step.SetActive(false);
             else
                 step.SetActive(true);
@@ -81,13 +96,13 @@ public class Journal : MonoBehaviour
 
     public void NextStep()
     {
-        if(currentStep.currentStepIndex == 0 && emotionSlider.value < .56f)
+        if (currentStep.currentStepIndex == 0 && emotionSlider.value < .56f)
         {
             currentStep = step1.ungratefulPath;
             CreateChromoResponse(false);
             UpdateUI();
         }
-        else if(currentStep.currentStepIndex == 0 && emotionSlider.value >= .56f)
+        else if (currentStep.currentStepIndex == 0 && emotionSlider.value >= .56f)
         {
             currentStep = step1.gratefulPath;
             CreateChromoResponse(true);
@@ -102,7 +117,7 @@ public class Journal : MonoBehaviour
 
     public void PreviousStep()
     {
-        if(currentStep.PreviousStep != null)
+        if (currentStep.PreviousStep != null)
             currentStep = currentStep.PreviousStep;
     }
 
@@ -112,7 +127,7 @@ public class Journal : MonoBehaviour
     /// </summary>
     private void CreateChromoResponse(bool isGrateful)
     {
-        if(isGrateful)
+        if (isGrateful)
             chromosSpeechBubble.text = gratefulResponses[Random.Range(0, gratefulResponses.Length)];
         else
             chromosSpeechBubble.text = ungratefulResponses[Random.Range(0, ungratefulResponses.Length)];
@@ -142,10 +157,47 @@ public class Journal : MonoBehaviour
         else if (emotionSlider.value > .42f && emotionSlider.value < .56f)
             emotionRating.text = "Moderately Grateful";
         else if (emotionSlider.value > .56f && emotionSlider.value < .7f)
-            emotionRating.text = "Grateful";   
+            emotionRating.text = "Grateful";
         else if (emotionSlider.value > .7f && emotionSlider.value < .84f)
             emotionRating.text = "Highly Grateful";
         else if (emotionSlider.value > .84f && emotionSlider.value < 1f)
             emotionRating.text = "Very Grateful";
+    }
+
+    public void SaveInformation()
+    {
+        switch (currentStep.currentStepIndex)
+        {
+            case 1:
+                Debug.Log(emotionRating.text);
+                break;
+            case 2:
+                break;
+            case 3:
+                foreach(GratefulButton selectedButton in gratefulButtons)
+                {
+                    if (selectedButton.selected)
+                    {
+                        Debug.Log(selectedButton.text);
+                        selectedButtons.Add(selectedButton);
+                    }
+                }
+                break;
+            case 4:
+                gratefulFor[0] = slot1.text;
+                gratefulFor[1] = slot2.text;
+                gratefulFor[2] = slot3.text;
+                break;
+            default:
+                break;
+        }
+    }
+
+    /// <summary>
+    /// This field displays the previous entries on one page for the user to review
+    /// </summary>
+    public void DisplayFinalEntry()
+    {
+
     }
 }
