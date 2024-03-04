@@ -26,11 +26,15 @@ public class Journal : MonoBehaviour
     public List<GratefulButton> selectedButtons;
 
     // "Let's reflect on your day fields"
-    
+
     public TextMeshProUGUI slot1;
     public TextMeshProUGUI slot2;
     public TextMeshProUGUI slot3;
     public string[] gratefulFor;
+
+    public Slider finalEmotionSlider;
+    public GratefulButton[] final_grtfl_buttons;
+    public TextMeshProUGUI[] final_grtfl_strings;
 
 
     //Final Display fields
@@ -70,8 +74,11 @@ public class Journal : MonoBehaviour
         step3.NextStep = step4;
         step3.PreviousStep = step1;
 
-        step4.NextStep = null;
         step4.PreviousStep = step3;
+        step4.NextStep = step5;
+
+        step5.NextStep = null;
+        step5.PreviousStep = step4;
 
         currentStep = step1;
         UpdateUI();
@@ -174,7 +181,7 @@ public class Journal : MonoBehaviour
             case 2:
                 break;
             case 3:
-                foreach(GratefulButton selectedButton in gratefulButtons)
+                foreach (GratefulButton selectedButton in gratefulButtons)
                 {
                     if (selectedButton.selected)
                     {
@@ -182,11 +189,14 @@ public class Journal : MonoBehaviour
                         selectedButtons.Add(selectedButton);
                     }
                 }
+
+                DisplayFinalEntry();
+
                 break;
             case 4:
-                gratefulFor[0] = slot1.text;
-                gratefulFor[1] = slot2.text;
-                gratefulFor[2] = slot3.text;
+                //gratefulFor[0] = slot1.text;
+                //gratefulFor[1] = slot2.text;
+                //gratefulFor[2] = slot3.text;
                 break;
             default:
                 break;
@@ -198,6 +208,25 @@ public class Journal : MonoBehaviour
     /// </summary>
     public void DisplayFinalEntry()
     {
+        // Show the level of gratefulness felt by the user
+        finalEmotionSlider.value = emotionSlider.value;
+
+        for (int i = 0; i < selectedButtons.Count; i++)
+        {
+            if (selectedButtons[i] != null)
+            {
+                final_grtfl_buttons[i].icon = selectedButtons[i].icon;
+                final_grtfl_buttons[i].text = selectedButtons[i].text;
+            }
+            else
+                final_grtfl_buttons[i].gameObject.SetActive(false);
+        }
+
+        // Display the 3 strings user inputs
+        for (int i = 0; i < gratefulFor.Length; i++)
+            final_grtfl_strings[i].text = gratefulFor[i];
+
+
 
     }
 }
