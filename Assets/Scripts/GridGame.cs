@@ -24,10 +24,35 @@ public class GridGame : MonoBehaviour
 
     private int selectedGrid;
 
+    private Color parsedSecondaryColor;
+    private Color parsedPrimaryColor;
+
+    public GameObject[] gridNumSelector;
+
+
     private void Start()
     {
+        ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("PrimaryColor"), out parsedPrimaryColor);
+        ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("SecondaryColor"), out parsedSecondaryColor);
+
         RandomizeImages();
         PopulateGrid();
+    }
+
+    public void OnNumberSelected(GameObject button)
+    {
+        foreach (GameObject obj in gridNumSelector)
+        {
+            if (obj == button)
+            {
+                obj.GetComponent<Image>().color = parsedPrimaryColor;
+                int.TryParse(obj.name, out numOfGrids);
+            }
+            else
+            {
+                obj.GetComponent<Image>().color = parsedSecondaryColor;
+            }
+        }
     }
 
     #region Populate/Randomize Grid
@@ -184,6 +209,7 @@ public class GridGame : MonoBehaviour
 
     public void RestartGame()
     {
+        PopulateGrid();
         selectedGridCounter = 0;
         progressSlider.value = 0;
     }
