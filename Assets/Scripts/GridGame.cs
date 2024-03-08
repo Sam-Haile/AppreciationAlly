@@ -210,6 +210,7 @@ public class GridGame : MonoBehaviour
     public void RestartGame()
     {
         PopulateGrid();
+        StartCoroutine(NextGrids(gridObjs, enlargedGridParent, true));
         selectedGridCounter = 0;
         progressSlider.value = 0;
     }
