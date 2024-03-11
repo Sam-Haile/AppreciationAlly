@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GratefulButton : MonoBehaviour
 {
     public Image icon;
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI grtfl_text;
     private Color parsedSecondaryColor;
     public bool selected;
 
@@ -27,14 +27,14 @@ public class GratefulButton : MonoBehaviour
             selected = true;
             this.GetComponent<Image>().color = parsedSecondaryColor;
             icon.color = Color.white;
-            text.color = Color.white;
+            grtfl_text.color = Color.white;
         }
         else
         {
             selected = false;
             this.GetComponent<Image>().color = Color.white;
             icon.color = Color.black;
-            text.color = Color.black;
+            grtfl_text.color = Color.black;
         }
     }
 }

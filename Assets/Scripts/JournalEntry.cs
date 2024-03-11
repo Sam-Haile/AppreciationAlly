@@ -1,23 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
+[Serializable]
 public class JournalEntry : MonoBehaviour
 {
+    public string date; // YYYY-MM-DD format
 
-    public DateTime entryDate;
-    public string gratefulness;
-    public List<string> gratefulFor;
-    public List<string> threeEntries;
+    public float gratitudeLevel;
+    public List<GratefulButton> final_Buttons;
+    public TextMeshProUGUI[] final_slots;
 
-    [Serializable]
-    public class JournalData
+    // Constructor
+    public JournalEntry(string date, float sliderValue, List<GratefulButton> final_Buttons, TextMeshProUGUI[] final_slots)
     {
-        public List<JournalEntry> entries = new List<JournalEntry>();
+        this.date = date;
+        this.gratitudeLevel = sliderValue;
+        this.final_Buttons = final_Buttons;
+        this.final_slots = final_slots;
     }
-
-
 
 
 }

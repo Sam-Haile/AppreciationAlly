@@ -1,36 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Journal : MonoBehaviour
 {
     public Animator chromoAnim;
     public GameObject chromo;
+    public TextMeshProUGUI chromosSpeechBubble;
+    public TextMeshProUGUI nextButton;
+
     public TextMeshProUGUI journalHeader;
     public TextMeshProUGUI journalSubheader;
+    private JournalStep currentStep;
+    public GameObject[] stepUIs;
 
+    //Step 1
     public Slider emotionSlider;
     public TextMeshProUGUI emotionRating;
-
-    private JournalStep currentStep;
     JournalStep step1;
+
+    //Step 2 
     JournalStep step2Ungrtfl;
     JournalStep step2Grtfl;
 
-    public GameObject[] stepUIs;
-    public TextMeshProUGUI chromosSpeechBubble;
-
+    //Step 3
     public List<GratefulButton> gratefulButtons;
-    public List<GratefulButton> selectedButtons;
 
-    // "Let's reflect on your day fields"
-    
-    public TextMeshProUGUI slot1;
-    public TextMeshProUGUI slot2;
-    public TextMeshProUGUI slot3;
-    public string[] gratefulFor;
+
+    //Step 5
+    public List<GratefulButton> selectedButtons;
+    public TMP_InputField[] gratefulFor;
+    public Slider finalSlider;
+    public List<GratefulButton> final_Buttons;
+    public TextMeshProUGUI[] final_slots;
 
 
     //Final Display fields
@@ -44,7 +50,6 @@ public class Journal : MonoBehaviour
 
     void Start()
     {
-        gratefulFor = new string[2];
         SetupJournal();
     }
 
@@ -57,6 +62,8 @@ public class Journal : MonoBehaviour
         JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose 3 or More", stepUIs[2], 2);
         JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
         JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
+        JournalStep step6 = new JournalStep("Your day", null, stepUIs[1], 5);
+
 
         step1.PreviousStep = null;
         step1.NextStep = step2Grtfl;
@@ -70,8 +77,14 @@ public class Journal : MonoBehaviour
         step3.NextStep = step4;
         step3.PreviousStep = step1;
 
-        step4.NextStep = null;
+        step4.NextStep = step5;
         step4.PreviousStep = step3;
+
+        step5.PreviousStep = step4;
+        step5.NextStep = step6;
+
+        step6.PreviousStep = step5;
+        step6.NextStep = null;
 
         currentStep = step1;
         UpdateUI();
@@ -117,8 +130,13 @@ public class Journal : MonoBehaviour
 
     public void PreviousStep()
     {
+        Debug.Log(currentStep.PreviousStep);
         if (currentStep.PreviousStep != null)
+        {
+            Debug.Log("Trying previous step");
             currentStep = currentStep.PreviousStep;
+        }
+        UpdateUI();
     }
 
     /// <summary>
@@ -128,9 +146,9 @@ public class Journal : MonoBehaviour
     private void CreateChromoResponse(bool isGrateful)
     {
         if (isGrateful)
-            chromosSpeechBubble.text = gratefulResponses[Random.Range(0, gratefulResponses.Length)];
+            chromosSpeechBubble.text = gratefulResponses[UnityEngine.Random.Range(0, gratefulResponses.Length)];
         else
-            chromosSpeechBubble.text = ungratefulResponses[Random.Range(0, ungratefulResponses.Length)];
+            chromosSpeechBubble.text = ungratefulResponses[UnityEngine.Random.Range(0, ungratefulResponses.Length)];
     }
 
     // Update is called once per frame
@@ -144,6 +162,7 @@ public class Journal : MonoBehaviour
             rb.mass = 0f;
             chromoAnim.SetTrigger("land");
         }
+
     }
 
     public void UpdateEmotion()
@@ -169,24 +188,38 @@ public class Journal : MonoBehaviour
         switch (currentStep.currentStepIndex)
         {
             case 1:
-                Debug.Log(emotionRating.text);
                 break;
             case 2:
                 break;
             case 3:
-                foreach(GratefulButton selectedButton in gratefulButtons)
+                foreach (GratefulButton selectedButton in gratefulButtons)
                 {
                     if (selectedButton.selected)
                     {
-                        Debug.Log(selectedButton.text);
+                        //Debug.Log(selectedButton.text);
                         selectedButtons.Add(selectedButton);
                     }
                 }
                 break;
             case 4:
-                gratefulFor[0] = slot1.text;
-                gratefulFor[1] = slot2.text;
-                gratefulFor[2] = slot3.text;
+                DisplayFinalEntry();
+                break;
+            case 5:
+
+
+                // Serialization to JSON
+                string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
+                JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, final_Buttons, final_slots);
+                string json = JsonUtility.ToJson(entry);
+                
+                // Saving the Data
+                string path = UnityEngine.Application.persistentDataPath + "/journal_" + entry.date + ".json";
+                System.IO.File.WriteAllText(path, json);
+
+                Debug.Log("Saving File");
+
+                PostJournalSteps();
+
                 break;
             default:
                 break;
@@ -196,8 +229,68 @@ public class Journal : MonoBehaviour
     /// <summary>
     /// This field displays the previous entries on one page for the user to review
     /// </summary>
-    public void DisplayFinalEntry()
+    private void DisplayFinalEntry()
     {
+        // Saves the slider
+        finalSlider.value = emotionSlider.value;
 
+        // Saves the chosen buttons
+        for (int i = 0; i < final_Buttons.Count; i++)
+        {
+            if (i < selectedButtons.Count && selectedButtons[i] != null)
+            {
+                Debug.Log("SCAV");
+                final_Buttons[i].icon.sprite = selectedButtons[i].icon.sprite;
+                final_Buttons[i].grtfl_text.text = selectedButtons[i].grtfl_text.text;
+            }
+            else
+            {
+                final_Buttons[i].gameObject.SetActive(false);
+            }
+        }
+
+        // Saves the 'grateful for' section
+        int j = 0;
+
+        for (int i = 0; i < gratefulFor.Length; i++)
+        {
+            // Check if the input field text is neither null nor empty
+            if (!string.IsNullOrEmpty(gratefulFor[i].text))
+            {
+                // Assign the text to final_slots and increment j
+                if (j < final_slots.Length)
+                {
+                    final_slots[j].text = gratefulFor[i].text;
+                    j++;
+                }
+            }
+        }
+
+        // Deactivate the remaining final_slots starting from j to the end
+        for (int k = j; k < final_slots.Length; k++)
+        {
+            final_slots[k].transform.parent.gameObject.SetActive(false);
+        }
+
+        nextButton.text = "SUBMIT";
     }
+
+    private void PostJournalSteps()
+    {
+        Debug.Log(DailyTasks.Instance.gridGame_Completed);
+        // If the grid game was NOT played first
+        if (!DailyTasks.Instance.gridGame_Completed)
+        {
+            chromosSpeechBubble.text = "Amazing reflection today!" +
+                " If you're looking for a mood boost, why not try the grid game next? It's a fun way to appreciate the little things";
+        }
+        // If the grid game WAS played
+        else if(DailyTasks.Instance.gridGame_Completed)
+        {
+            chromosSpeechBubble.text = "Great job reflecting today! " +
+                "Remember, every word you write is a step toward understanding yourself better.";
+
+        }
+    }
+
 }

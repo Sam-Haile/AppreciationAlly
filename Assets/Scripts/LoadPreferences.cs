@@ -60,13 +60,39 @@ public class LoadPreferences : MonoBehaviour
         {
             foreach (var uiElement in uiElementsPrimary)
             {
-                uiElement.GetComponent<Image>().color = primColor;
+                var imageComponent = uiElement.GetComponent<Image>();
+                if (imageComponent != null)
+                {
+                    imageComponent.color = primColor;
+                }
+                else
+                {
+                    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                    if (textMeshComponent != null)
+                    {
+                        textMeshComponent.color = primColor;
+                    }
+                }
             }
+
 
             foreach (var uiElement in uiElementsSecondary)
             {
-                uiElement.GetComponent<Image>().color = secColor;
+                var imageComponent = uiElement.GetComponent<Image>();
+                if (imageComponent != null)
+                {
+                    imageComponent.color = secColor;
+                }
+                else
+                {
+                    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                    if (textMeshComponent != null)
+                    {
+                        textMeshComponent.color = secColor;
+                    }
+                }
             }
+
         }
         else
         {

@@ -61,9 +61,8 @@ public class DailyTaskChecker : MonoBehaviour
         switch (task)
         {
             case "GridGame":
-                if (PlayerPrefs.GetString(task) == today)
+                if (DailyTasks.Instance.gridGame_Completed /*PlayerPrefs.GetString(task) == today*/)
                 {
-                    Debug.Log("Checking the grid game");
                     gridGameTask.sprite = taskCompleted;
                     tasksCompleted++;
                 }
@@ -74,7 +73,7 @@ public class DailyTaskChecker : MonoBehaviour
                 }
                 break;
             case "Journal":
-                if (PlayerPrefs.GetString(task) == today)
+                if (DailyTasks.Instance.journal_Completed/*PlayerPrefs.GetString(task) == today*/)
                 {
                     journalTask.sprite = taskCompleted;
                     tasksCompleted++;
@@ -90,8 +89,6 @@ public class DailyTaskChecker : MonoBehaviour
 
 
         }
-
-        
 
 
         if (allTasksCompletedToday)

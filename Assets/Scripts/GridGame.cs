@@ -204,7 +204,7 @@ public class GridGame : MonoBehaviour
     {
         progressSlider.value = 1;
         gameOverUI.SetActive(true);
-        DailyTasks.Instance.SaveTask("GridGame");
+        DailyTasks.Instance.GridGameComplete();
     }
 
     public void RestartGame()

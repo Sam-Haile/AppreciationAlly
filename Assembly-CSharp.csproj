@@ -70,7 +70,7 @@
     <Compile Include="Assets\Scripts\BackgroundColor.cs" />
     <Compile Include="Assets\Scripts\LoadPreferences.cs" />
     <Compile Include="Assets\Scripts\GridGame.cs" />
-    <Compile Include="Assets\Scripts\DataManager.cs" />
+    <Compile Include="Assets\Calendar.cs" />
     <Compile Include="Assets\Scripts\JournalEntry.cs" />
     <Compile Include="Assets\Scripts\QuoteOfTheDay.cs" />
     <Compile Include="Assets\Scripts\ImageFill.cs" />
