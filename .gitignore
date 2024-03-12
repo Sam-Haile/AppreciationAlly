@@ -14,3 +14,5 @@ Logs/
 .vs/AppreciationAlley/v17/.suo
 *.log
 *.log
+.vsconfig
+*.settings

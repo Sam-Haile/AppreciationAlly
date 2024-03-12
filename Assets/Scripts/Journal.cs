@@ -59,10 +59,11 @@ public class Journal : MonoBehaviour
         step1 = new JournalStep("How grateful do you feel?", null, stepUIs[0], 0);
         step2Ungrtfl = new JournalStep("", null, /*add the text box here*/stepUIs[1], 1);
         step2Grtfl = new JournalStep("", null, /*add the text box here*/stepUIs[1], 1);
-        JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose 3 or More", stepUIs[2], 2);
+        JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose up to 3 ", stepUIs[2], 2);
         JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
         JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
         JournalStep step6 = new JournalStep("Your day", null, stepUIs[1], 5);
+        JournalStep step7 = new JournalStep("", null, null, 6);
 
 
         step1.PreviousStep = null;
@@ -84,7 +85,10 @@ public class Journal : MonoBehaviour
         step5.NextStep = step6;
 
         step6.PreviousStep = step5;
-        step6.NextStep = null;
+        step6.NextStep = step7;
+
+        step7.PreviousStep = null;
+        step7.NextStep = null;
 
         currentStep = step1;
         UpdateUI();
@@ -92,7 +96,11 @@ public class Journal : MonoBehaviour
 
     public void UpdateUI()
     {
-        journalHeader.text = currentStep.headerText;
+        if (currentStep.headerText != null)
+            journalHeader.text = currentStep.headerText;
+        else
+            journalHeader.text = "";
+
         if (currentStep.subheaderText != null)
             journalSubheader.text = currentStep.subheaderText;
         else
@@ -131,9 +139,10 @@ public class Journal : MonoBehaviour
     public void PreviousStep()
     {
         Debug.Log(currentStep.PreviousStep);
-        if (currentStep.PreviousStep != null)
+        if (currentStep.currentStepIndex >= 1)
         {
             Debug.Log("Trying previous step");
+            nextButton.text = "NEXT";
             currentStep = currentStep.PreviousStep;
         }
         UpdateUI();
@@ -192,6 +201,8 @@ public class Journal : MonoBehaviour
             case 2:
                 break;
             case 3:
+                selectedButtons.Clear();
+
                 foreach (GratefulButton selectedButton in gratefulButtons)
                 {
                     if (selectedButton.selected)
@@ -205,8 +216,6 @@ public class Journal : MonoBehaviour
                 DisplayFinalEntry();
                 break;
             case 5:
-
-
                 // Serialization to JSON
                 string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
                 JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, final_Buttons, final_slots);
@@ -219,7 +228,6 @@ public class Journal : MonoBehaviour
                 Debug.Log("Saving File");
 
                 PostJournalSteps();
-
                 break;
             default:
                 break;
@@ -234,46 +242,56 @@ public class Journal : MonoBehaviour
         // Saves the slider
         finalSlider.value = emotionSlider.value;
 
-        // Saves the chosen buttons
+        // First clear existing buttons
+        // Used if user goes back to modify selections
+        foreach (var finalButton in final_Buttons)
+        {
+            finalButton.icon.sprite = null; // Assuming you have a default sprite or null to clear it.
+            finalButton.grtfl_text.text = "";
+            finalButton.gameObject.SetActive(false); // Hide the button as the default state.
+        }
+
+        // Now, update based on current selections.
         for (int i = 0; i < final_Buttons.Count; i++)
         {
             if (i < selectedButtons.Count && selectedButtons[i] != null)
             {
-                Debug.Log("SCAV");
                 final_Buttons[i].icon.sprite = selectedButtons[i].icon.sprite;
                 final_Buttons[i].grtfl_text.text = selectedButtons[i].grtfl_text.text;
+                final_Buttons[i].gameObject.SetActive(true); // Only make the button visible if it's being used.
             }
-            else
-            {
-                final_Buttons[i].gameObject.SetActive(false);
-            }
+            // You don't need an else part here anymore, as you've already handled the reset above.
         }
 
-        // Saves the 'grateful for' section
-        int j = 0;
+        UpdateFinalSlotsVisibility();
 
-        for (int i = 0; i < gratefulFor.Length; i++)
-        {
-            // Check if the input field text is neither null nor empty
-            if (!string.IsNullOrEmpty(gratefulFor[i].text))
-            {
-                // Assign the text to final_slots and increment j
-                if (j < final_slots.Length)
-                {
-                    final_slots[j].text = gratefulFor[i].text;
-                    j++;
-                }
-            }
-        }
-
-        // Deactivate the remaining final_slots starting from j to the end
-        for (int k = j; k < final_slots.Length; k++)
-        {
-            final_slots[k].transform.parent.gameObject.SetActive(false);
-        }
 
         nextButton.text = "SUBMIT";
     }
+
+    private void UpdateFinalSlotsVisibility()
+    {
+        int activeSlots = 0; // Keeps track of how many slots have text and should be visible.
+
+        // Iterate over all possible input fields to check if they have text.
+        for (int i = 0; i < gratefulFor.Length; i++)
+        {
+            if (!string.IsNullOrEmpty(gratefulFor[i].text) && activeSlots < final_slots.Length)
+            {
+                // If there's text, ensure the slot is visible and set the text.
+                final_slots[activeSlots].text = gratefulFor[i].text;
+                final_slots[activeSlots].transform.parent.gameObject.SetActive(true);
+                activeSlots++;
+            }
+        }
+
+        // Deactivate any remaining slots that didn't get text assigned.
+        for (int k = activeSlots; k < final_slots.Length; k++)
+        {
+            final_slots[k].transform.parent.gameObject.SetActive(false);
+        }
+    }
+
 
     private void PostJournalSteps()
     {
@@ -290,6 +308,15 @@ public class Journal : MonoBehaviour
             chromosSpeechBubble.text = "Great job reflecting today! " +
                 "Remember, every word you write is a step toward understanding yourself better.";
 
+        }
+    }
+
+    public void JournalClose()
+    {
+        if(currentStep.currentStepIndex == 6)
+        {
+            DailyTasks.Instance.JournalComplete();
+            this.gameObject.GetComponent<Animator>().SetTrigger("quit");
         }
     }
 
