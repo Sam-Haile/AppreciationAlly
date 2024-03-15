@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +37,7 @@ public class Journal : MonoBehaviour
     public Slider finalSlider;
     public List<GratefulButton> final_Buttons;
     public TextMeshProUGUI[] final_slots;
-
+    public string[] final_slots_strings;
 
     //Final Display fields
 
@@ -141,7 +141,6 @@ public class Journal : MonoBehaviour
         Debug.Log(currentStep.PreviousStep);
         if (currentStep.currentStepIndex >= 1)
         {
-            Debug.Log("Trying previous step");
             nextButton.text = "NEXT";
             currentStep = currentStep.PreviousStep;
         }
@@ -176,20 +175,16 @@ public class Journal : MonoBehaviour
 
     public void UpdateEmotion()
     {
-        if (emotionSlider.value <= .14f)
+        if (emotionSlider.value <= .2f)
             emotionRating.text = "Ungrateful";
-        else if (emotionSlider.value > .14f && emotionSlider.value < .28f)
-            emotionRating.text = "Slightly Grateful";
-        else if (emotionSlider.value > .28f && emotionSlider.value < .42f)
-            emotionRating.text = "Somewhat Grateful";
-        else if (emotionSlider.value > .42f && emotionSlider.value < .56f)
-            emotionRating.text = "Moderately Grateful";
-        else if (emotionSlider.value > .56f && emotionSlider.value < .7f)
+        else if (emotionSlider.value > .2f && emotionSlider.value < .4f)
+            emotionRating.text = "A Little Grateful";
+        else if (emotionSlider.value > .4f && emotionSlider.value < .6f)
+            emotionRating.text = "Kind of Grateful";
+        else if (emotionSlider.value > .6f && emotionSlider.value < .8f)
             emotionRating.text = "Grateful";
-        else if (emotionSlider.value > .7f && emotionSlider.value < .84f)
-            emotionRating.text = "Highly Grateful";
-        else if (emotionSlider.value > .84f && emotionSlider.value < 1f)
-            emotionRating.text = "Very Grateful";
+        else if (emotionSlider.value > .8f && emotionSlider.value < 1f)
+            emotionRating.text = "Super Grateful";
     }
 
     public void SaveInformation()
@@ -202,6 +197,7 @@ public class Journal : MonoBehaviour
                 break;
             case 3:
                 selectedButtons.Clear();
+
 
                 foreach (GratefulButton selectedButton in gratefulButtons)
                 {
@@ -216,23 +212,77 @@ public class Journal : MonoBehaviour
                 DisplayFinalEntry();
                 break;
             case 5:
-                // Serialization to JSON
-                string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
-                JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, final_Buttons, final_slots);
-                string json = JsonUtility.ToJson(entry);
-                
-                // Saving the Data
-                string path = UnityEngine.Application.persistentDataPath + "/journal_" + entry.date + ".json";
-                System.IO.File.WriteAllText(path, json);
-
-                Debug.Log("Saving File");
-
+                DeletePreviousEntriesForToday();
+                Save();
                 PostJournalSteps();
                 break;
             default:
                 break;
         }
     }
+
+
+    public void Save()
+    {
+        List<GratefulButtonData> buttonDataList = new List<GratefulButtonData>();
+        foreach (GratefulButton button in selectedButtons)
+        {
+            GratefulButtonData data = new GratefulButtonData
+            {
+                iconSpriteName = button.iconSpriteName, // Make sure this is set correctly in your button logic
+                gratefulText = button.grtfl_text.text
+            };
+            buttonDataList.Add(data);
+        }
+
+        for (int i = 0; i < final_slots.Length; i++)
+        {
+            if (final_slots[i].text != "")
+                final_slots_strings[i] = final_slots[i].text;
+            else
+                final_slots_strings[i] = "";
+        }
+
+        // Create a new JournalEntry with the collected data
+        string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
+        JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, buttonDataList, final_slots_strings);
+
+        // Serialize the JournalEntry to JSON
+        string json = JsonUtility.ToJson(entry, true); // Added 'true' for pretty print, optional
+        string path = UnityEngine.Application.persistentDataPath + "/journal_" + currentDate.Replace(" ", "_").Replace(",", "") + ".json"; // Replace spaces with underscores to avoid potential issues in file names
+        File.WriteAllText(path, json);
+        Debug.Log($"{path}");
+    }
+
+    public void DeletePreviousEntriesForToday()
+    {
+        string todayFilename = "journal_" + DateTime.Now.ToString("MMMM dd, yyyy");
+        var directory = new DirectoryInfo(UnityEngine.Application.persistentDataPath);
+        var files = directory.GetFiles("journal_*.json");
+
+        foreach (var file in files)
+        {
+            // If the file name contains today's date but is not the exact file name for today
+            // (in case there are time stamps or other differentiators),
+            // you can delete the file.
+            if (file.Name.Contains(todayFilename) && !file.Name.Equals(todayFilename + ".json"))
+            {
+                file.Delete();
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     /// <summary>
     /// This field displays the previous entries on one page for the user to review
@@ -273,13 +323,17 @@ public class Journal : MonoBehaviour
     {
         int activeSlots = 0; // Keeps track of how many slots have text and should be visible.
 
+        // Convert the text from each of your final slots into a string array
+        final_slots_strings = new string[gratefulFor.Length];
+
         // Iterate over all possible input fields to check if they have text.
         for (int i = 0; i < gratefulFor.Length; i++)
         {
             if (!string.IsNullOrEmpty(gratefulFor[i].text) && activeSlots < final_slots.Length)
             {
                 // If there's text, ensure the slot is visible and set the text.
-                final_slots[activeSlots].text = gratefulFor[i].text;
+                final_slots[i].text = gratefulFor[i].text;
+                final_slots_strings[i] = gratefulFor[i].text;
                 final_slots[activeSlots].transform.parent.gameObject.SetActive(true);
                 activeSlots++;
             }
@@ -295,7 +349,6 @@ public class Journal : MonoBehaviour
 
     private void PostJournalSteps()
     {
-        Debug.Log(DailyTasks.Instance.gridGame_Completed);
         // If the grid game was NOT played first
         if (!DailyTasks.Instance.gridGame_Completed)
         {
@@ -307,7 +360,6 @@ public class Journal : MonoBehaviour
         {
             chromosSpeechBubble.text = "Great job reflecting today! " +
                 "Remember, every word you write is a step toward understanding yourself better.";
-
         }
     }
 
@@ -315,7 +367,7 @@ public class Journal : MonoBehaviour
     {
         if(currentStep.currentStepIndex == 6)
         {
-            DailyTasks.Instance.JournalComplete();
+            DailyTasks.Instance.MarkTaskAsCompleted("Journal");
             this.gameObject.GetComponent<Animator>().SetTrigger("quit");
         }
     }

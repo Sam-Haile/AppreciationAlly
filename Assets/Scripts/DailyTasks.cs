@@ -71,16 +71,28 @@ public class DailyTasks : MonoBehaviour
         }
     }
 
-    public void GridGameComplete()
+    public void MarkTaskAsCompleted(string taskKey)
     {
-        gridGame_Completed = true;
-        SaveTask("GridGame");
+        string existingCompletionDate = PlayerPrefs.GetString(taskKey, "");
+        string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+
+        if (existingCompletionDate != today)
+        {
+            PlayerPrefs.SetString(taskKey, today);
+            PlayerPrefs.Save();
+        }
+
+        // Update the flag directly without needing to read PlayerPrefs again
+        // This assumes you're calling CheckAndResetTaskCompletion at app start or similar
+        if (taskKey == "GridGame")
+        {
+            Instance.gridGame_Completed = true;
+        }
+        else if (taskKey == "Journal")
+        {
+            Instance.journal_Completed = true;
+        }
     }
 
-    public void JournalComplete()
-    {
-        journal_Completed = true;
-        SaveTask("journal");
-    }
 
 }

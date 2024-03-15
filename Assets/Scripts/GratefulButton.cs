@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,6 +6,7 @@ using UnityEngine.UI;
 public class GratefulButton : MonoBehaviour
 {
     public Image icon;
+    public string iconSpriteName;
     public TextMeshProUGUI grtfl_text;
     private Color parsedSecondaryColor;
     public bool selected;

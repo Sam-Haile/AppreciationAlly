@@ -204,7 +204,7 @@ public class GridGame : MonoBehaviour
     {
         progressSlider.value = 1;
         gameOverUI.SetActive(true);
-        DailyTasks.Instance.GridGameComplete();
+        DailyTasks.Instance.MarkTaskAsCompleted("GridGame");
     }
 
     public void RestartGame()
@@ -214,5 +214,6 @@ public class GridGame : MonoBehaviour
         selectedGridCounter = 0;
         progressSlider.value = 0;
     }
+
 
 }

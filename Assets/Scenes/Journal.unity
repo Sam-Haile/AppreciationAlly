@@ -568,6 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 669059933}
+  iconSpriteName: relax
   grtfl_text: {fileID: 155812228}
   selected: 0
 --- !u!114 &64333848
@@ -1562,6 +1563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1338346628}
+  iconSpriteName: family
   grtfl_text: {fileID: 648569085}
   selected: 0
 --- !u!1 &141428969
@@ -1656,6 +1658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 372576353}
+  iconSpriteName: music
   grtfl_text: {fileID: 82199790}
   selected: 0
 --- !u!114 &141428974
@@ -3049,6 +3052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1994016622}
+  iconSpriteName: nature
   grtfl_text: {fileID: 1163514661}
   selected: 0
 --- !u!114 &293868226
@@ -3199,6 +3203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 550665306}
+  iconSpriteName: dance
   grtfl_text: {fileID: 443031750}
   selected: 0
 --- !u!114 &313434861
@@ -5102,6 +5107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1579779356}
+  iconSpriteName: comics
   grtfl_text: {fileID: 2047790413}
   selected: 0
 --- !u!114 &610554041
@@ -8207,6 +8213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 365793336}
+  iconSpriteName: 
   grtfl_text: {fileID: 75413280}
   selected: 0
 --- !u!114 &1137343504
@@ -8529,6 +8536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1638524415}
+  iconSpriteName: movies
   grtfl_text: {fileID: 1784865627}
   selected: 0
 --- !u!114 &1173106568
@@ -9082,6 +9090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 982654176}
+  iconSpriteName: sports
   grtfl_text: {fileID: 829206317}
   selected: 0
 --- !u!114 &1297690380
@@ -9506,6 +9515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 859340949}
+  iconSpriteName: pets
   grtfl_text: {fileID: 57741450}
   selected: 0
 --- !u!114 &1353471217
@@ -9618,6 +9628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 350771007}
+  iconSpriteName: 
   grtfl_text: {fileID: 1829733812}
   selected: 0
 --- !u!114 &1380256236
@@ -10637,6 +10648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1079035776}
+  iconSpriteName: 
   grtfl_text: {fileID: 1884367361}
   selected: 0
 --- !u!114 &1705408889
@@ -11550,6 +11562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1844176064}
+  iconSpriteName: school
   grtfl_text: {fileID: 2147004176}
   selected: 0
 --- !u!114 &1804396620
@@ -12160,6 +12173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1398327793}
+  iconSpriteName: gaming
   grtfl_text: {fileID: 1705975956}
   selected: 0
 --- !u!114 &1842453560
@@ -13540,6 +13554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1416152380}
+  iconSpriteName: exercise
   grtfl_text: {fileID: 292029190}
   selected: 0
 --- !u!114 &2080159556
@@ -13727,6 +13742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 473253580}
+  iconSpriteName: friends
   grtfl_text: {fileID: 163049892}
   selected: 0
 --- !u!114 &2112123264
