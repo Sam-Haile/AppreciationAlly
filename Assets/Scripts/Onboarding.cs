@@ -14,6 +14,9 @@ public class Onboarding : MonoBehaviour
     private OnboardingStep currentStep;
     public TextMeshProUGUI header;
     public TextMeshProUGUI subHeader;
+
+    public static bool doTutorial;
+
     #region Step 1
     private UnityEngine.Color selectedPrimaryColor;
     private UnityEngine.Color selectedSecondaryColor;
@@ -114,6 +117,11 @@ public class Onboarding : MonoBehaviour
     public void SetTutorialChoice(bool choice)
     {
         userChoice = choice;
+    }
+
+    public void SetTutorial(bool choice)
+    {
+        doTutorial = choice;
     }
 
     public void UpdatePreferences()

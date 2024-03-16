@@ -22,17 +22,19 @@ public class Tutorial : MonoBehaviour
 
         TutorialStep step0 = new TutorialStep("Welcome to the homepage for Appreciation Alley", 0);
         TutorialStep step1 = new TutorialStep("Here you can find your daily sprinkle of inspiration", 1);
-        TutorialStep step2 = new TutorialStep("See this? It's your Journal! Every day, you can add what your grateful for.", 2);
-        TutorialStep step3 = new TutorialStep("This is the grid game, play it whenever you want to practice gratitude!", 3);
-        TutorialStep step4 = new TutorialStep("Keeping track of how we feel can be super helpful. With this calendar, you can view your journal entries.", 4);
-        TutorialStep step5 = new TutorialStep("Theres so much to explore in Appreciation Alley! Have fun practicing gratitude!", 5);
+        TutorialStep step2 = new TutorialStep("This is the grid game, play it whenever you want to practice gratitude!", 2);
+        TutorialStep step3 = new TutorialStep("This is your Journal! Every day, you can add what your grateful for.", 3);
+        TutorialStep step4 = new TutorialStep("This calendar lets you track and view your journal entries.", 4);
+        TutorialStep step5 = new TutorialStep("Theres so much to explore in Appreciation Alley! Have fun!", 5);
+        TutorialStep step6 = new TutorialStep("Theres so much to explore in Appreciation Alley! Have fun!", 6);
 
         step0.NextStep = step1;
         step1.NextStep = step2;
         step2.NextStep = step3;
         step3.NextStep = step4;
         step4.NextStep = step5;
-        step5.NextStep = null;
+        step5.NextStep = step6;
+        step6.NextStep = null;
 
 
         currentStep = step0;
@@ -43,7 +45,7 @@ public class Tutorial : MonoBehaviour
 
     public void NextSentence()
     {
-        if (currentStep.currentStepIndex < 5 && currentStep.ToString() != null)
+        if (currentStep.currentStepIndex < 6 && currentStep.ToString() != null)
         {
             currentStep = currentStep.NextStep;
             UpdateText();
@@ -63,13 +65,14 @@ public class Tutorial : MonoBehaviour
         UpdateText();
         UpdateUI();
 
-        if(currentStep.currentStepIndex == 1)
+        if (currentStep.currentStepIndex == 1)
         {
             blackBg.SetActive(false);
         }
 
-        tutorialAnimator.SetTrigger(currentStep.currentStepIndex);
-
+        if (currentStep.currentStepIndex <= 6)
+            tutorialAnimator.SetTrigger(currentStep.currentStepIndex.ToString());
+        
     }
 
 

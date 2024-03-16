@@ -14,8 +14,17 @@ public class LoadPreferences : MonoBehaviour
     public TextMeshProUGUI greeting;
     public TextMeshProUGUI settingsName;
     private string userName;
+
+    public GameObject tutorialScreen;
+
+
     private void Start()
     {
+        if (Onboarding.doTutorial)
+        {
+            Debug.Log("Do the tutorial");
+            tutorialScreen.SetActive(true);
+        }
 
         if (greeting != null)
         {
