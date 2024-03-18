@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\TransitionManager.cs" />
     <Compile Include="Assets\Scripts\DailyTaskChecker.cs" />
     <Compile Include="Assets\Scripts\GratefulButtonData.cs" />
-    <Compile Include="Assets\Profile.cs" />
     <Compile Include="Assets\Scripts\GratefulButton.cs" />
     <Compile Include="Assets\Scripts\ScreenTransitions.cs" />
     <Compile Include="Assets\Scripts\Onboarding.cs" />
@@ -73,13 +72,15 @@
     <Compile Include="Assets\Scripts\ModifyColor.cs" />
     <Compile Include="Assets\Scripts\BackgroundColor.cs" />
     <Compile Include="Assets\Scripts\LoadPreferences.cs" />
-    <Compile Include="Assets\TutorialStep.cs" />
     <Compile Include="Assets\Scripts\GridGame.cs" />
     <Compile Include="Assets\Scripts\Calendar.cs" />
-    <Compile Include="Assets\Tutorial.cs" />
     <Compile Include="Assets\Scripts\JournalEntry.cs" />
+    <Compile Include="Assets\Scripts\NotificationManager.cs" />
+    <Compile Include="Assets\Scripts\Tutorial.cs" />
     <Compile Include="Assets\Scripts\QuoteOfTheDay.cs" />
     <Compile Include="Assets\Scripts\ImageFill.cs" />
+    <Compile Include="Assets\Scripts\Profile.cs" />
+    <Compile Include="Assets\Scripts\TutorialStep.cs" />
     <Compile Include="Assets\Scripts\ProfilePicture.cs" />
     <Compile Include="Assets\Scripts\Rotate.cs" />
     <Compile Include="Assets\Scripts\OnboardingStep.cs" />
