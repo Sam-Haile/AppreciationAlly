@@ -20,11 +20,12 @@ public class LoadPreferences : MonoBehaviour
 
     private void Start()
     {
-        if (Onboarding.doTutorial)
+        if (PlayerPrefs.GetInt("TutorialDone", 0) == 1)
         {
-            Debug.Log("Do the tutorial");
             tutorialScreen.SetActive(true);
         }
+        else
+            tutorialScreen.SetActive(false);
 
         if (greeting != null)
         {

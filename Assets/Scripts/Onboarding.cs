@@ -118,6 +118,9 @@ public class Onboarding : MonoBehaviour
     public void SetTutorial(bool choice)
     {
         doTutorial = choice;
+        // Save the tutorial completion status using PlayerPrefs.
+        PlayerPrefs.SetInt("TutorialDone", choice ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public void UpdatePreferences()
