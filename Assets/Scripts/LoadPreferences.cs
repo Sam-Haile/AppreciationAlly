@@ -20,12 +20,16 @@ public class LoadPreferences : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("TutorialDone", 0) == 1)
+        if (tutorialScreen != null)
         {
-            tutorialScreen.SetActive(true);
+
+            if (PlayerPrefs.GetInt("TutorialDone", 0) == 1)
+            {
+                tutorialScreen.SetActive(true);
+            }
+            else
+                tutorialScreen.SetActive(false);
         }
-        else
-            tutorialScreen.SetActive(false);
 
         if (greeting != null)
         {

@@ -3954,6 +3954,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3b9edc8e3a5f5a548ad68f523d1d51c0, type: 3}
   greeting: {fileID: 0}
   settingsName: {fileID: 0}
+  tutorialScreen: {fileID: 0}
 --- !u!95 &477905186
 Animator:
   serializedVersion: 5
@@ -4122,6 +4123,7 @@ MonoBehaviour:
   - {fileID: 647237716}
   - {fileID: 1669022830}
   - {fileID: 1970453205}
+  final_slots_strings: []
 --- !u!1 &479819551
 GameObject:
   m_ObjectHideFlags: 0

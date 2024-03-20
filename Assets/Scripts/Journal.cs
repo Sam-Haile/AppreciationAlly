@@ -197,8 +197,6 @@ public class Journal : MonoBehaviour
                 break;
             case 3:
                 selectedButtons.Clear();
-
-
                 foreach (GratefulButton selectedButton in gratefulButtons)
                 {
                     if (selectedButton.selected)
@@ -251,7 +249,10 @@ public class Journal : MonoBehaviour
         string json = JsonUtility.ToJson(entry, true); // Added 'true' for pretty print, optional
         string path = UnityEngine.Application.persistentDataPath + "/journal_" + currentDate.Replace(" ", "_").Replace(",", "") + ".json"; // Replace spaces with underscores to avoid potential issues in file names
         File.WriteAllText(path, json);
-        Debug.Log($"{path}");
+
+        //Increment journal complettion badge here
+        AchievementManager.Instance.UpdateAchievement("Journal Explorer", 1);
+
     }
 
     public void DeletePreviousEntriesForToday()
@@ -271,16 +272,6 @@ public class Journal : MonoBehaviour
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -310,7 +301,6 @@ public class Journal : MonoBehaviour
                 final_Buttons[i].grtfl_text.text = selectedButtons[i].grtfl_text.text;
                 final_Buttons[i].gameObject.SetActive(true); // Only make the button visible if it's being used.
             }
-            // You don't need an else part here anymore, as you've already handled the reset above.
         }
 
         UpdateFinalSlotsVisibility();

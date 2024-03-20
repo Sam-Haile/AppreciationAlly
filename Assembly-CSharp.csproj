@@ -62,7 +62,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\JournalStep.cs" />
     <Compile Include="Assets\Scripts\TransitionManager.cs" />
+    <Compile Include="Assets\Scripts\AchievementManager.cs" />
     <Compile Include="Assets\Scripts\DailyTaskChecker.cs" />
+    <Compile Include="Assets\Scripts\SaveAchievements.cs" />
     <Compile Include="Assets\Scripts\GratefulButtonData.cs" />
     <Compile Include="Assets\Scripts\GratefulButton.cs" />
     <Compile Include="Assets\Scripts\ScreenTransitions.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\Scripts\LoadPreferences.cs" />
     <Compile Include="Assets\Scripts\GridGame.cs" />
     <Compile Include="Assets\Scripts\Calendar.cs" />
+    <Compile Include="Assets\Scripts\Achievement.cs" />
     <Compile Include="Assets\Scripts\JournalEntry.cs" />
     <Compile Include="Assets\Scripts\NotificationManager.cs" />
     <Compile Include="Assets\Scripts\Tutorial.cs" />

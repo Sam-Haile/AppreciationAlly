@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DailyTasks : MonoBehaviour
 {
@@ -85,14 +82,8 @@ public class DailyTasks : MonoBehaviour
         // Update the flag directly without needing to read PlayerPrefs again
         // This assumes you're calling CheckAndResetTaskCompletion at app start or similar
         if (taskKey == "GridGame")
-        {
             Instance.gridGame_Completed = true;
-        }
         else if (taskKey == "Journal")
-        {
             Instance.journal_Completed = true;
-        }
     }
-
-
 }
