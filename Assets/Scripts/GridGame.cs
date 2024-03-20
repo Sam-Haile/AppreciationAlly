@@ -205,6 +205,7 @@ public class GridGame : MonoBehaviour
         progressSlider.value = 1;
         gameOverUI.SetActive(true);
         DailyTasks.Instance.MarkTaskAsCompleted("GridGame");
+        AchievementManager.Instance.UpdateAchievement("Positivity Player", 1);
     }
 
     public void RestartGame()

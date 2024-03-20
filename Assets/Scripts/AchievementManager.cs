@@ -5,37 +5,29 @@ public class AchievementManager : MonoBehaviour
 {
     public static AchievementManager Instance { get; private set; }
 
-    public List<Achievement> achievements = new List<Achievement>();
+    public List<AchievementData> achievements = new List<AchievementData>();
 
-    private void Awake()
+    void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: Keep this object alive when loading new scenes.
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Ensure there's only one instance of this object.
+            Destroy(gameObject);
         }
     }
 
-
-    public void UpdateAchievement(string achievementName, int progressToAdd)
+    public void UpdateAchievement(string badgeName, int progressToAdd)
     {
-        Achievement achievementToUpdate = achievements.Find(a => a.name == achievementName);
-        if (achievementToUpdate != null)
+        var achievement = achievements.Find(a => a.badgeName == badgeName);
+        if (achievement != null)
         {
-            achievementToUpdate.UpdateProgress(progressToAdd);
+            achievement.currentUserProgress += progressToAdd;
+            // Add logic to save achievement progress here
+            // You might want to save to PlayerPrefs, a file, or a database
         }
     }
-
-    public void ResetAllAchievements()
-    {
-        foreach (var achievement in achievements)
-        {
-            achievement.ResetProgress();
-        }
-    }
-
 }

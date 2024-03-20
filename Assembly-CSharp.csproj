@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\SaveAchievements.cs" />
     <Compile Include="Assets\Scripts\GratefulButtonData.cs" />
     <Compile Include="Assets\Scripts\GratefulButton.cs" />
+    <Compile Include="Assets\Scripts\AchievementData.cs" />
     <Compile Include="Assets\Scripts\ScreenTransitions.cs" />
     <Compile Include="Assets\Scripts\Onboarding.cs" />
     <Compile Include="Assets\Scripts\DailyTasks.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\JournalEntry.cs" />
     <Compile Include="Assets\Scripts\NotificationManager.cs" />
     <Compile Include="Assets\Scripts\Tutorial.cs" />
+    <Compile Include="Assets\Scripts\AchievementUI.cs" />
     <Compile Include="Assets\Scripts\QuoteOfTheDay.cs" />
     <Compile Include="Assets\Scripts\ImageFill.cs" />
     <Compile Include="Assets\Scripts\Profile.cs" />

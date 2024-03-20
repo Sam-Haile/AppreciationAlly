@@ -21,8 +21,7 @@ public class Achievement : MonoBehaviour
 
     public void Start()
     {
-        UpdateAchievementUI();
-        CheckForAchievementUnlock();
+        LoadIfno();
     }
 
     public Achievement(string name, string description, int bronze, int silver, int gold, int platinum)
@@ -55,11 +54,11 @@ public class Achievement : MonoBehaviour
     public void UpdateProgress(int progress)
     {
         currentUserProgress += progress;
-        CheckForAchievementUnlock();
+        LoadIfno();
         SaveAchievement();
     }
 
-    private void CheckForAchievementUnlock()
+    private void LoadIfno()
     {
         // Loads the info and updates the UI
         string path = Application.persistentDataPath + "/achievements/" + badgeName + ".json";
@@ -68,34 +67,15 @@ public class Achievement : MonoBehaviour
         {
             string jsonData = System.IO.File.ReadAllText(path);
             SaveAchievements achievement = JsonUtility.FromJson<SaveAchievements>(jsonData);
-            Debug.Log(currentUserProgress);
             currentUserProgress = achievement.currentProgress;
-            Debug.Log(currentUserProgress);
         }
-
-        if (currentUserProgress < silverThreshold)
-            badgeMaterial.sprite = Resources.Load<Sprite>($"badges/bronze");
-        else if (currentUserProgress < goldThreshold)
-            badgeMaterial.sprite = Resources.Load<Sprite>($"badges/silver");
-        else if (currentUserProgress < platinumThreshold)
-            badgeMaterial.sprite = Resources.Load<Sprite>($"badges/gold");
-        else
-            badgeMaterial.sprite = Resources.Load<Sprite>($"badges/platinum");
-
-    }
-
-    private void UpdateAchievementUI()
-    {
-        textMeshPro.text = badgeName;
-        currentNum.text = currentUserProgress.ToString();
-        // Optionally update description or other UI elements
     }
 
     public void ResetProgress()
     {
         currentUserProgress = 0;
         SaveAchievement(); // This should save the reset state.
-        CheckForAchievementUnlock(); // Make sure this is working correctly.
+        LoadIfno(); // Make sure this is working correctly.
     }
 
 
