@@ -8,24 +8,12 @@ public class AchievementUI : MonoBehaviour
 
     public Image badgeMaterial;
     public Image currentNumBg;
+    public Image badgeIcon;
     public TextMeshProUGUI textMeshPro;
     public TextMeshProUGUI currentNum;
 
-    // Badge close up info
-    public TextMeshProUGUI selectedBadgeName;
-    public TextMeshProUGUI selectedProgress;
-    public Image selectedMilestone;
-    public Image progressBg;
-
-    public TextMeshProUGUI badgeDesc;
-    public TextMeshProUGUI numBronze;
-    public TextMeshProUGUI milestoneBronze;
-    public TextMeshProUGUI numSilver;
-    public TextMeshProUGUI milestoneSilver;
-    public TextMeshProUGUI numGold;
-    public TextMeshProUGUI milestoneGold;
-    public TextMeshProUGUI numPlatinum;
-    public TextMeshProUGUI milestonePlatinum;
+    public SelectedBadge selectedBadge;
+      
 
     private void Start()
     {
@@ -62,24 +50,26 @@ public class AchievementUI : MonoBehaviour
         }
     }
 
+    // Display selected badge info
     public void OnClick()
     {
-        selectedBadgeName.text = achievementData.badgeName;
-        selectedProgress.text = achievementData.currentUserProgress.ToString();
-        selectedMilestone.sprite = badgeMaterial.sprite;
-        badgeDesc.text = achievementData.description;
-        progressBg.color = currentNumBg.color;
+        selectedBadge.selectedBadgeName.text = achievementData.badgeName;
+        selectedBadge.selectedProgress.text = achievementData.currentUserProgress.ToString();
+        selectedBadge.selectedMilestone.sprite = badgeMaterial.sprite;
+        selectedBadge.badgeDesc.text = achievementData.description;
+        selectedBadge.progressBg.color = currentNumBg.color;
+        selectedBadge.icon.sprite = badgeIcon.sprite;
 
-        milestoneBronze.text = achievementData.milestoneOneDesc;
-        numBronze.text = achievementData.bronzeThreshold.ToString();
-
-        milestoneSilver.text = achievementData.milestoneTwoDesc;
-        numSilver.text = achievementData.silverThreshold.ToString();
-
-        milestoneGold.text = achievementData.milestoneThreeDesc;
-        numGold.text = achievementData.goldThreshold.ToString();
-
-        milestonePlatinum.text = achievementData.milestoneFourDesc;
-        numPlatinum.text = achievementData.platinumThreshold.ToString();
+        selectedBadge.milestoneBronze.text = achievementData.milestoneOneDesc;
+        selectedBadge.numBronze.text = achievementData.bronzeThreshold.ToString();
+        
+        selectedBadge.milestoneSilver.text = achievementData.milestoneTwoDesc;
+        selectedBadge.numSilver.text = achievementData.silverThreshold.ToString();
+        
+        selectedBadge.milestoneGold.text = achievementData.milestoneThreeDesc;
+        selectedBadge.numGold.text = achievementData.goldThreshold.ToString();
+        
+        selectedBadge.milestonePlatinum.text = achievementData.milestoneFourDesc;
+        selectedBadge.numPlatinum.text = achievementData.platinumThreshold.ToString();
     }
 }

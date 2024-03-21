@@ -219,7 +219,7 @@ public class Calendar : MonoBehaviour
         }
         else
         {
-            Debug.Log("No journal entry found for this date.");
+            Debug.LogWarning("No journal entry found for this date.");
         }
     }
 
@@ -297,12 +297,6 @@ public class Calendar : MonoBehaviour
                 // If there's no data for this button, make sure it's inactive.
                 grateful_buttons[i].gameObject.SetActive(false);
             }
-        }
-
-        Debug.Log($"finalSlotsStrings Count: {entry.finalSlotsStrings.Length}");
-        foreach (var slotString in entry.finalSlotsStrings)
-        {
-            Debug.Log($"Slot String: {slotString}");
         }
 
         // Assuming final_slots_strings is correctly populated from entry.finalSlotsStrings
