@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\LoadPreferences.cs" />
     <Compile Include="Assets\Scripts\GridGame.cs" />
     <Compile Include="Assets\Scripts\Calendar.cs" />
+    <Compile Include="Assets\Scripts\UpdateColor.cs" />
     <Compile Include="Assets\Scripts\Achievement.cs" />
     <Compile Include="Assets\Scripts\JournalEntry.cs" />
     <Compile Include="Assets\Scripts\NotificationManager.cs" />

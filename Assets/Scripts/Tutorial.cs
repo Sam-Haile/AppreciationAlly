@@ -11,7 +11,6 @@ public class Tutorial : MonoBehaviour
     public Animator tutorialAnimator;
     private TutorialStep currentStep;
     public TextMeshProUGUI speechBubble;
-
     private void Start()
     {
         SetupTutorial();
@@ -51,7 +50,12 @@ public class Tutorial : MonoBehaviour
             UpdateText();
         }
         else
+        {
             tutorialPage.gameObject.SetActive(false);
+            // Save the tutorial completion status using PlayerPrefs.
+            PlayerPrefs.SetInt("TutorialDone", 1);
+            PlayerPrefs.Save();
+        }
     }
 
     private void UpdateText()

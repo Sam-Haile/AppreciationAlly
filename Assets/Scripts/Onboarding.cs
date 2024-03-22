@@ -107,7 +107,6 @@ public class Onboarding : MonoBehaviour
     {
         header.text = currentStep.HeaderText;
         subHeader.text = currentStep.SubHeaderText;
-
     }
 
     public void SetTutorialChoice(bool choice)
@@ -118,9 +117,6 @@ public class Onboarding : MonoBehaviour
     public void SetTutorial(bool choice)
     {
         doTutorial = choice;
-        // Save the tutorial completion status using PlayerPrefs.
-        PlayerPrefs.SetInt("TutorialDone", choice ? 1 : 0);
-        PlayerPrefs.Save();
     }
 
     public void UpdatePreferences()
