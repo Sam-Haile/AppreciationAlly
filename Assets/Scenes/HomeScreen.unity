@@ -5765,8 +5765,8 @@ RectTransform:
   - {fileID: 2082650719}
   m_Father: {fileID: 1062954046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6841,8 +6841,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.95166, y: -556.07495}
-  m_SizeDelta: {x: 885.9033, y: 160.46}
+  m_AnchoredPosition: {x: 836.26843, y: -556.07495}
+  m_SizeDelta: {x: 1672.5369, y: 160.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &282898593
 MonoBehaviour:
@@ -10349,7 +10349,7 @@ RectTransform:
   m_GameObject: {fileID: 462350053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 739151718}
@@ -10417,9 +10417,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Onboarding, Assembly-CSharp
-        m_MethodName: SetColor
+      - m_Target: {fileID: 945307278}
+        m_TargetAssemblyTypeName: UpdateColor, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 462350055}
@@ -10748,7 +10748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &481064248
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10766,10 +10766,10 @@ RectTransform:
   - {fileID: 595257357}
   m_Father: {fileID: 100630495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.95166, y: -318.1525}
-  m_SizeDelta: {x: 885.9033, y: 160.46}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 160.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &481064249
 MonoBehaviour:
@@ -10868,6 +10868,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1062954048}
+        m_TargetAssemblyTypeName: LoadPreferences, Assembly-CSharp
+        m_MethodName: ApplyColors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1169187025}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -13338,7 +13350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &573929894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13355,10 +13367,10 @@ RectTransform:
   - {fileID: 768866703}
   m_Father: {fileID: 100630495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.95166, y: -80.23}
-  m_SizeDelta: {x: 885.9033, y: 160.46}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 160.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &573929895
 MonoBehaviour:
@@ -14865,8 +14877,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.95166, y: -793.99744}
-  m_SizeDelta: {x: 885.9033, y: 160.46}
+  m_AnchoredPosition: {x: 836.26843, y: -793.99744}
+  m_SizeDelta: {x: 1672.5369, y: 160.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &698501916
 CanvasRenderer:
@@ -15426,7 +15438,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.7
+  m_fontSize: 37.75
   m_fontSizeBase: 21.4
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15717,7 +15729,7 @@ Transform:
   m_GameObject: {fileID: 739151717}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 413, z: 0}
+  m_LocalPosition: {x: 0, y: 288, z: 0}
   m_LocalScale: {x: 2.666027, y: 2.666027, z: 2.666027}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15901,7 +15913,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 886.15375, y: 1920}
+  m_SizeDelta: {x: 0, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &745435562
 MonoBehaviour:
@@ -16768,9 +16780,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Onboarding, Assembly-CSharp
-        m_MethodName: SetColor
+      - m_Target: {fileID: 945307278}
+        m_TargetAssemblyTypeName: UpdateColor, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 770842596}
@@ -17006,8 +17018,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.95166, y: -80.23001}
-  m_SizeDelta: {x: 885.9033, y: 160.46002}
+  m_AnchoredPosition: {x: 836.26843, y: -80.23001}
+  m_SizeDelta: {x: 1672.5369, y: 160.46002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &821259683
 MonoBehaviour:
@@ -18033,16 +18045,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Onboarding, Assembly-CSharp
-        m_MethodName: SetColor
+      - m_Target: {fileID: 945307278}
+        m_TargetAssemblyTypeName: UpdateColor, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 850349637}
           m_ObjectArgumentAssemblyTypeName: BackgroundColor, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: A70E0E
+          m_StringArgument: 0E46A7
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &850349639
@@ -19116,16 +19128,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Onboarding, Assembly-CSharp
-        m_MethodName: SetColor
+      - m_Target: {fileID: 945307278}
+        m_TargetAssemblyTypeName: UpdateColor, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 912636887}
           m_ObjectArgumentAssemblyTypeName: BackgroundColor, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: A70E0E
+          m_StringArgument: 0E46A7
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &912636889
@@ -19822,13 +19834,14 @@ GameObject:
   - component: {fileID: 945307274}
   - component: {fileID: 945307277}
   - component: {fileID: 945307275}
+  - component: {fileID: 945307278}
   m_Layer: 5
   m_Name: Themes
   m_TagString: SecondaryColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &945307274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19844,10 +19857,10 @@ RectTransform:
   - {fileID: 739151718}
   m_Father: {fileID: 1530172390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -201.37}
-  m_SizeDelta: {x: 785.9, y: 1310.75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945307275
 MonoBehaviour:
@@ -19872,6 +19885,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945307273}
   m_CullTransparentMesh: 1
+--- !u!114 &945307278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945307273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14758b217020ed4c85f9a19eecc0863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorOptions:
+  - {fileID: 462350053}
+  - {fileID: 850349635}
+  - {fileID: 2137958282}
+  - {fileID: 1113505068}
+  - {fileID: 1501437637}
+  - {fileID: 970885726}
+  - {fileID: 770842594}
+  - {fileID: 912636885}
 --- !u!1 &949746418
 GameObject:
   m_ObjectHideFlags: 0
@@ -20289,16 +20323,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Onboarding, Assembly-CSharp
-        m_MethodName: SetColor
+      - m_Target: {fileID: 945307278}
+        m_TargetAssemblyTypeName: UpdateColor, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 970885728}
           m_ObjectArgumentAssemblyTypeName: BackgroundColor, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 0EA71D
+          m_StringArgument: 0E46A7
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &970885730
@@ -22207,6 +22241,7 @@ MonoBehaviour:
   greeting: {fileID: 1016638558}
   settingsName: {fileID: 2086757268}
   tutorialScreen: {fileID: 244134257}
+  tog: {fileID: 1878439649}
 --- !u!114 &1062954050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23342,9 +23377,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Onboarding, Assembly-CSharp
-        m_MethodName: SetColor
+      - m_Target: {fileID: 945307278}
+        m_TargetAssemblyTypeName: UpdateColor, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1113505070}
@@ -24624,6 +24659,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1062954048}
+        m_TargetAssemblyTypeName: LoadPreferences, Assembly-CSharp
+        m_MethodName: ApplyColors
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -26305,7 +26352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 791.4275, y: -230.75}
+  m_AnchoredPosition: {x: 791.9752, y: -230.75}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227952567
@@ -26664,7 +26711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 280.00003, y: -56}
+  m_AnchoredPosition: {x: 280, y: -56}
   m_SizeDelta: {x: 345.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1238984462
@@ -31416,7 +31463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1468183186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31434,10 +31481,10 @@ RectTransform:
   - {fileID: 984204450}
   m_Father: {fileID: 100630495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.95166, y: -556.075}
-  m_SizeDelta: {x: 885.9033, y: 160.46}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 160.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1468183187
 MonoBehaviour:
@@ -31536,6 +31583,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1062954048}
+        m_TargetAssemblyTypeName: LoadPreferences, Assembly-CSharp
+        m_MethodName: ApplyColors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1169187025}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -31708,7 +31767,7 @@ GameObject:
   - component: {fileID: 1484241221}
   - component: {fileID: 1484241220}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31777,6 +31836,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1062954048}
+        m_TargetAssemblyTypeName: LoadPreferences, Assembly-CSharp
+        m_MethodName: ApplyColors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1062954047}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
@@ -32038,16 +32109,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Onboarding, Assembly-CSharp
-        m_MethodName: SetColor
+      - m_Target: {fileID: 945307278}
+        m_TargetAssemblyTypeName: UpdateColor, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1501437639}
           m_ObjectArgumentAssemblyTypeName: BackgroundColor, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: A70E0E
+          m_StringArgument: 0E46A7
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1501437641
@@ -32991,10 +33062,10 @@ RectTransform:
   - {fileID: 945307274}
   m_Father: {fileID: 1934245410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 54.00786}
-  m_SizeDelta: {x: 100, y: 208.01572}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1549227657
 GameObject:
@@ -34016,7 +34087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586997204964603990, guid: 90e45ad40e9117f4297884cd335ad2ab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 222.47583
+      value: 222.6584
       objectReference: {fileID: 0}
     - target: {fileID: 586997204964603990, guid: 90e45ad40e9117f4297884cd335ad2ab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -34572,7 +34643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -36449,8 +36520,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.95166, y: -318.1525}
-  m_SizeDelta: {x: 885.9033, y: 160.46}
+  m_AnchoredPosition: {x: 836.26843, y: -318.1525}
+  m_SizeDelta: {x: 1672.5369, y: 160.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1698196531
 MonoBehaviour:
@@ -39388,7 +39459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1847103137
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39406,10 +39477,10 @@ RectTransform:
   - {fileID: 1643553377}
   m_Father: {fileID: 100630495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.95166, y: -80.23}
-  m_SizeDelta: {x: 885.9033, y: 160.46}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 160.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1847103138
 MonoBehaviour:
@@ -40715,8 +40786,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 1062954048}
+        m_TargetAssemblyTypeName: LoadPreferences, Assembly-CSharp
+        m_MethodName: OnRotationToggleChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &1880298512
 GameObject:
   m_ObjectHideFlags: 0
@@ -44069,7 +44152,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2053076769}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6626306
+  m_Size: 0.6626305
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -45412,7 +45495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 280.00003, y: -56}
+  m_AnchoredPosition: {x: 280, y: -56}
   m_SizeDelta: {x: 345.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2101313418
@@ -46393,6 +46476,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1062954048}
+        m_TargetAssemblyTypeName: LoadPreferences, Assembly-CSharp
+        m_MethodName: ApplyColors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1062954047}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
@@ -46786,16 +46881,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Onboarding, Assembly-CSharp
-        m_MethodName: SetColor
+      - m_Target: {fileID: 945307278}
+        m_TargetAssemblyTypeName: UpdateColor, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2137958284}
           m_ObjectArgumentAssemblyTypeName: BackgroundColor, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 0EA71D
+          m_StringArgument: 0E46A7
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2137958286
@@ -47038,7 +47133,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 170854066}
   m_HandleRect: {fileID: 170854065}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

@@ -17,10 +17,13 @@ public class LoadPreferences : MonoBehaviour
 
     public GameObject tutorialScreen;
 
+    public Toggle tog;
+
 
     private void Start()
     {
         Debug.Log(PlayerPrefs.GetInt("TutorialDone", 0));
+
         if (tutorialScreen != null)
         {
             if (PlayerPrefs.GetInt("TutorialDone", 0) == 0)
@@ -31,6 +34,24 @@ public class LoadPreferences : MonoBehaviour
                 tutorialScreen.SetActive(false);
         }
 
+        ApplyName();
+
+
+        ApplyPfp();
+
+
+        ApplyColors();
+      
+    }
+
+
+    public void LoadSceneIndex(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void ApplyName()
+    {
         if (greeting != null)
         {
             //Apply users username
@@ -38,8 +59,10 @@ public class LoadPreferences : MonoBehaviour
             greeting.text = "Hello " + userName + "!";
             settingsName.text = userName;
         }
+    }
 
-
+    public void ApplyPfp()
+    {
         //Apply users pfp
         foreach (var p in selectedPfp)
         {
@@ -59,7 +82,10 @@ public class LoadPreferences : MonoBehaviour
                 }
             }
         }
+    }
 
+    public static void ApplyColors()
+    {
         //Apply users color
         string primaryColor = PlayerPrefs.GetString("PrimaryColor", "0E46A7");
         string secondaryColor = PlayerPrefs.GetString("SecondaryColor", "0E46A7");
@@ -113,11 +139,12 @@ public class LoadPreferences : MonoBehaviour
             Debug.LogError("Invalid color hex code.");
         }
 
+
+
     }
 
-
-    public void LoadSceneIndex(int index)
+    public void OnRotationToggleChanged()
     {
-        SceneManager.LoadScene(index);
+        Rotate.ToggleRotation(!tog.isOn);
     }
 }
