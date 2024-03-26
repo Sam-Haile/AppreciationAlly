@@ -9,7 +9,6 @@ public class Rotate : MonoBehaviour
         // Check PlayerPrefs for the rotation setting
         if (PlayerPrefs.GetInt("RotationEnabled", 1) == 1)
         {
-            Debug.Log("ROtate");
             transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
         }
     }

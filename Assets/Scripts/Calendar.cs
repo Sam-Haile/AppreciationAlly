@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Calendar : MonoBehaviour
 {
     // Private fields for storing current date and month details
-    [HideInInspector]public DateTime currentDate;
+    [HideInInspector] public DateTime currentDate;
     public Button nextMonthButton;
     public Button prevMonthButton;
     public TextMeshProUGUI monthDisplayText;
@@ -29,24 +29,21 @@ public class Calendar : MonoBehaviour
 
     public GameObject calendar;
 
-    void Start()
+    private void Awake()
     {
         currentDate = DateTime.Now; // Initialize to the current date
         UpdateMonthDisplay(); // Update the UI to reflect the current month and year
         GenerateCalendar(currentDate.Year, currentDate.Month); // Populate the calendar with dates
+    }
+
+    void Start()
+    {
         StartCoroutine(PositionMarkerAfterLayoutUpdate());
-
-
-        foreach (var day in dates)
-        {
-            DisplayEmotionsCalendar(GetFilePath(currentDate, int.Parse(day.text)), day.gameObject);
-        }
 
         gratefulFor_str_txt.SetActive(false); // Initially hide elements related to journal entry display
         // Add listeners for the next and previous month buttons
         nextMonthButton.onClick.AddListener(GoToNextMonth);
         prevMonthButton.onClick.AddListener(GoToPreviousMonth);
-        calendar.SetActive(false);
 
     }
 
@@ -64,6 +61,9 @@ public class Calendar : MonoBehaviour
         {
             currentDayMarker.SetActive(false);
         }
+
+        calendar.SetActive(false);
+
     }
 
     // Updates the month and year display at the top of the calendar
@@ -82,7 +82,7 @@ public class Calendar : MonoBehaviour
         // After updating the calendar display:
         if (currentDate.Year == DateTime.Now.Year && currentDate.Month == DateTime.Now.Month)
         {
-            PositionCurrentDayMarker();
+            StartCoroutine(PositionMarkerAfterLayoutUpdate());
         }
         else
         {
@@ -101,7 +101,7 @@ public class Calendar : MonoBehaviour
         // After updating the calendar display:
         if (currentDate.Year == DateTime.Now.Year && currentDate.Month == DateTime.Now.Month)
         {
-            PositionCurrentDayMarker();
+            StartCoroutine(PositionMarkerAfterLayoutUpdate());
         }
         else
         {
@@ -126,11 +126,13 @@ public class Calendar : MonoBehaviour
         // Populate calendar with current month's dates
         for (int day = 1; day <= daysInMonth; day++)
         {
-            int index = startDayIndex + day - 1;
-            if (index < dates.Length)
+            int i = startDayIndex + day - 1;
+            if (i < dates.Length)
             {
-                dates[index].text = day.ToString();
-                ReduceOpacity(dates[index], false); // Ensure current month's dates are fully visible
+                dates[i].text = day.ToString();
+                ReduceOpacity(dates[i], false); // Ensure current month's dates are fully visible
+                dates[i].GetComponent<Date>().previousMonth = false;
+                dates[i].GetComponent<Date>().nextMonth = false;
             }
         }
 
@@ -141,6 +143,7 @@ public class Calendar : MonoBehaviour
         {
             dates[i].text = (daysInPreviousMonth - (startDayIndex - i - 1)).ToString();
             ReduceOpacity(dates[i], true); // Dim dates not in the current month for visual differentiation
+            dates[i].GetComponent<Date>().previousMonth = true;
         }
 
         // Optionally, fill in dates from the next month for empty cells at the end of the calendar
@@ -149,31 +152,40 @@ public class Calendar : MonoBehaviour
         {
             dates[i].text = (i - totalDaysFilled + 1).ToString();
             ReduceOpacity(dates[i], true); // Dim these dates as well
+            dates[i].GetComponent<Date>().nextMonth = true;
         }
 
         foreach (var day in dates)
         {
-            DisplayEmotionsCalendar(GetFilePath(currentDate, int.Parse(day.text)), day.gameObject);
-        }
+            Date dateObj = day.GetComponent<Date>();
 
-        //// Highlight today's date if the generated calendar is for the current month and year
-        //if (year == DateTime.Now.Year && month == DateTime.Now.Month)
-        //{
-        //    PositionCurrentDayMarker();
-        //}
-        //else
-        //{
-        //    // Optionally, hide or disable the marker if not viewing the current month
-        //    currentDayMarker.SetActive(false);
-        //}
+            if (dateObj.nextMonth)
+            {
+                dateObj.currentMonth = currentDate.AddMonths(1).Month.ToString();
+                DisplayEmotionsCalendar(GetFilePath(currentDate.AddMonths(1), int.Parse(day.text)), day.gameObject);
+            }
+            else if (dateObj.previousMonth)
+            {
+                dateObj.currentMonth = currentDate.AddMonths(-1).Month.ToString();
+                DisplayEmotionsCalendar(GetFilePath(currentDate.AddMonths(-1), int.Parse(day.text)), day.gameObject);
+            }
+            else
+            {
+                dateObj.currentMonth = currentDate.Month.ToString();
+                DisplayEmotionsCalendar(GetFilePath(currentDate, int.Parse(day.text)), day.gameObject);
+            }
+        }
     }
 
-    void PositionCurrentDayMarker()
+    public void PositionCurrentDayMarker()
     {
         int today = DateTime.Now.Day;
+        string month = DateTime.Now.Month.ToString();
+
         foreach (var day in dates)
         {
-            if (day.text == today.ToString())
+            Date dateObj = day.GetComponent<Date>();
+            if (day.text == today.ToString() && dateObj.currentMonth == month)
             {
                 // Assuming each 'day' TextMeshProUGUI object is a child of the day button or has a known relative position
                 currentDayMarker.transform.position = day.transform.position;
@@ -195,8 +207,15 @@ public class Calendar : MonoBehaviour
         GameObject obj = EventSystem.current.currentSelectedGameObject;
         string date = obj.GetComponent<TextMeshProUGUI>().text;
         int.TryParse(date, out int dayIndex);
+        string filePath;
 
-        string filePath = GetFilePath(currentDate, dayIndex);
+        if (obj.GetComponent<Date>().previousMonth)
+            filePath = GetFilePath(currentDate.AddMonths(-1), dayIndex);
+        else if (obj.GetComponent<Date>().nextMonth)
+            filePath = GetFilePath(currentDate.AddMonths(1), dayIndex);
+        else
+            filePath = GetFilePath(currentDate, dayIndex);
+
         LoadAndDisplayJournalEntry(filePath, dayIndex);
     }
 
@@ -204,7 +223,7 @@ public class Calendar : MonoBehaviour
     public string GetFilePath(DateTime monthYear, int selectedDate)
     {
         string formattedDate = monthYear.ToString($"MMMM {selectedDate:00}, yyyy");
-        string path = UnityEngine.Application.persistentDataPath + "/journal_" + formattedDate.Replace(" ", "_").Replace(",", "") + ".json";
+        string path = Application.persistentDataPath + "/journal_" + formattedDate.Replace(" ", "_").Replace(",", "") + ".json";
         return path;
     }
 
@@ -307,6 +326,7 @@ public class Calendar : MonoBehaviour
             if (i < entry.finalSlotsStrings.Length && !string.IsNullOrEmpty(entry.finalSlotsStrings[i]) && entry.finalSlotsStrings[i] != "New Text")
             {
                 gratefulFor_str_txt.SetActive(true);
+                LoadPreferences.ApplyColors();
                 grateful_strings[i].text = entry.finalSlotsStrings[i];
                 grateful_strings[i].transform.parent.gameObject.SetActive(true); // Show the text field or its container.
             }
