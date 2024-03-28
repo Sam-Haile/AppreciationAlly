@@ -297,7 +297,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4289546512
   m_fontColor: {r: 0.0627451, g: 0.2862745, b: 0.6784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2.5, y: -2.5}
+  m_EffectDistance: {x: 2, y: -2.5}
   m_UseGraphicAlpha: 1
 --- !u!1 &738817826
 GameObject:
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 11356432
+    rgba: 4289546512
   m_fontColor: {r: 0.0627451, g: 0.2862745, b: 0.6784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3157,7 +3157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2.5, y: -2.5}
+  m_EffectDistance: {x: 2, y: -2.5}
   m_UseGraphicAlpha: 1
 --- !u!1 &2089705713
 GameObject:
@@ -3914,7 +3914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3493366796307250835, guid: 55602e0f279d3e14ba6a2a30f3b2017b, type: 3}
       propertyPath: m_EffectDistance.x
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3493366796307250835, guid: 55602e0f279d3e14ba6a2a30f3b2017b, type: 3}
       propertyPath: m_EffectDistance.y

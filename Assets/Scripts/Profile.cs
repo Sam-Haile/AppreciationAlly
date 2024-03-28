@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -12,11 +10,16 @@ public class Profile : MonoBehaviour
 
     public Image[] sevenDayTracker;
     public TextMeshProUGUI[] sevenDaystrings;
+    public TextMeshProUGUI streak;
+    private int streakCounter;
+    private Color customGreen = new Color(122f / 255f, 236f / 255f, 93f / 255f);
 
     private void Start()
     {
         UpdateStreak();
+        DetermineStreak();
     }
+
     public void UpdateStreak()
     {
         // Use DateTime.Now to get the current system date and time
@@ -27,17 +30,16 @@ public class Profile : MonoBehaviour
             // Calculate the date to display, starting from the current day and going back
             DateTime dateToShow = currentDate.AddDays(-i);
             // Update the text of the UI element to show the day of the week
-            // Use sevenDaystrings.Length - 1 - i to ensure the current day is on the right
             sevenDaystrings[sevenDaystrings.Length - 1 - i].text = dateToShow.ToString("ddd").Substring(0, 1);
 
             CheckForData(currentDate, dateToShow.Day, i);
         }
+
     }
-    
+
     private bool CheckForData(DateTime monthYear, int selectedDate, int index)
     {
         string filePath = calendar.GetFilePath(monthYear, selectedDate);
-        Color customGreen = new Color(122f / 255f, 236f / 255f, 93f / 255f); 
 
         if (File.Exists(filePath))
         {
@@ -45,8 +47,27 @@ public class Profile : MonoBehaviour
             return true;
         }
         else
-            //sevenDayTracker[sevenDaystrings.Length - 1 - index].color = Color.black;
             return false;
+    }
+
+    private void DetermineStreak()
+    {
+        streakCounter = 0;
+
+        for (int i = sevenDayTracker.Length - 1; i >= 0; i--)
+        {
+            Debug.Log(i + " Color = " + sevenDayTracker[i].color.ToString());
+            if (sevenDayTracker[i].color == customGreen)
+            {
+                streakCounter++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        streak.text = streakCounter.ToString();
     }
 
 }

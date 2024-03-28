@@ -14,8 +14,8 @@ public class Onboarding : MonoBehaviour
     public static bool doTutorial;
 
     #region Step 1
-    private UnityEngine.Color selectedPrimaryColor;
-    private UnityEngine.Color selectedSecondaryColor;
+    private Color selectedPrimaryColor;
+    private Color selectedSecondaryColor;
     public GameObject[] colorOptions;
     public GameObject[] profilePictures;
     public Image backgroundColor;
@@ -131,8 +131,9 @@ public class Onboarding : MonoBehaviour
                 PlayerPrefs.Save();
                 break;
             case 3:
-                PlayerPrefs.SetString("Name", userName);
-                PlayerPrefs.SetInt("PlayerPFP", userPfpId);
+                string nameNoSpace = userName.Replace(" ", "");
+                PlayerPrefs.SetString("Name", nameNoSpace);
+                PlayerPrefs.SetInt("PlayerPfp", userPfpId);
                 PlayerPrefs.Save();
                 break;
         }
@@ -191,7 +192,7 @@ public class Onboarding : MonoBehaviour
 
     }
 
-    private IEnumerator InterpolateScale(GameObject objToTransform, Vector3 targetScale, float duration)
+    public static IEnumerator InterpolateScale(GameObject objToTransform, Vector3 targetScale, float duration)
     {
         Vector3 originalScale = objToTransform.transform.localScale;
         float timer = 0;

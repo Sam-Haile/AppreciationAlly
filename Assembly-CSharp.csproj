@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\TutorialStep.cs" />
     <Compile Include="Assets\Scripts\ProfilePicture.cs" />
     <Compile Include="Assets\Scripts\Rotate.cs" />
+    <Compile Include="Assets\ProfileUpdate.cs" />
     <Compile Include="Assets\Scripts\OnboardingStep.cs" />
   </ItemGroup>
   <ItemGroup>

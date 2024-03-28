@@ -13,7 +13,7 @@ public class LoadPreferences : MonoBehaviour
 
     public TextMeshProUGUI greeting;
     public TextMeshProUGUI settingsName;
-    private string userName;
+    public static string userName;
 
     public GameObject tutorialScreen;
 
