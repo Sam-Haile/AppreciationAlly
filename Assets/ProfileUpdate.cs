@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProfileUpdate : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ProfileUpdate : MonoBehaviour
 
     public GameObject[] profilePictures;
     private int userPfpId;
+
+    public Button notificationButton;
 
 
     private void Start()
@@ -72,5 +75,12 @@ public class ProfileUpdate : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public void NotificationSettings()
+    {
+        Animator buttonAnimator = notificationButton.GetComponent<Animator>();
+        bool currentActiveState = buttonAnimator.GetBool("Active");
+
+        buttonAnimator.SetBool("Active", !currentActiveState);
+    }
 
 }

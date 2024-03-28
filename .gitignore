@@ -16,3 +16,14 @@ Logs/
 *.log
 .vsconfig
 *.settings
+MK.MeshUtility.csproj
+MK.MKTextureChannelPacker.csproj
+MK.RampCreator.csproj
+MK.Toon.csproj
+MK.Toon.Editor.csproj
+MK.Toon.URP.csproj
+MK.Toon.URP.Editor.csproj
+NativeGallery.Editor.csproj
+NativeGallery.Runtime.csproj
+*.cache
+UserSettings/Layouts/default-2022.dwlt
