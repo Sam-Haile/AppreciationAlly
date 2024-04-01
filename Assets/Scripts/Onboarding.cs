@@ -27,6 +27,7 @@ public class Onboarding : MonoBehaviour
     private int userPfpId;
     public bool userChoice;
 
+    public Animator chromoAnimator;
     #endregion
 
     private void Start()
@@ -92,6 +93,21 @@ public class Onboarding : MonoBehaviour
                 currentStep = currentStep.NextStep;
                 UpdateUIForCurrentStep();
             }
+        }
+
+        ChromoAnimator();
+
+    }
+
+    public void ChromoAnimator()
+    {
+        switch (currentStep.currentStepIndex)
+        {
+            case 4:
+                chromoAnimator.SetTrigger("fall");
+                break;
+            default:
+                break;
         }
     }
 

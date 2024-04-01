@@ -251,8 +251,18 @@ public class Journal : MonoBehaviour
         File.WriteAllText(path, json);
 
         //Increment journal complettion badge here
-        AchievementManager.Instance.UpdateAchievement("Journal Explorer", 1);
+        AchievementManager.Instance.UpdateAchievement("Journal Explorer", CountUniqueJournalEntries());
 
+    }
+
+    public static int CountUniqueJournalEntries()
+    {
+        string path = UnityEngine.Application.persistentDataPath;
+        // Get all .json files starting with "journal_" prefix
+        string[] journalFiles = Directory.GetFiles(path, "journal_*.json");
+
+        // Each file is a unique entry by date, return the count
+        return journalFiles.Length;
     }
 
     public void DeletePreviousEntriesForToday()

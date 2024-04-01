@@ -25,7 +25,7 @@ public class AchievementManager : MonoBehaviour
         var achievement = achievements.Find(a => a.badgeName == badgeName);
         if (achievement != null)
         {
-            achievement.currentUserProgress += progressToAdd;
+            achievement.currentUserProgress = progressToAdd;
             // Add logic to save achievement progress here
             // You might want to save to PlayerPrefs, a file, or a database
         }

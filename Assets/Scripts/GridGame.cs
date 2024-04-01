@@ -29,13 +29,15 @@ public class GridGame : MonoBehaviour
 
     public GameObject[] gridNumSelector;
 
+    private int currentImageIndex = 0;
+
 
     private void Start()
     {
         ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("PrimaryColor"), out parsedPrimaryColor);
         ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("SecondaryColor"), out parsedSecondaryColor);
 
-        RandomizeImages();
+        ShuffleImages();
         PopulateGrid();
     }
 
@@ -56,16 +58,12 @@ public class GridGame : MonoBehaviour
     }
 
     #region Populate/Randomize Grid
-    //Utilizing the fisher-yates system to randomize the first 16 elements
-    private void RandomizeImages()
+    private void ShuffleImages()
     {
-        int n = 4;
-
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < images.Length; i++)
         {
-            int j = Random.Range(i, images.Length);
-
-            Swap(i, j);
+            int rnd = Random.Range(i, images.Length);
+            Swap(i, rnd);
         }
     }
 
@@ -80,7 +78,14 @@ public class GridGame : MonoBehaviour
     {
         for (int i = 0; i < grids.Length; i++)
         {
-            grids[i].texture = images[i].texture;
+            if (currentImageIndex >= images.Length) // Check if all images have been shown
+            {
+                Debug.Log("All images have been shown");
+                ShuffleImages(); // Shuffle again
+                currentImageIndex = 0; // Reset index
+            }
+            grids[i].texture = images[currentImageIndex].texture;
+            currentImageIndex++;
         }
     }
     #endregion
@@ -88,10 +93,8 @@ public class GridGame : MonoBehaviour
     public void SetSelectedGrid(int gridIndex)
     {
         selectedGrid = gridIndex;
-        Debug.Log($"Setting selected grid: {selectedGrid}");
 
         Texture texture = grids[selectedGrid].texture;
-        Debug.Log($"Selected texture: {texture.name}");
 
         enlargedGrid.texture = texture;
     }
@@ -107,7 +110,6 @@ public class GridGame : MonoBehaviour
     public void OnTap()
     {
         StartCoroutine(ModifySizes(gridObjs, enlargedGridParent));
-        RandomizeImages();
         PopulateGrid();
 
     }
@@ -120,7 +122,6 @@ public class GridGame : MonoBehaviour
         {
             StartCoroutine(SmoothProgressChange(progressSlider.value, (float)selectedGridCounter / (float)numOfGrids, 0.25f));
             StartCoroutine(NextGrids(gridObjs, enlargedGridParent, true));
-            RandomizeImages();
             PopulateGrid();
         }
         else
