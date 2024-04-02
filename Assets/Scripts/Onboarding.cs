@@ -12,6 +12,7 @@ public class Onboarding : MonoBehaviour
     public TextMeshProUGUI subHeader;
 
     public static bool doTutorial;
+    public Animator chromoAnimator;
 
     #region Step 1
     private Color selectedPrimaryColor;
@@ -26,8 +27,7 @@ public class Onboarding : MonoBehaviour
     private string userName;
     private int userPfpId;
     public bool userChoice;
-
-    public Animator chromoAnimator;
+    public Image circle;
     #endregion
 
     private void Start()
@@ -75,6 +75,7 @@ public class Onboarding : MonoBehaviour
 
     public void GoToNextStep()
     {
+        Debug.Log(currentStep.currentStepIndex);
         if ( currentStep.currentStepIndex < 6 && currentStep.ToString() != null && currentStep.NextStep.ToString() != null)
         {
 
@@ -109,6 +110,11 @@ public class Onboarding : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void ChromoThumbsUp()
+    {
+        chromoAnimator.SetTrigger("end");
     }
 
     public void GoToPreviousStep()
@@ -197,6 +203,7 @@ public class Onboarding : MonoBehaviour
         subHeader.color = selectedPrimaryColor;
         buttonPrefab.color = selectedPrimaryColor;
         inputPrefab.color = selectedSecondaryColor;
+        circle.color = selectedPrimaryColor;
 
         foreach (var colorOption in colorOptions)
         {

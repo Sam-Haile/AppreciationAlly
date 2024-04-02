@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
@@ -12,13 +13,15 @@ public class Journal : MonoBehaviour
     public GameObject chromo;
     public TextMeshProUGUI chromosSpeechBubble;
     public TextMeshProUGUI nextButton;
+    private bool happy;
+    private bool sad;
 
     public TextMeshProUGUI journalHeader;
     public TextMeshProUGUI journalSubheader;
     private JournalStep currentStep;
     public GameObject[] stepUIs;
 
-    //Step 1
+    //Step 1s
     public Slider emotionSlider;
     public TextMeshProUGUI emotionRating;
     JournalStep step1;
@@ -113,21 +116,34 @@ public class Journal : MonoBehaviour
             else
                 step.SetActive(true);
         }
+
+
+        if(currentStep.currentStepIndex == 0)
+        {
+            chromoAnim.SetBool("happy", happy);
+            chromoAnim.SetBool("sad", sad);
+        }
     }
 
     public void NextStep()
     {
-        if (currentStep.currentStepIndex == 0 && emotionSlider.value < .56f)
+        if(currentStep.currentStepIndex == 0)
         {
-            currentStep = step1.ungratefulPath;
-            CreateChromoResponse(false);
-            UpdateUI();
-        }
-        else if (currentStep.currentStepIndex == 0 && emotionSlider.value >= .56f)
-        {
-            currentStep = step1.gratefulPath;
-            CreateChromoResponse(true);
-            UpdateUI();
+            sad = chromoAnim.GetBool("sad");
+            happy = chromoAnim.GetBool("happy");
+
+            if (emotionSlider.value < .56f)
+            {
+                currentStep = step1.ungratefulPath;
+                CreateChromoResponse(false);
+                UpdateUI();
+            }
+            else if (emotionSlider.value >= .56f)
+            {
+                currentStep = step1.gratefulPath;
+                CreateChromoResponse(true);
+                UpdateUI();
+            }
         }
         else
         {
@@ -138,7 +154,6 @@ public class Journal : MonoBehaviour
 
     public void PreviousStep()
     {
-        Debug.Log(currentStep.PreviousStep);
         if (currentStep.currentStepIndex >= 1)
         {
             nextButton.text = "NEXT";
@@ -159,32 +174,40 @@ public class Journal : MonoBehaviour
             chromosSpeechBubble.text = ungratefulResponses[UnityEngine.Random.Range(0, ungratefulResponses.Length)];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (chromo.transform.position.y <= -1.75f)
-        {
-            Rigidbody rb = chromo.GetComponent<Rigidbody>();
 
-            rb.useGravity = false;
-            rb.mass = 0f;
-            chromoAnim.SetTrigger("land");
-        }
-
-    }
 
     public void UpdateEmotion()
     {
         if (emotionSlider.value <= .2f)
+        {
+            chromoAnim.SetBool("sad", true);
+            chromoAnim.SetBool("happy", false);
             emotionRating.text = "Ungrateful";
+        }
         else if (emotionSlider.value > .2f && emotionSlider.value < .4f)
+        {
+            chromoAnim.SetBool("sad", true);
+            chromoAnim.SetBool("happy", false);
             emotionRating.text = "A Little Grateful";
+        }
         else if (emotionSlider.value > .4f && emotionSlider.value < .6f)
+        {
+            chromoAnim.SetBool("sad", false);
+            chromoAnim.SetBool("happy", true);
             emotionRating.text = "Kind of Grateful";
+        }
         else if (emotionSlider.value > .6f && emotionSlider.value < .8f)
+        {
+            chromoAnim.SetBool("sad", false);
+            chromoAnim.SetBool("happy", true);
             emotionRating.text = "Grateful";
+        }
         else if (emotionSlider.value > .8f && emotionSlider.value < 1f)
+        {
+            chromoAnim.SetBool("sad", false);
+            chromoAnim.SetBool("happy", true);
             emotionRating.text = "Super Grateful";
+        }
     }
 
     public void SaveInformation()
