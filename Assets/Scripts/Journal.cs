@@ -10,6 +10,7 @@ using static System.Net.Mime.MediaTypeNames;
 public class Journal : MonoBehaviour
 {
     public Animator chromoAnim;
+    public Material chromoPrimaryColor;
     public GameObject chromo;
     public TextMeshProUGUI chromosSpeechBubble;
     public TextMeshProUGUI nextButton;
@@ -44,12 +45,23 @@ public class Journal : MonoBehaviour
 
     //Final Display fields
 
-    private string[] ungratefulResponses = { "It's okay to feel that way sometimes. Lets try finding small things that might be good in your day",
-                                             "It's alright to have days when we don't feel grateful. What's one thing you like about your day, even if it's tiny?",
-                                             "It’s perfectly okay to feel less grateful some days. Do you remember seeing something today that was pretty or interesting?"
+    private string[] ungratefulResponses = { "Feeling that way is okay. Let's find small good things in your day",
+                                             "It's okay to have off days. Can you name one small thing you liked today?",
+                                             "Feeling less grateful sometimes is normal. Did you see something pretty or interesting today?",
+                                             "Not every day feels great, and that’s okay. Did something make you feel a little better today?",
+                                             "It's fine to not always feel thankful. Can you think of something that you didn't mind doing today?",
+                                             "You don't have to feel grateful all the time. What's one small thing you enjoyed or appreciated today?"
     };
 
-    private string[] gratefulResponses = { "That's great to hear! Can you share what's making you feel this way?" };
+    private string[] gratefulResponses = { "That's great to hear! Can you share what's making you feel this way?",
+                                            "Wonderful! What's been the best part of your day?",
+                                            "That's fantastic! What made you feel so good today?",
+                                            "So glad to hear that! Can you describe what's brought you joy?",
+                                            "Amazing! What are you most grateful for today?",
+                                            "That's really positive! What's something special that happened?",
+                                            "Great to hear! What's one thing that made you smile the most?",
+                                            "Lovely to hear you're feeling this way. Can you share a highlight?",
+                                            "That's awesome! What's something good that stood out to you today?"};
 
     void Start()
     {
@@ -60,8 +72,8 @@ public class Journal : MonoBehaviour
     private void SetupJournal()
     {
         step1 = new JournalStep("How grateful do you feel?", null, stepUIs[0], 0);
-        step2Ungrtfl = new JournalStep("", null, /*add the text box here*/stepUIs[1], 1);
-        step2Grtfl = new JournalStep("", null, /*add the text box here*/stepUIs[1], 1);
+        step2Ungrtfl = new JournalStep("", null, stepUIs[1], 1);
+        step2Grtfl = new JournalStep("", null, stepUIs[1], 1);
         JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose up to 3 ", stepUIs[2], 2);
         JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
         JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
@@ -123,11 +135,19 @@ public class Journal : MonoBehaviour
             chromoAnim.SetBool("happy", happy);
             chromoAnim.SetBool("sad", sad);
         }
+        else if(currentStep.currentStepIndex == 1)
+        {
+            chromoAnim.SetTrigger("talking");
+        }
+        else if(currentStep.currentStepIndex == 2)
+        {
+            chromoAnim.SetTrigger("done");
+        }
     }
 
     public void NextStep()
     {
-        if(currentStep.currentStepIndex == 0)
+        if (currentStep.currentStepIndex == 0)
         {
             sad = chromoAnim.GetBool("sad");
             happy = chromoAnim.GetBool("happy");
@@ -156,6 +176,9 @@ public class Journal : MonoBehaviour
     {
         if (currentStep.currentStepIndex >= 1)
         {
+            if(currentStep.currentStepIndex == 2)
+                chromoAnim.SetTrigger("back");
+            
             nextButton.text = "NEXT";
             currentStep = currentStep.PreviousStep;
         }
@@ -173,8 +196,6 @@ public class Journal : MonoBehaviour
         else
             chromosSpeechBubble.text = ungratefulResponses[UnityEngine.Random.Range(0, ungratefulResponses.Length)];
     }
-
-
 
     public void UpdateEmotion()
     {
@@ -223,10 +244,7 @@ public class Journal : MonoBehaviour
                 foreach (GratefulButton selectedButton in gratefulButtons)
                 {
                     if (selectedButton.selected)
-                    {
-                        //Debug.Log(selectedButton.text);
                         selectedButtons.Add(selectedButton);
-                    }
                 }
                 break;
             case 4:
@@ -250,7 +268,7 @@ public class Journal : MonoBehaviour
         {
             GratefulButtonData data = new GratefulButtonData
             {
-                iconSpriteName = button.iconSpriteName, // Make sure this is set correctly in your button logic
+                iconSpriteName = button.iconSpriteName,
                 gratefulText = button.grtfl_text.text
             };
             buttonDataList.Add(data);
@@ -394,5 +412,6 @@ public class Journal : MonoBehaviour
             this.gameObject.GetComponent<Animator>().SetTrigger("quit");
         }
     }
+
 
 }
