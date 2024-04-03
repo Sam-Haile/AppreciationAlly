@@ -9,6 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 public class Journal : MonoBehaviour
 {
+    public Animator canvasAnim;
     public Animator chromoAnim;
     public Material chromoPrimaryColor;
     public GameObject chromo;
@@ -19,7 +20,7 @@ public class Journal : MonoBehaviour
 
     public TextMeshProUGUI journalHeader;
     public TextMeshProUGUI journalSubheader;
-    private JournalStep currentStep;
+    [HideInInspector]public JournalStep currentStep;
     public GameObject[] stepUIs;
 
     //Step 1s
@@ -77,7 +78,7 @@ public class Journal : MonoBehaviour
         JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose up to 3 ", stepUIs[2], 2);
         JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
         JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
-        JournalStep step6 = new JournalStep("Your day", null, stepUIs[1], 5);
+        JournalStep step6 = new JournalStep("Your day", null, null, 5);
         JournalStep step7 = new JournalStep("", null, null, 6);
 
 
@@ -109,8 +110,13 @@ public class Journal : MonoBehaviour
         UpdateUI();
     }
 
+    private void Update()
+    {
+        Debug.Log(currentStep.currentStepIndex);
+    }
     public void UpdateUI()
     {
+        
         if (currentStep.headerText != null)
             journalHeader.text = currentStep.headerText;
         else
@@ -137,13 +143,21 @@ public class Journal : MonoBehaviour
         }
         else if(currentStep.currentStepIndex == 1)
         {
-            chromoAnim.SetTrigger("talking");
+            chromoAnim.SetBool("speaking", true);
         }
         else if(currentStep.currentStepIndex == 2)
         {
+            Debug.Log("SVFD");
             chromoAnim.SetTrigger("done");
+            canvasAnim.SetTrigger("fadeIn");
         }
+        else if(currentStep.currentStepIndex == 5)
+        {
+            chromoAnim.SetTrigger("end");
+        }
+
     }
+
 
     public void NextStep()
     {
@@ -176,9 +190,16 @@ public class Journal : MonoBehaviour
     {
         if (currentStep.currentStepIndex >= 1)
         {
-            if(currentStep.currentStepIndex == 2)
+            if (currentStep.PreviousStep.currentStepIndex == 0)
+            {
+                chromoAnim.SetBool("speaking", false);
+            }
+            if (currentStep.currentStepIndex == 2)
+            {
                 chromoAnim.SetTrigger("back");
-            
+                canvasAnim.SetTrigger("fadeOut");
+            }
+
             nextButton.text = "NEXT";
             currentStep = currentStep.PreviousStep;
         }

@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class ChromoAnimManager : MonoBehaviour
 {
-    //private float randomNum;
-    //public Animator chromoAnimator;
+    public Animator canvasAnim;
 
-    //public void TalkingManager()
-    //{
-    //    randomNum = Random.Range(0.0f, 1.0f);
+    public Journal journal;
 
-    //    chromoAnimator.SetFloat("talkingMotion", randomNum);
-    //}
+    public void TriggerFadeIn()
+    {
+        canvasAnim.SetTrigger("fadeIn");
+    }
+
+    public void TextBubbleFadeIn()
+    {
+        Debug.Log(journal.currentStep.currentStepIndex);
+
+        if(journal.currentStep.currentStepIndex == 5)
+        {
+            canvasAnim.SetTrigger("speechBubble");
+        }
+    }
 }
