@@ -36,8 +36,12 @@ public class AchievementManager : MonoBehaviour
         {
             if(badgeName == "Journal Explorer")
             {
-                Debug.Log(Journal.CountUniqueJournalEntries());
                 achievement.currentUserProgress = Journal.CountUniqueJournalEntries() + progressToAdd;
+                Debug.Log(Journal.CountUniqueJournalEntries());
+            }
+            else if(badgeName == "Positivity Player")
+            {
+                achievement.currentUserProgress = GridGame.GetMiniGameCompletionCount() + progressToAdd;
             }
             else
                 achievement.currentUserProgress += progressToAdd;

@@ -206,7 +206,9 @@ public class GridGame : MonoBehaviour
         progressSlider.value = 1;
         gameOverUI.SetActive(true);
         DailyTasks.Instance.MarkTaskAsCompleted("GridGame");
+        IncrementMiniGameCompletionCount();
         AchievementManager.Instance.UpdateAchievement("Positivity Player", 1);
+
     }
 
     public void RestartGame()
@@ -215,6 +217,33 @@ public class GridGame : MonoBehaviour
         StartCoroutine(NextGrids(gridObjs, enlargedGridParent, true));
         selectedGridCounter = 0;
         progressSlider.value = 0;
+    }
+
+    public static void IncrementMiniGameCompletionCount()
+    {
+        // Key to store the completion count
+        string key = "MiniGameCompletionCount";
+
+        // Retrieve the current completion count. If it doesn't exist, default to 0.
+        int currentCount = PlayerPrefs.GetInt(key, 0);
+
+        // Increment the count
+        currentCount++;
+
+        // Save the new count back to PlayerPrefs
+        PlayerPrefs.SetInt(key, currentCount);
+
+        // It's important to save changes
+        PlayerPrefs.Save();
+    }
+
+    public static int GetMiniGameCompletionCount()
+    {
+        // Key to retrieve the completion count
+        string key = "MiniGameCompletionCount";
+
+        // Retrieve and return the current completion count. Defaults to 0 if not set.
+        return PlayerPrefs.GetInt(key, 0);
     }
 
 
