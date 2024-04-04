@@ -75,7 +75,6 @@ public class Onboarding : MonoBehaviour
 
     public void GoToNextStep()
     {
-        Debug.Log(currentStep.currentStepIndex);
         if ( currentStep.currentStepIndex < 6 && currentStep.ToString() != null && currentStep.NextStep.ToString() != null)
         {
 

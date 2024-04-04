@@ -29,7 +29,9 @@ public class LoadPreferences : MonoBehaviour
                 tutorialScreen.SetActive(true);
             }
             else
+            {
                 tutorialScreen.SetActive(false);
+            }
         }
 
         ApplyName();

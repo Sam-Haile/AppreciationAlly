@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
@@ -6,6 +7,14 @@ public class AchievementManager : MonoBehaviour
     public static AchievementManager Instance { get; private set; }
 
     public List<AchievementData> achievements = new List<AchievementData>();
+
+    private void Start()
+    {
+        foreach (var achievement in achievements)
+        {
+            UpdateAchievement(achievement.badgeName, 0);
+        }
+    }
 
     void Awake()
     {
@@ -25,9 +34,17 @@ public class AchievementManager : MonoBehaviour
         var achievement = achievements.Find(a => a.badgeName == badgeName);
         if (achievement != null)
         {
-            achievement.currentUserProgress = progressToAdd;
+            if(badgeName == "Journal Explorer")
+            {
+                Debug.Log(Journal.CountUniqueJournalEntries());
+                achievement.currentUserProgress = Journal.CountUniqueJournalEntries() + progressToAdd;
+            }
+            else
+                achievement.currentUserProgress += progressToAdd;
             // Add logic to save achievement progress here
             // You might want to save to PlayerPrefs, a file, or a database
         }
     }
+
+
 }

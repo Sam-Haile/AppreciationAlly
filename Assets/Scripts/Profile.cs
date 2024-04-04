@@ -56,7 +56,6 @@ public class Profile : MonoBehaviour
 
         for (int i = sevenDayTracker.Length - 1; i >= 0; i--)
         {
-            Debug.Log(i + " Color = " + sevenDayTracker[i].color.ToString());
             if (sevenDayTracker[i].color == customGreen)
             {
                 streakCounter++;

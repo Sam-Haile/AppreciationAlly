@@ -110,10 +110,6 @@ public class Journal : MonoBehaviour
         UpdateUI();
     }
 
-    private void Update()
-    {
-        Debug.Log(currentStep.currentStepIndex);
-    }
     public void UpdateUI()
     {
         
@@ -147,7 +143,6 @@ public class Journal : MonoBehaviour
         }
         else if(currentStep.currentStepIndex == 2)
         {
-            Debug.Log("SVFD");
             chromoAnim.SetTrigger("done");
             canvasAnim.SetTrigger("fadeIn");
         }
@@ -179,7 +174,7 @@ public class Journal : MonoBehaviour
                 UpdateUI();
             }
         }
-        else
+        else if(currentStep.currentStepIndex < 7)
         {
             currentStep = currentStep.NextStep;
             UpdateUI();
@@ -276,6 +271,8 @@ public class Journal : MonoBehaviour
                 Save();
                 PostJournalSteps();
                 break;
+            case 6:
+                break;
             default:
                 break;
         }
@@ -312,8 +309,12 @@ public class Journal : MonoBehaviour
         string path = UnityEngine.Application.persistentDataPath + "/journal_" + currentDate.Replace(" ", "_").Replace(",", "") + ".json"; // Replace spaces with underscores to avoid potential issues in file names
         File.WriteAllText(path, json);
 
-        //Increment journal complettion badge here
-        AchievementManager.Instance.UpdateAchievement("Journal Explorer", CountUniqueJournalEntries());
+        if (!DailyTasks.Instance.journal_Completed)
+        {
+            //Increment journal complettion badge here
+            AchievementManager.Instance.UpdateAchievement("Journal Explorer", 1);
+        }
+
 
     }
 
