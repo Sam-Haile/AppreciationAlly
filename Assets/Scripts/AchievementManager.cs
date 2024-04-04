@@ -10,6 +10,7 @@ public class AchievementManager : MonoBehaviour
 
     private void Start()
     {
+        //PlayerPrefs.DeleteAll();
         foreach (var achievement in achievements)
         {
             UpdateAchievement(achievement.badgeName, 0);
@@ -37,11 +38,14 @@ public class AchievementManager : MonoBehaviour
             if(badgeName == "Journal Explorer")
             {
                 achievement.currentUserProgress = Journal.CountUniqueJournalEntries() + progressToAdd;
-                Debug.Log(Journal.CountUniqueJournalEntries());
             }
             else if(badgeName == "Positivity Player")
             {
-                achievement.currentUserProgress = GridGame.GetMiniGameCompletionCount() + progressToAdd;
+                achievement.currentUserProgress = GetTrackerCount("MiniGameCompletionCount");
+            }
+            else if(badgeName == "Gratitude Gatherer")
+            {
+                achievement.currentUserProgress = GetTrackerCount("GratefulEntries");
             }
             else
                 achievement.currentUserProgress += progressToAdd;
@@ -50,5 +54,30 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
+    public static void IncrementTracker(string id, int numToIncreaseBy)
+    {
+        // Key to store the completion count
+        string key = id;
 
+        // Retrieve the current completion count. If it doesn't exist, default to 0.
+        int currentCount = PlayerPrefs.GetInt(key, 0);
+
+        // Increment the count
+        currentCount += numToIncreaseBy;
+
+        // Save the new count back to PlayerPrefs
+        PlayerPrefs.SetInt(key, currentCount);
+
+        // It's important to save changes
+        PlayerPrefs.Save();
+    }
+
+    public static int GetTrackerCount(string id)
+    {
+        // Key to retrieve the completion count
+        string key = id;
+
+        // Retrieve and return the current completion count. Defaults to 0 if not set.
+        return PlayerPrefs.GetInt(key, 0);
+    }
 }

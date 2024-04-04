@@ -15,8 +15,6 @@ public class ChromoAnimManager : MonoBehaviour
 
     public void TextBubbleFadeIn()
     {
-        Debug.Log(journal.currentStep.currentStepIndex);
-
         if(journal.currentStep.currentStepIndex == 5)
         {
             canvasAnim.SetTrigger("speechBubble");

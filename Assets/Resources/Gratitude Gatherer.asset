@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9cb68582037cf940861aee8a8124bf2, type: 3}
+  m_Name: Gratitude Gatherer
+  m_EditorClassIdentifier: 
+  badgeName: Gratitude Gatherer
+  description: Play the grid game
+  bronzeThreshold: 10
+  silverThreshold: 25
+  goldThreshold: 50
+  platinumThreshold: 100
+  currentUserProgress: 0
+  milestoneOneDesc: List 10 things you're grateful for
+  milestoneTwoDesc: List 25 things you're grateful for
+  milestoneThreeDesc: List 50 things you're grateful for
+  milestoneFourDesc: List 100 things you're grateful for

@@ -4197,10 +4197,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasAnim: {fileID: 477905186}
   chromoAnim: {fileID: 807887130716792348}
-  chromoPrimaryColor: {fileID: 0}
+  chromoPrimaryColor: {fileID: 2100000, guid: bbbdcb2e62c5507468e6ce7adc7e6ded, type: 2}
   chromo: {fileID: 1700210892308357269}
   chromosSpeechBubble: {fileID: 1642823373}
   nextButton: {fileID: 106467371}
+  backButton: {fileID: 669016771}
   journalHeader: {fileID: 681414400}
   journalSubheader: {fileID: 900903892}
   currentStep: {fileID: 0}
@@ -14210,7 +14211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasAnim: {fileID: 477905186}
   journal: {fileID: 477905191}
-  textBubble: {fileID: 1886164026}
 --- !u!4 &2094755891638720768
 Transform:
   m_ObjectHideFlags: 0

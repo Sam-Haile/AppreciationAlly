@@ -15,6 +15,7 @@ public class Journal : MonoBehaviour
     public GameObject chromo;
     public TextMeshProUGUI chromosSpeechBubble;
     public TextMeshProUGUI nextButton;
+    public GameObject backButton;
     private bool happy;
     private bool sad;
 
@@ -43,6 +44,7 @@ public class Journal : MonoBehaviour
     public List<GratefulButton> final_Buttons;
     public TextMeshProUGUI[] final_slots;
     public string[] final_slots_strings;
+    private int activeSlots = 0; // Keeps track of how many slots have text and should be visible.
 
     //Final Display fields
 
@@ -251,9 +253,11 @@ public class Journal : MonoBehaviour
     {
         switch (currentStep.currentStepIndex)
         {
-            case 1:
+            case 0:
+                backButton.SetActive(false);
                 break;
-            case 2:
+            case 1:
+                backButton.SetActive(true);
                 break;
             case 3:
                 selectedButtons.Clear();
@@ -270,8 +274,11 @@ public class Journal : MonoBehaviour
                 DeletePreviousEntriesForToday();
                 Save();
                 PostJournalSteps();
+                backButton.SetActive(false);
+
                 break;
             case 6:
+                Debug.Log("Calling Case 66");
                 break;
             default:
                 break;
@@ -292,10 +299,13 @@ public class Journal : MonoBehaviour
             buttonDataList.Add(data);
         }
 
+
         for (int i = 0; i < final_slots.Length; i++)
         {
             if (final_slots[i].text != "")
+            {
                 final_slots_strings[i] = final_slots[i].text;
+            }
             else
                 final_slots_strings[i] = "";
         }
@@ -314,8 +324,6 @@ public class Journal : MonoBehaviour
             //Increment journal complettion badge here
             AchievementManager.Instance.UpdateAchievement("Journal Explorer", 1);
         }
-
-
     }
 
     public static int CountUniqueJournalEntries()
@@ -384,7 +392,6 @@ public class Journal : MonoBehaviour
 
     private void UpdateFinalSlotsVisibility()
     {
-        int activeSlots = 0; // Keeps track of how many slots have text and should be visible.
 
         // Convert the text from each of your final slots into a string array
         final_slots_strings = new string[gratefulFor.Length];
@@ -407,6 +414,11 @@ public class Journal : MonoBehaviour
         {
             final_slots[k].transform.parent.gameObject.SetActive(false);
         }
+
+
+        AchievementManager.IncrementTracker("GratefulEntries", activeSlots);
+        AchievementManager.Instance.UpdateAchievement("Gratitude Gatherer", 0);
+
     }
 
 
@@ -434,6 +446,5 @@ public class Journal : MonoBehaviour
             this.gameObject.GetComponent<Animator>().SetTrigger("quit");
         }
     }
-
 
 }
