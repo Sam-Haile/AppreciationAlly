@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -278,7 +279,8 @@ public class Journal : MonoBehaviour
 
                 break;
             case 6:
-                Debug.Log("Calling Case 66");
+                GratefulButton.selectedButtons.Clear();
+                //Debug.Log("Calling Case 66");
                 break;
             default:
                 break;
