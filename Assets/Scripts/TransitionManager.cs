@@ -8,6 +8,11 @@ public class TransitionManager : MonoBehaviour
     public bool calendarEntryActive;
     public GameObject calendarPage;
 
+    public GameObject profileArea;
+    public GameObject settings;
+    public GameObject gameObj;
+    public GameObject backButton;
+
 
     public void HomeButton()
     {
@@ -27,6 +32,14 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
+    public void MoodTrackerButton()
+    {
+        if (settingsActive)
+        {
+            canvasAnimator.SetTrigger("settingsOut");
+        }
+    }
+
     public void SettingsActive(bool isActive)
     {
         settingsActive = isActive;
@@ -35,5 +48,13 @@ public class TransitionManager : MonoBehaviour
     public void CalendarActive(bool isActive)
     {
         calendarEntryActive = isActive;
+    }
+
+    public void RestoreSettings()
+    {
+        profileArea.SetActive(true);
+        settings.SetActive(true);
+        gameObj.SetActive(false);
+        backButton.SetActive(false);
     }
 }

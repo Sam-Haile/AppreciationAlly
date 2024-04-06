@@ -28,6 +28,7 @@ public class Calendar : MonoBehaviour
     public GameObject gratefulFor_str_txt;
 
     public GameObject calendar;
+    public GameObject xButton;
 
     private void Awake()
     {
@@ -231,10 +232,12 @@ public class Calendar : MonoBehaviour
     {
         if (File.Exists(filePath))
         {
+
             string json = File.ReadAllText(filePath);
             JournalEntry entry = JsonUtility.FromJson<JournalEntry>(json);
             DisplayJournalData(entry, selectedDate, calendarEntryUI);
             this.GetComponent<Animator>().SetTrigger("calendarIn");
+            xButton.SetActive(false);
         }
         else
         {

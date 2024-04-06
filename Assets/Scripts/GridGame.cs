@@ -207,7 +207,7 @@ public class GridGame : MonoBehaviour
         gameOverUI.SetActive(true);
         DailyTasks.Instance.MarkTaskAsCompleted("GridGame");
         AchievementManager.IncrementTracker("MiniGameCompletionCount", 1);
-        AchievementManager.Instance.UpdateAchievement("Positivity Player", 0);
+        AchievementManager.Instance.UpdateAchievement("Positivity Player");
 
     }
 

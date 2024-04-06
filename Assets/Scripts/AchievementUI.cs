@@ -55,6 +55,7 @@ public class AchievementUI : MonoBehaviour
     {
         selectedBadge.selectedBadgeName.text = achievementData.badgeName;
         selectedBadge.selectedProgress.text = achievementData.currentUserProgress.ToString();
+        Debug.Log(selectedBadge.selectedBadgeName + ", Count: " + achievementData.currentUserProgress.ToString());
         selectedBadge.selectedMilestone.sprite = badgeMaterial.sprite;
         selectedBadge.badgeDesc.text = achievementData.description;
         selectedBadge.progressBg.color = currentNumBg.color;

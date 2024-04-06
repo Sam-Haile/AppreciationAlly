@@ -321,11 +321,11 @@ public class Journal : MonoBehaviour
         string path = UnityEngine.Application.persistentDataPath + "/journal_" + currentDate.Replace(" ", "_").Replace(",", "") + ".json"; // Replace spaces with underscores to avoid potential issues in file names
         File.WriteAllText(path, json);
 
-        if (!DailyTasks.Instance.journal_Completed)
-        {
-            //Increment journal complettion badge here
-            AchievementManager.Instance.UpdateAchievement("Journal Explorer", 1);
-        }
+        //if (!DailyTasks.Instance.journal_Completed)
+        //{
+        //    //Increment journal complettion badge here
+        //    AchievementManager.Instance.UpdateAchievement("Journal Explorer", 1);
+        //}
     }
 
     public static int CountUniqueJournalEntries()
@@ -419,7 +419,7 @@ public class Journal : MonoBehaviour
 
 
         AchievementManager.IncrementTracker("GratefulEntries", activeSlots);
-        AchievementManager.Instance.UpdateAchievement("Gratitude Gatherer", 0);
+        AchievementManager.Instance.UpdateAchievement("Gratitude Gatherer");
 
     }
 

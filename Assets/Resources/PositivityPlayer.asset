@@ -18,8 +18,8 @@ MonoBehaviour:
   silverThreshold: 5
   goldThreshold: 10
   platinumThreshold: 25
-  currentUserProgress: 0
-  milestoneOneDesc: Participate in the grid game for the first time
-  milestoneTwoDesc: Participate 5 times
-  milestoneThreeDesc: Participate 10 times
-  milestoneFourDesc: Participate 25 times
+  currentUserProgress: 2
+  milestoneOneDesc: Play the grid game 1 time
+  milestoneTwoDesc: Play the grid game 5 times
+  milestoneThreeDesc: Play the grid game 10 times
+  milestoneFourDesc: Play the grid game 25 times

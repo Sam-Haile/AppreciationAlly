@@ -7,6 +7,11 @@ public class DailyTasks : MonoBehaviour
     public bool gridGame_Completed;
     public bool journal_Completed;
 
+    // var to track consecutive usage
+    private const string LastUsageDateKey = "LastUsageDate";
+    private const string ConsecutiveDaysKey = "ConsecutiveDays";
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,6 +26,11 @@ public class DailyTasks : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        TrackDailyUsage();
     }
 
     public void SaveTask(string taskName)
@@ -85,5 +95,62 @@ public class DailyTasks : MonoBehaviour
             Instance.gridGame_Completed = true;
         else if (taskKey == "Journal")
             Instance.journal_Completed = true;
+    }
+
+    private void TrackDailyUsage()
+    {
+        DateTime now = DateTime.Now.Date;
+        DateTime lastUsageDate = GetLastUsageDate();
+
+        if (now == lastUsageDate)
+        {
+            // App has already been used today, do nothing
+            return;
+        }
+
+        if (now == lastUsageDate.AddDays(1))
+        {
+            // Consecutive day
+            IncrementConsecutiveDays();
+        }
+        else
+        {
+            // Not consecutive, reset
+            ResetConsecutiveDays();
+        }
+
+        SetLastUsageDate(now);
+    }
+
+    private DateTime GetLastUsageDate()
+    {
+        string lastUsageDateString = PlayerPrefs.GetString(LastUsageDateKey, DateTime.MinValue.ToString());
+        return DateTime.Parse(lastUsageDateString);
+    }
+
+    private void SetLastUsageDate(DateTime date)
+    {
+        PlayerPrefs.SetString(LastUsageDateKey, date.ToString());
+        PlayerPrefs.Save();
+    }
+
+    private void IncrementConsecutiveDays()
+    {
+        int consecutiveDays = PlayerPrefs.GetInt(ConsecutiveDaysKey, 0);
+        PlayerPrefs.SetInt(ConsecutiveDaysKey, ++consecutiveDays);
+        AchievementManager.IncrementTracker("ConsecutiveDays", 1);
+        PlayerPrefs.Save();
+    }
+
+    private void ResetConsecutiveDays()
+    {
+        PlayerPrefs.SetInt(ConsecutiveDaysKey, 1); // Reset to 1 because today is being counted as usage
+        PlayerPrefs.Save();
+    }
+
+    // Call this method to get the current count of consecutive days
+    public int GetConsecutiveDays()
+    {
+        return PlayerPrefs.GetInt(ConsecutiveDaysKey, 0);
     }
 }

@@ -10,11 +10,7 @@ public class AchievementManager : MonoBehaviour
 
     private void Start()
     {
-        //PlayerPrefs.DeleteAll();
-        foreach (var achievement in achievements)
-        {
-            UpdateAchievement(achievement.badgeName, 0);
-        }
+        UpdateAllAchievements();
     }
 
     void Awake()
@@ -30,14 +26,14 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    public void UpdateAchievement(string badgeName, int progressToAdd)
+    public void UpdateAchievement(string badgeName)
     {
         var achievement = achievements.Find(a => a.badgeName == badgeName);
         if (achievement != null)
         {
             if(badgeName == "Journal Explorer")
             {
-                achievement.currentUserProgress = Journal.CountUniqueJournalEntries() + progressToAdd;
+                achievement.currentUserProgress = Journal.CountUniqueJournalEntries();
             }
             else if(badgeName == "Positivity Player")
             {
@@ -47,10 +43,10 @@ public class AchievementManager : MonoBehaviour
             {
                 achievement.currentUserProgress = GetTrackerCount("GratefulEntries");
             }
-            else
-                achievement.currentUserProgress += progressToAdd;
-            // Add logic to save achievement progress here
-            // You might want to save to PlayerPrefs, a file, or a database
+            else if(badgeName == "Consistent Companion")
+            {
+                achievement.currentUserProgress = GetTrackerCount("ConsecutiveDays");
+            }
         }
     }
 
@@ -79,5 +75,13 @@ public class AchievementManager : MonoBehaviour
 
         // Retrieve and return the current completion count. Defaults to 0 if not set.
         return PlayerPrefs.GetInt(key, 0);
+    }
+    
+    public void UpdateAllAchievements()
+    {
+        foreach (var achievement in achievements)
+        {
+            UpdateAchievement(achievement.badgeName);
+        }
     }
 }
