@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9cb68582037cf940861aee8a8124bf2, type: 3}
+  m_Name: Daily Dynamo
+  m_EditorClassIdentifier: 
+  badgeName: Daily Dynamo
+  description: Complete Daily Tasks
+  bronzeThreshold: 1
+  silverThreshold: 3
+  goldThreshold: 7
+  platinumThreshold: 14
+  currentUserProgress: 0
+  milestoneOneDesc: Complete all daily tasks 1 time
+  milestoneTwoDesc: Complete all daily tasks 3 times
+  milestoneThreeDesc: Complete all daily tasks for 7 times
+  milestoneFourDesc: Complete all daily tasks for 14 times

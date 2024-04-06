@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gratitude Gatherer
   m_EditorClassIdentifier: 
   badgeName: Gratitude Gatherer
-  description: Play the grid game
+  description: List things you
   bronzeThreshold: 10
   silverThreshold: 25
   goldThreshold: 50

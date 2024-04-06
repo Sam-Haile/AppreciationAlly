@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Consistent Companion
   m_EditorClassIdentifier: 
   badgeName: Consistent Companion
-  description: Use the app everyday
+  description: Open the app everyday
   bronzeThreshold: 3
   silverThreshold: 7
   goldThreshold: 15
   platinumThreshold: 30
-  currentUserProgress: 0
+  currentUserProgress: 1
   milestoneOneDesc: Use the app for 3 consecutive days
   milestoneTwoDesc: Use the app for 7 consecutive days
   milestoneThreeDesc: Use the app for 15 consecutive days

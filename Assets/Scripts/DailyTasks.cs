@@ -10,6 +10,7 @@ public class DailyTasks : MonoBehaviour
     // var to track consecutive usage
     private const string LastUsageDateKey = "LastUsageDate";
     private const string ConsecutiveDaysKey = "ConsecutiveDays";
+    private const string DailyDynamoAchievementKey = "DailyDynamoAchievementDate"; // New key for tracking achievement increment
 
 
     private void Awake()
@@ -31,6 +32,32 @@ public class DailyTasks : MonoBehaviour
     private void Start()
     {
         TrackDailyUsage();
+        CheckAndIncrementDailyDynamoAchievement(); // You may want to call this after tasks updates or at a specific time
+    }
+
+    private void CheckAndIncrementDailyDynamoAchievement()
+    {
+        // First, check if both tasks are completed
+        if (gridGame_Completed && journal_Completed)
+        {
+            // Then, verify if the achievement has already been incremented today
+            string lastIncrementDateStr = PlayerPrefs.GetString(DailyDynamoAchievementKey, "");
+            DateTime lastIncrementDate;
+
+            if (DateTime.TryParse(lastIncrementDateStr, out lastIncrementDate) && lastIncrementDate.Date == DateTime.UtcNow.Date)
+            {
+                // Achievement has already been incremented today, do nothing
+                return;
+            }
+
+            // If not incremented today, increment the achievement
+            AchievementManager.IncrementTracker("DailyDynamo", 1);
+            AchievementManager.Instance.UpdateAchievement("Daily Dynamo");
+
+            // Update the last increment date to today
+            PlayerPrefs.SetString(DailyDynamoAchievementKey, DateTime.UtcNow.ToString("yyyy-MM-dd"));
+            PlayerPrefs.Save();
+        }
     }
 
     public void SaveTask(string taskName)

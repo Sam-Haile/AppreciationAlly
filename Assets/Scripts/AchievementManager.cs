@@ -47,6 +47,10 @@ public class AchievementManager : MonoBehaviour
             {
                 achievement.currentUserProgress = GetTrackerCount("ConsecutiveDays");
             }
+            else if(badgeName == "Daily Dynamo")
+            {
+                achievement.currentUserProgress = GetTrackerCount("DailyDynamo");
+            }
         }
     }
 
