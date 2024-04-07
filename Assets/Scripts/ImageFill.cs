@@ -44,4 +44,10 @@ public class ImageFill : MonoBehaviour
             img.uvRect = new Rect(0, 0.5f - h * 0.5f, 1, h);
         }
     }
+
+    public void OnImageSelected()
+    {
+        PopulateScrollView.selectedImageObj.SetActive(true);
+        PopulateScrollView.selectedImage.texture = this.GetComponent<RawImage>().texture;
+    }
 }
