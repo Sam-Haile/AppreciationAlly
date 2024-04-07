@@ -3952,6 +3952,7 @@ GameObject:
   - component: {fileID: 966315547}
   - component: {fileID: 966315546}
   - component: {fileID: 966315552}
+  - component: {fileID: 966315553}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4107,6 +4108,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridImage: {fileID: 7161435044477754040, guid: 34c19ff9934867641897b92a50fef6d9, type: 3}
   gameOverUI: {fileID: 1166018005}
+  gridImagesScript: {fileID: 0}
+  grids:
+  - {fileID: 225456506}
+  - {fileID: 2014644694}
+  - {fileID: 239081367}
+  - {fileID: 1518145585}
+  gridObjs:
+  - {fileID: 9094730116436155081}
+  - {fileID: 2014644695}
+  - {fileID: 846043181}
+  - {fileID: 117539283}
+  progressSlider: {fileID: 1593025991}
+  numOfGrids: 10
+  enlargedGrid: {fileID: 101240950}
+  enlargedGridParent: {fileID: 1280249418}
+  inactiveObjects:
+  - {fileID: 1166018005}
+  - {fileID: 559791068}
+  gridNumSelector:
+  - {fileID: 1747304693}
+  - {fileID: 609604288}
+  - {fileID: 1442015736}
+--- !u!114 &966315553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966315545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7030f545cd425a6459c4dce46a6388f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   images:
   - {fileID: 21300000, guid: 252880d216319ae4b86f9640f0e53de8, type: 3}
   - {fileID: 21300000, guid: ce9b6d1d7adb4b84daa3ac63790bb18e, type: 3}
@@ -4252,27 +4287,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 94e2922a7c24fcc4f950a5fa1f01224d, type: 3}
   - {fileID: 21300000, guid: 3b361e7de7ab214478072ba1f160e215, type: 3}
   - {fileID: 21300000, guid: 522b6350fff28284692e91f13a40b57a, type: 3}
-  grids:
-  - {fileID: 225456506}
-  - {fileID: 2014644694}
-  - {fileID: 239081367}
-  - {fileID: 1518145585}
-  gridObjs:
-  - {fileID: 9094730116436155081}
-  - {fileID: 2014644695}
-  - {fileID: 846043181}
-  - {fileID: 117539283}
-  progressSlider: {fileID: 1593025991}
-  numOfGrids: 10
-  enlargedGrid: {fileID: 101240950}
-  enlargedGridParent: {fileID: 1280249418}
-  inactiveObjects:
-  - {fileID: 1166018005}
-  - {fileID: 559791068}
-  gridNumSelector:
-  - {fileID: 1747304693}
-  - {fileID: 609604288}
-  - {fileID: 1442015736}
 --- !u!1001 &988942638
 PrefabInstance:
   m_ObjectHideFlags: 0

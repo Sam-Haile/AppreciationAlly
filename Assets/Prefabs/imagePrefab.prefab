@@ -83,9 +83,9 @@ MonoBehaviour:
   m_UVRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: NaN
     width: 1
-    height: 1
+    height: NaN
 --- !u!114 &4219583109475114420
 MonoBehaviour:
   m_ObjectHideFlags: 0

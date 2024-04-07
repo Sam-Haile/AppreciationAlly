@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class PopulateScrollView : MonoBehaviour
 {
     public GameObject imagePrefab; // Assign a prefab with an Image component in the editor
-    public List<Sprite> loadedSprites; // Your preloaded images
-
+    public ImageManager imageManager;
     public GameObject selectedImageObj;
     public RawImage selectedImage;
 
@@ -20,10 +19,10 @@ public class PopulateScrollView : MonoBehaviour
 
     private void Populate()
     {
-        foreach (Sprite sprite in loadedSprites)
+        foreach (ImageData sprite in imageManager.imagesData)
         {
             GameObject imageObj = Instantiate(imagePrefab, transform, false);
-            imageObj.GetComponent<RawImage>().texture = sprite.texture;
+            imageObj.GetComponent<RawImage>().texture = sprite.image.texture;
             imageObj.transform.SetParent(gameObject.transform, false);
         }
     }
