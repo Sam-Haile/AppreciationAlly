@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GridGame : MonoBehaviour
 {
+    public List<Texture2D> images;
     public GameObject gridImage;
     public GameObject gameOverUI;
 
     //Grid fields
-    public Sprite[] images;
     public RawImage[] grids;
     public GameObject[] gridObjs;
     public Slider progressSlider;
@@ -31,14 +31,23 @@ public class GridGame : MonoBehaviour
 
     private int currentImageIndex = 0;
 
+    private void Awake()
+    {
+
+    }
 
     private void Start()
     {
         ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("PrimaryColor"), out parsedPrimaryColor);
         ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("SecondaryColor"), out parsedSecondaryColor);
 
+        ImageManager.LoadImageStates();
+        images.Clear();
+        images = GetActiveSpritesArray();
+
         ShuffleImages();
         PopulateGrid();
+
     }
 
     public void OnNumberSelected(GameObject button)
@@ -57,19 +66,32 @@ public class GridGame : MonoBehaviour
         }
     }
 
+    public List<Texture2D> GetActiveSpritesArray()
+    {
+        // Filter the imagesData to include only active images and select their Sprite.
+        // Then convert the result to an array.
+        List<Texture2D> activeSprites = ImageManager.imagesData.Where(imageData => imageData.isActive)
+                                            .Select(imageData => imageData.texture)
+                                            .ToList();
+
+        Debug.Log("Total active sprites: " + activeSprites.Count);
+        return activeSprites;
+    }
+
+
     #region Populate/Randomize Grid
     private void ShuffleImages()
     {
-        for (int i = 0; i < images.Length; i++)
+        for (int i = 0; i < images.Count; i++)
         {
-            int rnd = Random.Range(i, images.Length);
+            int rnd = Random.Range(i, images.Count);
             Swap(i, rnd);
         }
     }
 
     private void Swap(int i, int j)
     {
-        Sprite temp = images[i];
+        Texture2D temp = images[i];
         images[i] = images[j];
         images[j] = temp;
     }
@@ -78,13 +100,12 @@ public class GridGame : MonoBehaviour
     {
         for (int i = 0; i < grids.Length; i++)
         {
-            if (currentImageIndex >= images.Length) // Check if all images have been shown
+            if (currentImageIndex >= images.Count) // Check if all images have been shown
             {
-                Debug.Log("All images have been shown");
                 ShuffleImages(); // Shuffle again
                 currentImageIndex = 0; // Reset index
             }
-            grids[i].texture = images[currentImageIndex].texture;
+            grids[i].texture = images[currentImageIndex];
             currentImageIndex++;
         }
     }
@@ -111,7 +132,6 @@ public class GridGame : MonoBehaviour
     {
         StartCoroutine(ModifySizes(gridObjs, enlargedGridParent));
         PopulateGrid();
-
     }
 
     public void OnEnlargedImageTapped()
@@ -131,8 +151,6 @@ public class GridGame : MonoBehaviour
         }
     }
 
-
-
     IEnumerator SmoothProgressChange(float startValue, float endValue, float duration)
     {
         float elapsedTime = 0;
@@ -146,7 +164,6 @@ public class GridGame : MonoBehaviour
 
         progressSlider.value = endValue; // Ensure the slider reaches the final value
     }
-
 
     /// <summary>
     /// This method shrinks the grid of images once one is selected
@@ -184,7 +201,6 @@ public class GridGame : MonoBehaviour
         {
             if (enlarge)
             {
-
                 foreach (GameObject obj in gridImages)
                 {
                     obj.SetActive(true);
@@ -208,7 +224,6 @@ public class GridGame : MonoBehaviour
         DailyTasks.Instance.MarkTaskAsCompleted("GridGame");
         AchievementManager.IncrementTracker("MiniGameCompletionCount", 1);
         AchievementManager.Instance.UpdateAchievement("Positivity Player");
-
     }
 
     public void RestartGame()

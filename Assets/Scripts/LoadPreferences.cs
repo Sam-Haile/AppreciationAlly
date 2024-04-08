@@ -25,23 +25,19 @@ public class LoadPreferences : MonoBehaviour
         if (tutorialScreen != null)
         {
             if (PlayerPrefs.GetInt("TutorialDone", 0) == 0)
-            {
                 tutorialScreen.SetActive(true);
-            }
             else
-            {
                 tutorialScreen.SetActive(false);
-            }
         }
+
+        //ImageManager.ResetPref();
+        ImageManager.LoadImageStates();
 
         ApplyName();
 
-
         ApplyPfp();
 
-
         ApplyColors();
-      
     }
 
 
@@ -92,7 +88,6 @@ public class LoadPreferences : MonoBehaviour
         var uiElementsPrimary = GameObject.FindGameObjectsWithTag("PrimaryColor");
         var uiElementsSecondary = GameObject.FindGameObjectsWithTag("SecondaryColor");
 
-
         Color primColor;
         Color secColor;
 
@@ -114,7 +109,6 @@ public class LoadPreferences : MonoBehaviour
                     }
                 }
             }
-
 
             foreach (var uiElement in uiElementsSecondary)
             {
@@ -138,8 +132,6 @@ public class LoadPreferences : MonoBehaviour
         {
             Debug.LogError("Invalid color hex code.");
         }
-
-
 
     }
 

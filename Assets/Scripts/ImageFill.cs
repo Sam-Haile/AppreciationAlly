@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +8,7 @@ public class ImageFill : MonoBehaviour
     RawImage img;
     Rect lastBounds;
     Texture lastTexture;
+
 
     void Update()
     {
@@ -47,8 +46,12 @@ public class ImageFill : MonoBehaviour
 
     public void OnImageSelected()
     {
-        Debug.Log(this.GetComponent<RawImage>().name);
-        GetComponentInParent<PopulateScrollView>().selectedImage.texture = this.GetComponent<RawImage>().texture;
-        GetComponentInParent<PopulateScrollView>().selectedImageObj.SetActive(true);
+        PopulateScrollView obj = GetComponentInParent<PopulateScrollView>();
+        obj.selectedImage.texture = this.GetComponent<RawImage>().texture;
+        obj.selectedImageObj.SetActive(true);
+        obj.originalImage = this.GetComponent<RawImage>();
     }
+
+    
+
 }
