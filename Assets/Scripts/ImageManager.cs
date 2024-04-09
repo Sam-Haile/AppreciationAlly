@@ -9,7 +9,6 @@ public class ImageManager : MonoBehaviour
 {
     // Updated to use the wrapper class
     public static List<ImageData> imagesData = new List<ImageData>();
-    public List<ImageData> temp = new List<ImageData>();
 
     public RawImage selectedImg;
     public string selectedImgId;
@@ -21,10 +20,24 @@ public class ImageManager : MonoBehaviour
         LoadUserImagesFromPersistentData();
         LoadImagesFromResources();
         LoadImageStates();
-        temp = imagesData;
     }
 
-    void LoadImagesFromResources()
+
+
+    public static int CountUniqueImageEntries()
+    {
+        string path = Application.persistentDataPath;
+        // Count all image files (.png, .jpg, .jpeg)
+        string[] imageFiles = Directory.GetFiles(path, "*.*", SearchOption.TopDirectoryOnly)
+            .Where(file => file.EndsWith(".png") || file.EndsWith(".jpg") || file.EndsWith(".jpeg"))
+            .ToArray();
+
+        // Each file is considered a unique entry; return the count
+        return imageFiles.Length;
+    }
+
+
+    public void LoadImagesFromResources()
     {
         Object[] loadedObjects = Resources.LoadAll($"gridImages", typeof(Texture2D));
         foreach (var loadedObject in loadedObjects)
@@ -40,10 +53,11 @@ public class ImageManager : MonoBehaviour
     }
 
     // Method to load user images from the application's persistent data path
-    void LoadUserImagesFromPersistentData()
+    public void LoadUserImagesFromPersistentData()
     {
         var info = new DirectoryInfo(Application.persistentDataPath);
         var fileInfo = info.GetFiles().Where(f => f.Extension.Equals(".png") || f.Extension.Equals(".jpg") || f.Extension.Equals(".jpeg")).ToArray();
+
         foreach (var file in fileInfo)
         {
             byte[] fileData = File.ReadAllBytes(file.FullName);
@@ -55,6 +69,7 @@ public class ImageManager : MonoBehaviour
                 imagesData.Add(new ImageData(texture) { persistentPath = file.FullName, id = id });
             }
         }
+
     }
 
     // Toggle the active state of an image by id.
@@ -71,7 +86,6 @@ public class ImageManager : MonoBehaviour
                 else
                     img.originalImage.color = new Color(1f, 1f, 1f, 1f);
 
-                //Debug.Log($"Image '{selectedImg.texture.name}' is now {(imageData.isActive ? "active" : "inactive")}");
                 SaveImageStates();
                 return;
             }

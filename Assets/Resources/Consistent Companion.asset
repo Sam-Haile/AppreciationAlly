@@ -18,7 +18,7 @@ MonoBehaviour:
   silverThreshold: 7
   goldThreshold: 15
   platinumThreshold: 30
-  currentUserProgress: 1
+  currentUserProgress: 0
   milestoneOneDesc: Use the app for 3 consecutive days
   milestoneTwoDesc: Use the app for 7 consecutive days
   milestoneThreeDesc: Use the app for 15 consecutive days

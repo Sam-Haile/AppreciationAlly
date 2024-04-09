@@ -31,10 +31,6 @@ public class GridGame : MonoBehaviour
 
     private int currentImageIndex = 0;
 
-    private void Awake()
-    {
-
-    }
 
     private void Start()
     {

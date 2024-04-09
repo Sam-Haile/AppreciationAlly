@@ -15,6 +15,7 @@ public class Journal : MonoBehaviour
     public Material chromoPrimaryColor;
     public GameObject chromo;
     public TextMeshProUGUI chromosSpeechBubble;
+    public TextMeshProUGUI chromos2ndSpeechBubble;
     public TextMeshProUGUI nextButton;
     public GameObject backButton;
     private bool happy;
@@ -66,6 +67,8 @@ public class Journal : MonoBehaviour
                                             "Great to hear! What's one thing that made you smile the most?",
                                             "Lovely to hear you're feeling this way. Can you share a highlight?",
                                             "That's awesome! What's something good that stood out to you today?"};
+
+
 
     void Start()
     {
@@ -134,7 +137,6 @@ public class Journal : MonoBehaviour
                 step.SetActive(true);
         }
 
-
         if(currentStep.currentStepIndex == 0)
         {
             chromoAnim.SetBool("happy", happy);
@@ -144,18 +146,12 @@ public class Journal : MonoBehaviour
         {
             chromoAnim.SetBool("speaking", true);
         }
-        else if(currentStep.currentStepIndex == 2)
-        {
-            chromoAnim.SetTrigger("done");
-            canvasAnim.SetTrigger("fadeIn");
-        }
         else if(currentStep.currentStepIndex == 5)
         {
             chromoAnim.SetTrigger("end");
         }
 
     }
-
 
     public void NextStep()
     {
@@ -179,6 +175,13 @@ public class Journal : MonoBehaviour
         }
         else if(currentStep.currentStepIndex < 7)
         {
+            // Add a condition to check if we're moving from step index 1 to step index 2
+            if (currentStep.currentStepIndex == 1 && currentStep.NextStep.currentStepIndex == 2)
+            {
+                chromoAnim.SetTrigger("done");
+                canvasAnim.SetTrigger("fadeIn");
+            }
+
             currentStep = currentStep.NextStep;
             UpdateUI();
         }
@@ -280,7 +283,6 @@ public class Journal : MonoBehaviour
                 break;
             case 6:
                 GratefulButton.selectedButtons.Clear();
-                //Debug.Log("Calling Case 66");
                 break;
             default:
                 break;
@@ -320,12 +322,6 @@ public class Journal : MonoBehaviour
         string json = JsonUtility.ToJson(entry, true); // Added 'true' for pretty print, optional
         string path = UnityEngine.Application.persistentDataPath + "/journal_" + currentDate.Replace(" ", "_").Replace(",", "") + ".json"; // Replace spaces with underscores to avoid potential issues in file names
         File.WriteAllText(path, json);
-
-        //if (!DailyTasks.Instance.journal_Completed)
-        //{
-        //    //Increment journal complettion badge here
-        //    AchievementManager.Instance.UpdateAchievement("Journal Explorer", 1);
-        //}
     }
 
     public static int CountUniqueJournalEntries()
@@ -356,8 +352,6 @@ public class Journal : MonoBehaviour
         }
     }
 
-
-
     /// <summary>
     /// This field displays the previous entries on one page for the user to review
     /// </summary>
@@ -370,7 +364,7 @@ public class Journal : MonoBehaviour
         // Used if user goes back to modify selections
         foreach (var finalButton in final_Buttons)
         {
-            finalButton.icon.sprite = null; // Assuming you have a default sprite or null to clear it.
+            finalButton.icon.sprite = null; 
             finalButton.grtfl_text.text = "";
             finalButton.gameObject.SetActive(false); // Hide the button as the default state.
         }
@@ -394,33 +388,31 @@ public class Journal : MonoBehaviour
 
     private void UpdateFinalSlotsVisibility()
     {
-
-        // Convert the text from each of your final slots into a string array
+        // Ensure this array is cleared or correctly initialized before updating
         final_slots_strings = new string[gratefulFor.Length];
 
-        // Iterate over all possible input fields to check if they have text.
+        // Reset visibility and texts of all final slots before updating
+        foreach (var slot in final_slots)
+        {
+            slot.transform.parent.gameObject.SetActive(false);
+            slot.text = "";
+        }
+
+        // Update visibility and content based on current input fields
         for (int i = 0; i < gratefulFor.Length; i++)
         {
-            if (!string.IsNullOrEmpty(gratefulFor[i].text) && activeSlots < final_slots.Length)
+            final_slots_strings[i] = gratefulFor[i].text; // Always update the strings array
+
+            if (!string.IsNullOrEmpty(gratefulFor[i].text))
             {
-                // If there's text, ensure the slot is visible and set the text.
                 final_slots[i].text = gratefulFor[i].text;
-                final_slots_strings[i] = gratefulFor[i].text;
-                final_slots[activeSlots].transform.parent.gameObject.SetActive(true);
+                final_slots[i].transform.parent.gameObject.SetActive(true);
                 activeSlots++;
             }
         }
 
-        // Deactivate any remaining slots that didn't get text assigned.
-        for (int k = activeSlots; k < final_slots.Length; k++)
-        {
-            final_slots[k].transform.parent.gameObject.SetActive(false);
-        }
-
-
         AchievementManager.IncrementTracker("GratefulEntries", activeSlots);
         AchievementManager.Instance.UpdateAchievement("Gratitude Gatherer");
-
     }
 
 
@@ -429,13 +421,13 @@ public class Journal : MonoBehaviour
         // If the grid game was NOT played first
         if (!DailyTasks.Instance.gridGame_Completed)
         {
-            chromosSpeechBubble.text = "Amazing reflection today!" +
+            chromos2ndSpeechBubble.text = "Amazing reflection today!" +
                 " If you're looking for a mood boost, why not try the grid game next? It's a fun way to appreciate the little things";
         }
         // If the grid game WAS played
         else if(DailyTasks.Instance.gridGame_Completed)
         {
-            chromosSpeechBubble.text = "Great job reflecting today! " +
+            chromos2ndSpeechBubble.text = "Great job reflecting today! " +
                 "Remember, every word you write is a step toward understanding yourself better.";
         }
     }

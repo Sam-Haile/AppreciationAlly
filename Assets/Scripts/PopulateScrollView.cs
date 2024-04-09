@@ -8,6 +8,7 @@ public class PopulateScrollView : MonoBehaviour
     public RawImage selectedImage;
 
     public RawImage originalImage;
+    public ImageManager imageManager;
 
     void Start()
     {
@@ -19,6 +20,10 @@ public class PopulateScrollView : MonoBehaviour
     /// </summary>
     private void Populate()
     {
+        ImageManager.imagesData.Clear();
+        imageManager.LoadUserImagesFromPersistentData();
+        imageManager.LoadImagesFromResources();
+
         for (int i = 0; i < ImageManager.imagesData.Count; i++)
         {
             GameObject imageObj = Instantiate(imagePrefab, transform, false);

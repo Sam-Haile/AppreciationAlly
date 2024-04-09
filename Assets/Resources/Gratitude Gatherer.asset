@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Gratitude Gatherer
   m_EditorClassIdentifier: 
   badgeName: Gratitude Gatherer
-  description: List things you
+  description: List things you're grateful for
   bronzeThreshold: 10
   silverThreshold: 25
   goldThreshold: 50
   platinumThreshold: 100
-  currentUserProgress: 5
+  currentUserProgress: 0
   milestoneOneDesc: List 10 things you're grateful for
   milestoneTwoDesc: List 25 things you're grateful for
   milestoneThreeDesc: List 50 things you're grateful for

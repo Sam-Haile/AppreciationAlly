@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9cb68582037cf940861aee8a8124bf2, type: 3}
-  m_Name: Daily Dynamo
+  m_Name: Image Innovator
   m_EditorClassIdentifier: 
-  badgeName: Daily Dynamo
-  description: Complete daily tasks
-  bronzeThreshold: 1
-  silverThreshold: 3
-  goldThreshold: 7
-  platinumThreshold: 14
+  badgeName: Image Innovator
+  description: 'Add your images to the grid game '
+  bronzeThreshold: 5
+  silverThreshold: 15
+  goldThreshold: 30
+  platinumThreshold: 50
   currentUserProgress: 0
-  milestoneOneDesc: Complete all daily tasks 1 time
-  milestoneTwoDesc: Complete all daily tasks 3 times
-  milestoneThreeDesc: Complete all daily tasks for 7 times
-  milestoneFourDesc: Complete all daily tasks for 14 times
+  milestoneOneDesc: Add 5 images
+  milestoneTwoDesc: Add 15 images
+  milestoneThreeDesc: Add 30 images
+  milestoneFourDesc: Add 50 images

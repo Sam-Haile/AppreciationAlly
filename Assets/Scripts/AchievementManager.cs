@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
@@ -8,8 +8,11 @@ public class AchievementManager : MonoBehaviour
 
     public List<AchievementData> achievements = new List<AchievementData>();
 
+    public List<AchievementUI> achievementUIs = new List<AchievementUI>();
+
     private void Start()
     {
+        InitializeAchievementUpdateStrategies();
         UpdateAllAchievements();
     }
 
@@ -25,34 +28,34 @@ public class AchievementManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    // Define a dictionary that maps badge names to functions that update achievements.
+    // Assuming the existence of a context or class where these methods (like Journal.CountUniqueJournalEntries()) are accessible.
+    private Dictionary<string, Func<int>> achievementUpdateStrategies;
+
+    // Initialization of the dictionary, ideally done in the constructor or a setup method
+    private void InitializeAchievementUpdateStrategies()
+    {
+        achievementUpdateStrategies = new Dictionary<string, Func<int>>
+    {
+        {"Journal Explorer", Journal.CountUniqueJournalEntries},
+        {"Positivity Player", () => GetTrackerCount("MiniGameCompletionCount")},
+        {"Gratitude Gatherer", () => GetTrackerCount("GratefulEntries")},
+        {"Consistent Companion", () => GetTrackerCount("ConsecutiveDays")},
+        {"Daily Dynamo", () => GetTrackerCount("DailyDynamo")},
+        {"Image Innovator", ImageManager.CountUniqueImageEntries}
+    };
+    }
 
     public void UpdateAchievement(string badgeName)
     {
         var achievement = achievements.Find(a => a.badgeName == badgeName);
-        if (achievement != null)
+        if (achievement != null && achievementUpdateStrategies.TryGetValue(badgeName, out Func<int> updateStrategy))
         {
-            if(badgeName == "Journal Explorer")
-            {
-                achievement.currentUserProgress = Journal.CountUniqueJournalEntries();
-            }
-            else if(badgeName == "Positivity Player")
-            {
-                achievement.currentUserProgress = GetTrackerCount("MiniGameCompletionCount");
-            }
-            else if(badgeName == "Gratitude Gatherer")
-            {
-                achievement.currentUserProgress = GetTrackerCount("GratefulEntries");
-            }
-            else if(badgeName == "Consistent Companion")
-            {
-                achievement.currentUserProgress = GetTrackerCount("ConsecutiveDays");
-            }
-            else if(badgeName == "Daily Dynamo")
-            {
-                achievement.currentUserProgress = GetTrackerCount("DailyDynamo");
-            }
+            // Update the current user progress by executing the corresponding strategy.
+            achievement.currentUserProgress = updateStrategy.Invoke();
         }
     }
+
 
     public static void IncrementTracker(string id, int numToIncreaseBy)
     {
@@ -83,9 +86,10 @@ public class AchievementManager : MonoBehaviour
     
     public void UpdateAllAchievements()
     {
-        foreach (var achievement in achievements)
+        for (int i = 0; i < achievements.Count; i++)
         {
-            UpdateAchievement(achievement.badgeName);
+            UpdateAchievement(achievements[i].badgeName);
+            achievementUIs[i].UpdateAchievementUI();
         }
     }
 }

@@ -32,10 +32,10 @@ public class DailyTasks : MonoBehaviour
     private void Start()
     {
         TrackDailyUsage();
-        CheckAndIncrementDailyDynamoAchievement(); // You may want to call this after tasks updates or at a specific time
+        CheckAndIncrementDailyDynamoAchievement();
     }
 
-    private void CheckAndIncrementDailyDynamoAchievement()
+    public void CheckAndIncrementDailyDynamoAchievement()
     {
         // First, check if both tasks are completed
         if (gridGame_Completed && journal_Completed)
