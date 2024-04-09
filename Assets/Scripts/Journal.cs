@@ -10,6 +10,12 @@ using static System.Net.Mime.MediaTypeNames;
 
 public class Journal : MonoBehaviour
 {
+    private Color ungratefulColor = new Color(233f / 255f, 49f / 255f, 50f / 255f);
+    private Color littleGratefulColor = new Color(236f / 255f, 95f / 255f, 46f / 255f);
+    private Color kindOfGratefulColor = new Color(255f / 255f, 214f/ 255f, 120f / 255f); 
+    private Color gratefulColor = new Color(187f / 255f, 220f / 255f, 66f / 255f);
+    private Color superGratefulColor = new Color(117f / 255f, 239f / 255f, 49f / 255f); 
+
     public Animator canvasAnim;
     public Animator chromoAnim;
     public Material chromoPrimaryColor;
@@ -37,7 +43,6 @@ public class Journal : MonoBehaviour
 
     //Step 3
     public List<GratefulButton> gratefulButtons;
-
 
     //Step 5
     public List<GratefulButton> selectedButtons;
@@ -78,6 +83,8 @@ public class Journal : MonoBehaviour
 
     private void SetupJournal()
     {
+        chromoPrimaryColor.color = new Color(242f / 255f, 138f / 255f, 94f / 255f);
+
         step1 = new JournalStep("How grateful do you feel?", null, stepUIs[0], 0);
         step2Ungrtfl = new JournalStep("", null, stepUIs[1], 1);
         step2Grtfl = new JournalStep("", null, stepUIs[1], 1);
@@ -221,37 +228,60 @@ public class Journal : MonoBehaviour
 
     public void UpdateEmotion()
     {
+
+
         if (emotionSlider.value <= .2f)
         {
             chromoAnim.SetBool("sad", true);
             chromoAnim.SetBool("happy", false);
+            chromoAnim.SetBool("meh", false);
+            chromoAnim.SetBool("superHappy", false);
+            chromoAnim.SetBool("superSad", true);
             emotionRating.text = "Ungrateful";
+            chromoPrimaryColor.color = ungratefulColor;
         }
         else if (emotionSlider.value > .2f && emotionSlider.value < .4f)
         {
             chromoAnim.SetBool("sad", true);
             chromoAnim.SetBool("happy", false);
+            chromoAnim.SetBool("meh", false);
+            chromoAnim.SetBool("superHappy", false);
+            chromoAnim.SetBool("superSad", false);
             emotionRating.text = "A Little Grateful";
+            chromoPrimaryColor.color = Color.Lerp(ungratefulColor, littleGratefulColor, (emotionSlider.value - 0.2f) / 0.2f);
         }
         else if (emotionSlider.value > .4f && emotionSlider.value < .6f)
         {
             chromoAnim.SetBool("sad", false);
-            chromoAnim.SetBool("happy", true);
+            chromoAnim.SetBool("happy", false);
+            chromoAnim.SetBool("meh", true);
+            chromoAnim.SetBool("superHappy", false);
+            chromoAnim.SetBool("superSad", false);
             emotionRating.text = "Kind of Grateful";
+            chromoPrimaryColor.color = Color.Lerp(littleGratefulColor, kindOfGratefulColor, (emotionSlider.value - 0.4f) / 0.2f);
         }
         else if (emotionSlider.value > .6f && emotionSlider.value < .8f)
         {
             chromoAnim.SetBool("sad", false);
             chromoAnim.SetBool("happy", true);
+            chromoAnim.SetBool("meh", false);
+            chromoAnim.SetBool("superHappy", false);
+            chromoAnim.SetBool("superSad", false);
             emotionRating.text = "Grateful";
+            chromoPrimaryColor.color = Color.Lerp(kindOfGratefulColor, gratefulColor, (emotionSlider.value - 0.6f) / 0.2f);
         }
-        else if (emotionSlider.value > .8f && emotionSlider.value < 1f)
+        else if (emotionSlider.value > .8f)
         {
             chromoAnim.SetBool("sad", false);
             chromoAnim.SetBool("happy", true);
+            chromoAnim.SetBool("meh", false);
+            chromoAnim.SetBool("superHappy", true);
+            chromoAnim.SetBool("superSad", false);
             emotionRating.text = "Super Grateful";
+            chromoPrimaryColor.color = Color.Lerp(gratefulColor, superGratefulColor, (emotionSlider.value - 0.8f) / 0.2f);
         }
     }
+
 
     public void SaveInformation()
     {

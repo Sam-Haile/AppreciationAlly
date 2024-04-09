@@ -172,16 +172,16 @@ AnimatorStateMachine:
     m_Position: {x: 250, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7241318414453757425}
-    m_Position: {x: -340, y: 280, z: 0}
+    m_Position: {x: -230, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2798538218689685265}
-    m_Position: {x: 380, y: 220, z: 0}
+    m_Position: {x: 470, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7734201589059733682}
-    m_Position: {x: 120, y: 220, z: 0}
+    m_Position: {x: 180, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3612649075658582376}
-    m_Position: {x: 270, y: 310, z: 0}
+    m_Position: {x: 360, y: 340, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -206,25 +206,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: speechBubble
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fadeIn
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: fadeOut
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
