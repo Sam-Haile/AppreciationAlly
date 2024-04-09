@@ -6,8 +6,9 @@ public class PopulateScrollView : MonoBehaviour
     public GameObject imagePrefab; // Assign a prefab with an Image component in the editor
     public GameObject selectedImageObj;
     public RawImage selectedImage;
+    public GameObject trashButton;
 
-    public RawImage originalImage;
+    [HideInInspector] public RawImage originalImage;
     public ImageManager imageManager;
 
     void Start()
@@ -18,7 +19,7 @@ public class PopulateScrollView : MonoBehaviour
     /// <summary>
     /// Display the images in the gallery 
     /// </summary>
-    private void Populate()
+    public void Populate()
     {
         ImageManager.imagesData.Clear();
         imageManager.LoadUserImagesFromPersistentData();

@@ -47,7 +47,7 @@ public class ImageManager : MonoBehaviour
             {
                 // Here, we're assuming the name of the texture (its asset name) is unique and can serve as an ID.
                 string id = texture.name;
-                imagesData.Add(new ImageData(texture) { id = id });
+                imagesData.Add(new ImageData(texture) { id = id, userAdded = false });
             }
         }
     }
@@ -66,10 +66,9 @@ public class ImageManager : MonoBehaviour
             {
                 // Using the file name as the ID. Ensure filenames are unique or use a different method for generating IDs.
                 string id = Path.GetFileNameWithoutExtension(file.Name);
-                imagesData.Add(new ImageData(texture) { persistentPath = file.FullName, id = id });
+                imagesData.Add(new ImageData(texture) { persistentPath = file.FullName, id = id, userAdded = true });
             }
         }
-
     }
 
     // Toggle the active state of an image by id.
@@ -90,10 +89,59 @@ public class ImageManager : MonoBehaviour
                 return;
             }
         }
-
-        Debug.Log($"Image not found: {selectedImg.texture.name}");
-
     }
+
+    public void DeleteImage()
+    {
+        int index = imagesData.FindIndex(img => img.id == selectedImgId);
+
+        if(index != -1)
+        {
+            // if the image is user-added
+            if (imagesData[index].userAdded)
+            {
+                try
+                {
+                    File.Delete(imagesData[index].persistentPath);
+                }
+                catch(System.Exception ex)
+                {
+                    Debug.LogError($"Failed to delete image file: {ex.Message}");
+                    return;
+                }
+            }
+            
+            // Remove image data
+            imagesData.RemoveAt(index);
+            // Update PlayerPrefs
+            PlayerPrefs.DeleteKey($"ImageDataIsActive_{index}");
+            // Re-save PlayerPrefs
+            SaveImageStatesAfterDeletion();
+            RefreshImagesUI();
+        }
+    }
+
+    public void RefreshImagesUI()
+    {
+        img.RefreshGallery();
+        img.Populate();
+    }
+
+
+    // Method to re-save image states after a deletion
+    public static void SaveImageStatesAfterDeletion()
+    {
+        // Clear all existing PlayerPrefs keys related to image states to prevent orphaned entries
+        for (int i = 0; i < imagesData.Count + 1; i++) // Assuming there could be an extra entry from before the deletion
+            PlayerPrefs.DeleteKey($"ImageDataIsActive_{i}");
+
+        // Save each image's active state anew
+        for (int i = 0; i < imagesData.Count; i++)
+            PlayerPrefs.SetInt($"ImageDataIsActive_{i}", imagesData[i].isActive ? 1 : 0);
+
+        PlayerPrefs.Save();
+    }
+
 
     public static void SaveImageStates()
     {

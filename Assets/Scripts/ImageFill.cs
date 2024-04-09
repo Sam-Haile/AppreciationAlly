@@ -61,8 +61,11 @@ public class ImageFill : MonoBehaviour
         obj.originalImage = this.GetComponent<RawImage>();
         manager.selectedImgId = this.GetComponent<ImageDisplay>().imageData.id;
 
+        bool isImgUserAdded = this.GetComponent<ImageDisplay>().imageData.userAdded;
+        if (isImgUserAdded)
+            obj.trashButton.SetActive(true);
+        else
+            obj.trashButton.SetActive(false);
     }
-
-    
 
 }
