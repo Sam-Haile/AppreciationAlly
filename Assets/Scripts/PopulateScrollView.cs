@@ -22,6 +22,12 @@ public class PopulateScrollView : MonoBehaviour
         for (int i = 0; i < ImageManager.imagesData.Count; i++)
         {
             GameObject imageObj = Instantiate(imagePrefab, transform, false);
+            ImageDisplay display = imageObj.GetComponent<ImageDisplay>();
+            
+            if(display != null)
+            {
+                display.SetImage(ImageManager.imagesData[i]);
+            }
 
             if (PlayerPrefs.GetInt($"ImageDataIsActive_{i}", 1) == 0)
             {

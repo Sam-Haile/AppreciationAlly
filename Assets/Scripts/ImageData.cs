@@ -7,6 +7,7 @@ public class ImageData
     public Texture2D texture;
     public bool isActive;
     public string persistentPath;
+    public string id; 
 
     public ImageData(Texture2D texture, bool isActive = true)
     {

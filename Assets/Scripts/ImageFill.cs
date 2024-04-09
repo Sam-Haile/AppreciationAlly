@@ -8,7 +8,16 @@ public class ImageFill : MonoBehaviour
     RawImage img;
     Rect lastBounds;
     Texture lastTexture;
+    public ImageManager manager;
 
+    private void Awake()
+    {
+        GameObject obj = GameObject.Find("ImageManager");
+        if(obj != null)
+        {
+            manager = obj.GetComponent<ImageManager>();
+        }
+    }
 
     void Update()
     {
@@ -50,6 +59,8 @@ public class ImageFill : MonoBehaviour
         obj.selectedImage.texture = this.GetComponent<RawImage>().texture;
         obj.selectedImageObj.SetActive(true);
         obj.originalImage = this.GetComponent<RawImage>();
+        manager.selectedImgId = this.GetComponent<ImageDisplay>().imageData.id;
+
     }
 
     

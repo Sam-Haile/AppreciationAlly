@@ -12,6 +12,7 @@ public class ImageManager : MonoBehaviour
     public List<ImageData> temp = new List<ImageData>();
 
     public RawImage selectedImg;
+    public string selectedImgId;
     public PopulateScrollView img;
 
     void Start()
@@ -28,8 +29,13 @@ public class ImageManager : MonoBehaviour
         Object[] loadedObjects = Resources.LoadAll($"gridImages", typeof(Texture2D));
         foreach (var loadedObject in loadedObjects)
         {
-            // Wrap each Sprite with ImageData, defaulting to active.
-            imagesData.Add(new ImageData(loadedObject as Texture2D));
+            Texture2D texture = loadedObject as Texture2D;
+            if (texture != null)
+            {
+                // Here, we're assuming the name of the texture (its asset name) is unique and can serve as an ID.
+                string id = texture.name;
+                imagesData.Add(new ImageData(texture) { id = id });
+            }
         }
     }
 
@@ -42,8 +48,12 @@ public class ImageManager : MonoBehaviour
         {
             byte[] fileData = File.ReadAllBytes(file.FullName);
             Texture2D texture = new Texture2D(2, 2);
-            texture.LoadImage(fileData); // This method auto-resizes the texture dimensions.
-            imagesData.Add(new ImageData(texture) { persistentPath = file.FullName });
+            if (texture.LoadImage(fileData)) // This method auto-resizes the texture dimensions.
+            {
+                // Using the file name as the ID. Ensure filenames are unique or use a different method for generating IDs.
+                string id = Path.GetFileNameWithoutExtension(file.Name);
+                imagesData.Add(new ImageData(texture) { persistentPath = file.FullName, id = id });
+            }
         }
     }
 
@@ -52,7 +62,7 @@ public class ImageManager : MonoBehaviour
     {
         foreach (ImageData imageData in imagesData)
         {
-            if (imageData.texture.name == selectedImg.texture.name)
+            if (imageData.id == selectedImgId)
             {
                 imageData.isActive = state;
 
@@ -61,7 +71,7 @@ public class ImageManager : MonoBehaviour
                 else
                     img.originalImage.color = new Color(1f, 1f, 1f, 1f);
 
-                Debug.Log($"Image '{selectedImg.texture.name}' is now {(imageData.isActive ? "active" : "inactive")}");
+                //Debug.Log($"Image '{selectedImg.texture.name}' is now {(imageData.isActive ? "active" : "inactive")}");
                 SaveImageStates();
                 return;
             }
