@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Transactions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,6 +15,7 @@ public class Calendar : MonoBehaviour
     public Button nextMonthButton;
     public Button prevMonthButton;
     public TextMeshProUGUI monthDisplayText;
+    public TransitionManager transitionManager;
     public GameObject currentDayMarker;
 
     // Array of TextMeshProUGUI to display dates in the calendar
@@ -43,8 +45,6 @@ public class Calendar : MonoBehaviour
 
         gratefulFor_str_txt.SetActive(false); // Initially hide elements related to journal entry display
         // Add listeners for the next and previous month buttons
-        nextMonthButton.onClick.AddListener(GoToNextMonth);
-        prevMonthButton.onClick.AddListener(GoToPreviousMonth);
 
     }
 
@@ -62,9 +62,6 @@ public class Calendar : MonoBehaviour
         {
             currentDayMarker.SetActive(false);
         }
-
-        calendar.SetActive(false);
-
     }
 
     // Updates the month and year display at the top of the calendar
@@ -74,7 +71,7 @@ public class Calendar : MonoBehaviour
     }
 
     // Advances the calendar to the next month
-    void GoToNextMonth()
+    public void GoToNextMonth()
     {
         currentDate = currentDate.AddMonths(1);
         UpdateMonthDisplay();
@@ -93,7 +90,7 @@ public class Calendar : MonoBehaviour
     }
 
     // Moves the calendar to the previous month
-    void GoToPreviousMonth()
+    public  void GoToPreviousMonth()
     {
         currentDate = currentDate.AddMonths(-1);
         UpdateMonthDisplay();
@@ -232,16 +229,16 @@ public class Calendar : MonoBehaviour
     {
         if (File.Exists(filePath))
         {
-
             string json = File.ReadAllText(filePath);
             JournalEntry entry = JsonUtility.FromJson<JournalEntry>(json);
             DisplayJournalData(entry, selectedDate, calendarEntryUI);
             this.GetComponent<Animator>().SetTrigger("calendarIn");
             xButton.SetActive(false);
+            transitionManager.CalendarActive(true);
         }
         else
         {
-            Debug.LogWarning("No journal entry found for this date.");
+            transitionManager.CalendarActive(false);
         }
     }
 
