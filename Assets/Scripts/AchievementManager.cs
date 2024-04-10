@@ -56,6 +56,10 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
+    public void DeleteKeyData(string id)
+    {
+        PlayerPrefs.SetInt(id, 0);
+    }
 
     public static void IncrementTracker(string id, int numToIncreaseBy)
     {

@@ -313,6 +313,11 @@ public class Journal : MonoBehaviour
                 break;
             case 6:
                 GratefulButton.selectedButtons.Clear();
+                if (!DailyTasks.Instance.journal_Completed)
+                {
+                    AchievementManager.IncrementTracker("GratefulEntries", activeSlots);
+                    AchievementManager.Instance.UpdateAchievement("Gratitude Gatherer");
+                }
                 break;
             default:
                 break;
@@ -418,6 +423,8 @@ public class Journal : MonoBehaviour
 
     private void UpdateFinalSlotsVisibility()
     {
+        activeSlots = 0;
+
         // Ensure this array is cleared or correctly initialized before updating
         final_slots_strings = new string[gratefulFor.Length];
 
@@ -440,9 +447,6 @@ public class Journal : MonoBehaviour
                 activeSlots++;
             }
         }
-
-        AchievementManager.IncrementTracker("GratefulEntries", activeSlots);
-        AchievementManager.Instance.UpdateAchievement("Gratitude Gatherer");
     }
 
 

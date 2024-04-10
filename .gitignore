@@ -27,3 +27,12 @@ NativeGallery.Editor.csproj
 NativeGallery.Runtime.csproj
 *.cache
 UserSettings/Layouts/default-2022.dwlt
+*.cache
+obj/Debug/MK.Toon.URP.Editor.csproj.AssemblyReference.cache
+obj/Debug/MK.Toon.URP.csproj.AssemblyReference.cache
+obj/Debug/MK.Toon.Editor.csproj.AssemblyReference.cache
+obj/Debug/MK.Toon.csproj.AssemblyReference.cache
+obj/Debug/MK.RampCreator.csproj.AssemblyReference.cache
+obj/Debug/MK.MKTextureChannelPacker.csproj.AssemblyReference.cache
+obj/Debug/MK.MeshUtility.csproj.AssemblyReference.cache
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
