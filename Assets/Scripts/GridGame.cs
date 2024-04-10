@@ -44,6 +44,8 @@ public class GridGame : MonoBehaviour
         ShuffleImages();
         PopulateGrid();
 
+        gameOverUI.SetActive(false);
+
     }
 
     public void OnNumberSelected(GameObject button)
