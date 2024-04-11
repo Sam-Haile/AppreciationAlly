@@ -34,9 +34,7 @@ public class Calendar : MonoBehaviour
 
     private void Awake()
     {
-        currentDate = DateTime.Now; // Initialize to the current date
-        UpdateMonthDisplay(); // Update the UI to reflect the current month and year
-        GenerateCalendar(currentDate.Year, currentDate.Month); // Populate the calendar with dates
+        ShowCurrentMonth();
     }
 
     void Start()
@@ -46,6 +44,13 @@ public class Calendar : MonoBehaviour
         gratefulFor_str_txt.SetActive(false); // Initially hide elements related to journal entry display
         // Add listeners for the next and previous month buttons
 
+    }
+
+    public void ShowCurrentMonth()
+    {
+        currentDate = DateTime.Now; // Initialize to the current date
+        UpdateMonthDisplay();
+        GenerateCalendar(currentDate.Year, currentDate.Month);
     }
 
     IEnumerator PositionMarkerAfterLayoutUpdate()
