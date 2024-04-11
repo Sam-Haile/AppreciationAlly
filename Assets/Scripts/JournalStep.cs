@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class JournalStep : MonoBehaviour
+public class JournalStep
 {
 
     public string headerText;

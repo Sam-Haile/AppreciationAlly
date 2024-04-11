@@ -9,6 +9,7 @@ public class AchievementUI : MonoBehaviour
     public Image badgeMaterial;
     public Image currentNumBg;
     public Image badgeIcon;
+
     public TextMeshProUGUI textMeshPro;
     public TextMeshProUGUI currentNum;
 
@@ -31,21 +32,25 @@ public class AchievementUI : MonoBehaviour
         if (achievementData.currentUserProgress < achievementData.silverThreshold)
         {
             badgeMaterial.sprite = Resources.Load<Sprite>($"badges/bronze");
-            currentNumBg.color = new Color(70 / 255f, 31 / 255f, 22 / 255f); // Brown Color
+            badgeIcon.color = new Color(185f / 255f, 105f / 255f, 81f / 255f);
+            currentNumBg.color = new Color(70f / 255f, 31f / 255f, 22f / 255f); // Brown Color
         }
         else if (achievementData.currentUserProgress < achievementData.goldThreshold)
         {
             badgeMaterial.sprite = Resources.Load<Sprite>($"badges/silver");
-            currentNumBg.color = new Color(133 / 255f, 133 / 255f, 133 / 255f); // Silver Color
+            badgeIcon.color = new Color(227f / 255f, 227f / 255f, 227f / 255f);
+            currentNumBg.color = new Color(133f / 255f, 133f / 255f, 133f / 255f); // Silver Color
         }
         else if (achievementData.currentUserProgress < achievementData.platinumThreshold)
         {
             badgeMaterial.sprite = Resources.Load<Sprite>($"badges/gold");
-            currentNumBg.color = new Color(152 / 255f, 119 / 255f, 19 / 255f); // Gold Color
+            badgeIcon.color = new Color(243f / 255f, 210f / 255f, 112f / 255f);
+            currentNumBg.color = new Color(152f / 255f, 119f / 255f, 19f / 255f); // Gold Color
         }
         else
         {
             badgeMaterial.sprite = Resources.Load<Sprite>($"badges/platinum");
+            badgeIcon.color = new Color(211f / 255f, 92f / 255f, 241f / 255f);
             currentNumBg.color = new Color(79 / 255f, 26 / 255f, 91 / 255f); // Platinum Color
         }
     }
@@ -59,6 +64,7 @@ public class AchievementUI : MonoBehaviour
         selectedBadge.badgeDesc.text = achievementData.description;
         selectedBadge.progressBg.color = currentNumBg.color;
         selectedBadge.icon.sprite = badgeIcon.sprite;
+        selectedBadge.icon.color = badgeIcon.color;
 
         selectedBadge.milestoneBronze.text = achievementData.milestoneOneDesc;
         selectedBadge.numBronze.text = achievementData.bronzeThreshold.ToString();
