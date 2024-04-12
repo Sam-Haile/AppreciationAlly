@@ -33,6 +33,11 @@ public class Onboarding : MonoBehaviour
     private void Start()
     {
         SetupOnboardingSteps();
+        //Set the default color to blue 
+        ColorUtility.TryParseHtmlString("#0E46A7", out selectedPrimaryColor);
+        ColorUtility.TryParseHtmlString("#3D72CF", out selectedSecondaryColor);
+        PlayerPrefs.SetString("PrimaryColor", ColorUtility.ToHtmlStringRGBA(selectedPrimaryColor));
+        PlayerPrefs.SetString("SecondaryColor", ColorUtility.ToHtmlStringRGBA(selectedSecondaryColor));
     }
 
     private void SetupOnboardingSteps()
@@ -189,7 +194,10 @@ public class Onboarding : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(1);
+        PlayerPrefs.SetInt("HasCompletedOnboarding", 1);
+        PlayerPrefs.Save();
+        Debug.Log(PlayerPrefs.GetInt("HasCompletedOnboarding", 0));
+        SceneManager.LoadScene("HomeScreen");
     }
 
     #region Step 1 (Color Selection)

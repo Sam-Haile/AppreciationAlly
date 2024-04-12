@@ -139,4 +139,12 @@ public class LoadPreferences : MonoBehaviour
     {
         Rotate.ToggleRotation(!tog.isOn);
     }
+
+    public void CheckToggle()
+    {
+        if (PlayerPrefs.GetInt("RotationEnabled", 0) == 0)
+            tog.isOn = true;
+        else
+            tog.isOn = false;
+    }
 }

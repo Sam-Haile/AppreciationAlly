@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class OnboardingStep : MonoBehaviour
+public class OnboardingStep
 {
     public string HeaderText;
     public string SubHeaderText;

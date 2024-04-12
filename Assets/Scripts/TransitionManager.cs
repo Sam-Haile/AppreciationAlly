@@ -12,6 +12,7 @@ public class TransitionManager : MonoBehaviour
     public GameObject settings;
     public GameObject gameObj;
     public GameObject backButton;
+    public GameObject attribution;
 
 
     public void HomeButton()
@@ -56,5 +57,6 @@ public class TransitionManager : MonoBehaviour
         settings.SetActive(true);
         gameObj.SetActive(false);
         backButton.SetActive(false);
+        attribution.SetActive(false);
     }
 }
