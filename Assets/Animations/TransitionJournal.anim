@@ -228,7 +228,7 @@ AnimationClip:
   m_Events:
   - time: 0.9166667
     functionName: LoadSceneIndex
-    data: 
+    data: Journal
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 3
