@@ -228,7 +228,7 @@ AnimationClip:
   m_Events:
   - time: 0.5
     functionName: LoadSceneIndex
-    data: 
+    data: HomeScreen
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1

@@ -74,12 +74,10 @@ public class Journal : MonoBehaviour
                                             "That's awesome! What's something good that stood out to you today?"};
 
 
-
     void Start()
     {
         SetupJournal();
     }
-
 
     private void SetupJournal()
     {
@@ -93,7 +91,6 @@ public class Journal : MonoBehaviour
         JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
         JournalStep step6 = new JournalStep("Your day", null, null, 5);
         JournalStep step7 = new JournalStep("", null, null, 6);
-
 
         step1.PreviousStep = null;
         step1.NextStep = step2Grtfl;
@@ -157,7 +154,6 @@ public class Journal : MonoBehaviour
         {
             chromoAnim.SetTrigger("end");
         }
-
     }
 
     public void NextStep()
