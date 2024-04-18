@@ -23,26 +23,42 @@ public class iOSNotificationsController : MonoBehaviour
 
     }
 
-    public void SendNotification(string title, string body, string subtitle, int fireTimeInSeconds)
+    public void SendNotification(string title, string body, string subtitle)
     {
+        var now = DateTime.Now;
+        var noonToday = new DateTime(now.Year, now.Month, now.Day, 12, 0, 0); // noon
+        TimeSpan timeUntilNoon;
+
+        if (now <= noonToday)
+        {
+            timeUntilNoon = noonToday - now;
+        }
+        else
+        {
+            timeUntilNoon = noonToday.AddDays(1) - now; // Schedule for the next day
+        }
+
+
         var timeTrigger = new iOSNotificationTimeIntervalTrigger()
         {
-            TimeInterval = new System.TimeSpan(0, 0, fireTimeInSeconds),
-            Repeats = false
+            TimeInterval = new TimeSpan(timeUntilNoon.Days, timeUntilNoon.Hours, timeUntilNoon.Minutes),
+            Repeats = true
         };
 
         var notification = new iOSNotification
         {
-            Identifier = "hello_world_notification",
+            Identifier = "daily_check_in",
             Title = title,
             Body = body,
             Subtitle = subtitle,
             ShowInForeground = true,
-            ForegroundPresentationOption = (PresentationOption.Alert | PresentationOption.Sound),
+            ForegroundPresentationOption = PresentationOption.Alert | PresentationOption.Sound,
             CategoryIdentifier = "default_category",
             ThreadIdentifier = "thread1",
             Trigger = timeTrigger
         };
+
+        iOSNotificationCenter.ScheduleNotification(notification);
     }
 #endif
 }

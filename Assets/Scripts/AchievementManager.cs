@@ -56,13 +56,6 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    public void DeleteKeyData(string id)
-    {
-        Debug.Log(PlayerPrefs.GetString("DailyDynamoAchievementDate", "Bruh"));
-
-        //PlayerPrefs.SetInt(id, 0);
-    }
-
     public static void IncrementTracker(string id, int numToIncreaseBy)
     {
         // Key to store the completion count

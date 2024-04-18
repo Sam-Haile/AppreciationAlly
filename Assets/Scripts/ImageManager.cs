@@ -1,16 +1,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ImageManager : MonoBehaviour
 {
     // Updated to use the wrapper class
     public static List<ImageData> imagesData = new List<ImageData>();
 
-    public RawImage selectedImg;
     public string selectedImgId;
     public PopulateScrollView img;
 

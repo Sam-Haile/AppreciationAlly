@@ -54,8 +54,6 @@ public class DailyTaskChecker : MonoBehaviour
 
     private void CheckDailyTasksCompletion(string task)
     {
-        bool allTasksCompletedToday = true;
-
         string today = System.DateTime.UtcNow.ToString("yyyy-MM-dd");
 
         switch (task)
@@ -69,7 +67,6 @@ public class DailyTaskChecker : MonoBehaviour
                 else
                 {
                     gridGameTask.sprite = taskIncomplete;
-                    allTasksCompletedToday = false;
                 }
                 break;
             case "Journal":
@@ -81,7 +78,6 @@ public class DailyTaskChecker : MonoBehaviour
                 else
                 {
                     journalTask.sprite = taskIncomplete;
-                    allTasksCompletedToday = false;
                 }
                 break;
         default:
@@ -90,16 +86,5 @@ public class DailyTaskChecker : MonoBehaviour
 
         }
 
-
-        if (allTasksCompletedToday)
-        {
-            //Debug.Log("All daily tasks completed for today!");
-            // Additional actions here
-        }
-        else
-        {
-            //Debug.Log("Not all daily tasks have been completed today.");
-            // Additional actions here
-        }
     }
 }

@@ -12,14 +12,13 @@ public class AddImages : MonoBehaviour
         // Request permission to access the gallery
         NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
         {
-            Debug.Log("Image path: " + path);
             if (path != null)
             {
                 // Load the selected image as a Texture2D
                 Texture2D texture = NativeGallery.LoadImageAtPath(path, 1024); 
                 if (texture == null)
                 {
-                    Debug.Log("Couldn't load texture from " + path);
+                    Debug.LogWarning("Couldn't load texture from " + path);
                     return;
                 }
 
@@ -27,7 +26,6 @@ public class AddImages : MonoBehaviour
             }
         }, "Select an image", "image/*");
 
-        Debug.Log("Permission result: " + permission);
     }
 
     private void UsePlayersTexture(Texture2D texture, string path)

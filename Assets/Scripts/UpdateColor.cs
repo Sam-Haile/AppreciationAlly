@@ -20,7 +20,6 @@ public class UpdateColor : MonoBehaviour
         {
             if(colorOption.GetComponent<BackgroundColor>().primaryColor == originalColor)
             {
-                Debug.Log(colorOption.GetComponent<BackgroundColor>().primaryColor);
                 colorOption.transform.localScale = new Vector3(1,1,1);
             }
         }

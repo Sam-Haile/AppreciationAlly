@@ -452,13 +452,13 @@ public class Journal : MonoBehaviour
         if (!DailyTasks.Instance.gridGame_Completed)
         {
             chromos2ndSpeechBubble.text = "Amazing reflection today!" +
-                " If you're looking for a mood boost, why not try the grid game next? It's a fun way to appreciate the little things";
+                " If you're looking for a mood boost, why not try the grid game next?";
         }
         // If the grid game WAS played
         else if(DailyTasks.Instance.gridGame_Completed)
         {
-            chromos2ndSpeechBubble.text = "Great job reflecting today! " +
-                "Remember, every word you write is a step toward understanding yourself better.";
+            chromos2ndSpeechBubble.text = "Great job reflecting today!" +
+                " Remember, every word you write is a step toward understanding yourself better.";
         }
     }
 

@@ -72,7 +72,6 @@ public class GridGame : MonoBehaviour
                                             .Select(imageData => imageData.texture)
                                             .ToList();
 
-        Debug.Log("Total active sprites: " + activeSprites.Count);
         return activeSprites;
     }
 

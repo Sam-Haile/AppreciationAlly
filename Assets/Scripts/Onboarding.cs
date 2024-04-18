@@ -24,11 +24,14 @@ public class Onboarding : MonoBehaviour
     public Image inputPrefab;
     public TextMeshProUGUI inputText;
     public Button nextButton;
+    public Button nextButton2;
     private string userName;
     private int userPfpId;
     public bool userChoice;
     public Image circle;
     #endregion
+
+    public AudioSource clickSfx;
 
     private void Start()
     {
@@ -145,6 +148,10 @@ public class Onboarding : MonoBehaviour
         doTutorial = choice;
     }
 
+    public void ResetNextTrigger()
+    {
+        this.GetComponent<Animator>().ResetTrigger("next");
+    }
     public void UpdatePreferences()
     {
         switch (currentStep.currentStepIndex)
@@ -167,12 +174,19 @@ public class Onboarding : MonoBehaviour
 
     public void SetPfp(ProfilePicture selectedPfp)
     {
+        if(selectedPfp.transform.localScale != Vector3.one)
+        {   
+            clickSfx.Play();
+        }
+        
         foreach (var pfp in profilePictures)
         {
             int id = pfp.GetComponent<ProfilePicture>().id;
 
             if (id != selectedPfp.id)
+            {
                 StartCoroutine(InterpolateScale(pfp.gameObject, new Vector3(.75f, .75f, 1f), .15f));
+            }
             else
             {
                 StartCoroutine(InterpolateScale(pfp.gameObject, new Vector3(1f, 1f, 1f), .15f));
@@ -196,13 +210,18 @@ public class Onboarding : MonoBehaviour
     {
         PlayerPrefs.SetInt("HasCompletedOnboarding", 1);
         PlayerPrefs.Save();
-        Debug.Log(PlayerPrefs.GetInt("HasCompletedOnboarding", 0));
         SceneManager.LoadScene("HomeScreen");
     }
 
     #region Step 1 (Color Selection)
     public void SetColor(BackgroundColor color)
     {
+
+        if (color.transform.localScale != Vector3.one)
+        {
+            clickSfx.Play();
+        }
+
         ColorUtility.TryParseHtmlString("#" + color.primaryColor, out selectedPrimaryColor);
         ColorUtility.TryParseHtmlString("#" + color.secondaryColor, out selectedSecondaryColor);
         backgroundColor.color = selectedPrimaryColor;
