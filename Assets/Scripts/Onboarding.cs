@@ -31,8 +31,6 @@ public class Onboarding : MonoBehaviour
     public Image circle;
     #endregion
 
-    public AudioSource clickSfx;
-
     private void Start()
     {
         SetupOnboardingSteps();
@@ -41,12 +39,13 @@ public class Onboarding : MonoBehaviour
         ColorUtility.TryParseHtmlString("#3D72CF", out selectedSecondaryColor);
         PlayerPrefs.SetString("PrimaryColor", ColorUtility.ToHtmlStringRGBA(selectedPrimaryColor));
         PlayerPrefs.SetString("SecondaryColor", ColorUtility.ToHtmlStringRGBA(selectedSecondaryColor));
+        PlayerPrefs.SetFloat("TutorialDone", 0);
     }
 
     private void SetupOnboardingSteps()
     {
         // Example of setting up steps
-        OnboardingStep step1 = new OnboardingStep("Welcome Aboard!", "Begin your journey towards better mental well-being with Appreciation Alley. Cultivating daily gratitude and positivity.",   1);
+        OnboardingStep step1 = new OnboardingStep("Welcome Aboard!", "Begin your journey towards better mental well-being with Appreciation Ally. Cultivating daily gratitude and positivity.",   1);
         OnboardingStep step2 = new OnboardingStep("Choose your favorite color", "You can change this later",   2);
         OnboardingStep step3 = new OnboardingStep("Tell me about yourself!", "You can change this later",   3);
         OnboardingStep step4 = new OnboardingStep("", "Hi friend! I'm Chromo, your guide to a world of fun, feelings, and fantastic adventures!",   4);
@@ -174,11 +173,6 @@ public class Onboarding : MonoBehaviour
 
     public void SetPfp(ProfilePicture selectedPfp)
     {
-        if(selectedPfp.transform.localScale != Vector3.one)
-        {   
-            clickSfx.Play();
-        }
-        
         foreach (var pfp in profilePictures)
         {
             int id = pfp.GetComponent<ProfilePicture>().id;
@@ -216,12 +210,6 @@ public class Onboarding : MonoBehaviour
     #region Step 1 (Color Selection)
     public void SetColor(BackgroundColor color)
     {
-
-        if (color.transform.localScale != Vector3.one)
-        {
-            clickSfx.Play();
-        }
-
         ColorUtility.TryParseHtmlString("#" + color.primaryColor, out selectedPrimaryColor);
         ColorUtility.TryParseHtmlString("#" + color.secondaryColor, out selectedSecondaryColor);
         backgroundColor.color = selectedPrimaryColor;

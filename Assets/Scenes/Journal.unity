@@ -571,7 +571,7 @@ MonoBehaviour:
   iconSpriteName: relax
   grtfl_text: {fileID: 155812228}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &64333848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   iconSpriteName: food
   grtfl_text: {fileID: 723641430}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &98193218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,7 +1718,7 @@ MonoBehaviour:
   iconSpriteName: family
   grtfl_text: {fileID: 648569085}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!1 &141428969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1814,7 @@ MonoBehaviour:
   iconSpriteName: music
   grtfl_text: {fileID: 82199790}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &141428974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2573,7 +2573,7 @@ PrefabInstance:
     - target: {fileID: 459821584524306930, guid: 55602e0f279d3e14ba6a2a30f3b2017b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1762158191}
+      objectReference: {fileID: 0}
     - target: {fileID: 459821584524306930, guid: 55602e0f279d3e14ba6a2a30f3b2017b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
@@ -2966,7 +2966,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1762158190}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -3245,7 +3245,7 @@ MonoBehaviour:
   iconSpriteName: nature
   grtfl_text: {fileID: 1163514661}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &293868226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3433,7 +3433,7 @@ MonoBehaviour:
   iconSpriteName: art
   grtfl_text: {fileID: 443031750}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &313434861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4531,7 +4531,7 @@ MonoBehaviour:
           m_StringArgument: quit
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1762158189}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -5238,7 +5238,7 @@ MonoBehaviour:
   iconSpriteName: book
   grtfl_text: {fileID: 2047790413}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &610554041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5791,7 +5791,7 @@ MonoBehaviour:
           m_StringArgument: back
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1762158190}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -8345,7 +8345,7 @@ MonoBehaviour:
   iconSpriteName: movies
   grtfl_text: {fileID: 1784865627}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &1173106568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8711,7 +8711,7 @@ MonoBehaviour:
   iconSpriteName: sports
   grtfl_text: {fileID: 829206317}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &1297690380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9138,7 +9138,7 @@ MonoBehaviour:
   iconSpriteName: pets
   grtfl_text: {fileID: 57741450}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &1353471217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9441,7 +9441,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1762158189}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -10742,78 +10742,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721179102}
   m_CullTransparentMesh: 1
---- !u!1001 &1762158188
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.113258354
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.8649986
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 562.61444
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 826570578332726673, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2294362134324677737, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-      propertyPath: m_Name
-      value: SoundEffects
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
---- !u!82 &1762158189 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4547032796530565931, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-  m_PrefabInstance: {fileID: 1762158188}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1762158190 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1592656151282326726, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-  m_PrefabInstance: {fileID: 1762158188}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1762158191 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3552727034946276036, guid: 02037c7ec2cfab2498740cb414742f56, type: 3}
-  m_PrefabInstance: {fileID: 1762158188}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1768505894
 GameObject:
   m_ObjectHideFlags: 0
@@ -11177,7 +11105,7 @@ MonoBehaviour:
   iconSpriteName: school
   grtfl_text: {fileID: 2147004176}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &1804396620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11789,7 +11717,7 @@ MonoBehaviour:
   iconSpriteName: gaming
   grtfl_text: {fileID: 1705975956}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &1842453560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13282,7 +13210,7 @@ MonoBehaviour:
   iconSpriteName: exercise
   grtfl_text: {fileID: 292029190}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &2080159556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13471,7 +13399,7 @@ MonoBehaviour:
   iconSpriteName: friends
   grtfl_text: {fileID: 163049892}
   selected: 0
-  audioClip: {fileID: 1762158191}
+  audioClip: {fileID: 0}
 --- !u!114 &2112123264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16363,4 +16291,3 @@ SceneRoots:
   - {fileID: 754321849}
   - {fileID: 1841138466}
   - {fileID: 477905190}
-  - {fileID: 1762158188}

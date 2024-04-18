@@ -19,6 +19,7 @@ public class LoadPreferences : MonoBehaviour
 
     public Toggle tog;
 
+    
 
     private void Start()
     {

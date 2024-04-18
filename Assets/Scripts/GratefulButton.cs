@@ -10,7 +10,6 @@ public class GratefulButton : MonoBehaviour
     public TextMeshProUGUI grtfl_text;
     private Color parsedSecondaryColor;
     public bool selected;
-    public AudioSource audioClip;
     // Assuming this static list is managed somewhere accessible
     public static List<GratefulButton> selectedButtons = new List<GratefulButton>();
 
@@ -24,7 +23,6 @@ public class GratefulButton : MonoBehaviour
     {
         if (!selected && selectedButtons.Count < 3)
         {
-            audioClip.Play();
             selected = true;
             this.GetComponent<Image>().color = parsedSecondaryColor;
             icon.color = Color.white;
