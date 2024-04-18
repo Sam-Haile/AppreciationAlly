@@ -56,11 +56,11 @@ public class Journal : MonoBehaviour
     //Final Display fields
 
     private string[] ungratefulResponses = { "Feeling that way is okay. Let's find small good things in your day",
-                                             "It's okay to have off days. Can you name one small thing you liked today?",
-                                             "Feeling less grateful sometimes is normal. Did you see something pretty or interesting today?",
-                                             "Not every day feels great, and that’s okay. Did something make you feel a little better today?",
-                                             "It's fine to not always feel thankful. Can you think of something that you didn't mind doing today?",
-                                             "You don't have to feel grateful all the time. What's one small thing you enjoyed or appreciated today?"
+                                             "It's okay to have off days. Can you name one small thing you liked recently?",
+                                             "Feeling less grateful sometimes is normal. Did you see something pretty or interesting recently?",
+                                             "Not every day feels great, and that’s okay. Did something make you feel a little better recently?",
+                                             "It's fine to not always feel thankful. Can you think of something that you didn't mind doing recently?",
+                                             "You don't have to feel grateful all the time. What's one small thing you enjoyed or appreciated recently?"
     };
 
     private string[] gratefulResponses = { "That's great to hear! Can you share what's making you feel this way?",
@@ -68,7 +68,7 @@ public class Journal : MonoBehaviour
                                             "That's fantastic! What made you feel so good today?",
                                             "So glad to hear that! Can you describe what's brought you joy?",
                                             "Amazing! What are you most grateful for today?",
-                                            "That's really positive! What's something special that happened?",
+                                            "That's really cool! What's something special that happened?",
                                             "Great to hear! What's one thing that made you smile the most?",
                                             "Lovely to hear you're feeling this way. Can you share a highlight?",
                                             "That's awesome! What's something good that stood out to you today?"};
@@ -458,7 +458,7 @@ public class Journal : MonoBehaviour
         else if(DailyTasks.Instance.gridGame_Completed)
         {
             chromos2ndSpeechBubble.text = "Great job reflecting today!" +
-                " Remember, every word you write is a step toward understanding yourself better.";
+                " Remember that choosing to focus on things you are grateful for can help you feel your best and combat stress.";
         }
     }
 
