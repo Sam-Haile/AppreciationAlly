@@ -19,7 +19,7 @@ public class LoadPreferences : MonoBehaviour
 
     public Toggle tog;
     public Animator notifTog;
-    
+
 
     private void Start()
     {
@@ -33,15 +33,13 @@ public class LoadPreferences : MonoBehaviour
 
         CheckToggle();
 
-        if (NotificationManager.DetermineToggleStatus())
+        if (notifTog != null)
         {
-            Debug.Log("Status: On");
-            notifTog.SetTrigger("on");
-        }
-        else
-        {
-            Debug.Log("Status: Off");
-            notifTog.SetTrigger("off");
+
+            if (NotificationManager.DetermineToggleStatus())
+                notifTog.SetTrigger("on");
+            else
+                notifTog.SetTrigger("off");
         }
 
         ImageManager.LoadImageStates();
@@ -155,9 +153,12 @@ public class LoadPreferences : MonoBehaviour
 
     public void CheckToggle()
     {
-        if (PlayerPrefs.GetInt("RotationEnabled", 0) == 0)
-            tog.isOn = true;
-        else
-            tog.isOn = false;
+        if (tog != null)
+        {
+            if (PlayerPrefs.GetInt("RotationEnabled", 0) == 0)
+                tog.isOn = true;
+            else
+                tog.isOn = false;
+        }
     }
 }
