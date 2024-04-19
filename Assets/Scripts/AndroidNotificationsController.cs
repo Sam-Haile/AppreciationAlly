@@ -2,8 +2,8 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Notifications.Android;
 #if UNITY_ANDROID
+using Unity.Notifications.Android;
 using UnityEngine.Android;
 using Unity.Notifications.Android;
 #endif

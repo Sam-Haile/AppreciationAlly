@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.ShaderData;
 
 public class UpdateColor : MonoBehaviour
 {

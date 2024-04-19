@@ -104,8 +104,8 @@
     <Compile Include="Assets\Scripts\ProfilePicture.cs" />
     <Compile Include="Assets\Scripts\Rotate.cs" />
     <Compile Include="Assets\Scripts\OnboardingStep.cs" />
-    <Compile Include="Assets\Scripts\Date.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\Date.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

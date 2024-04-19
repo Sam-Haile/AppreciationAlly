@@ -18,7 +18,7 @@ public class LoadPreferences : MonoBehaviour
     public GameObject tutorialScreen;
 
     public Toggle tog;
-
+    public Animator notifTog;
     
 
     private void Start()
@@ -31,7 +31,19 @@ public class LoadPreferences : MonoBehaviour
                 tutorialScreen.SetActive(false);
         }
 
-        //ImageManager.ResetPref();
+        CheckToggle();
+
+        if (NotificationManager.DetermineToggleStatus())
+        {
+            Debug.Log("Status: On");
+            notifTog.SetTrigger("on");
+        }
+        else
+        {
+            Debug.Log("Status: Off");
+            notifTog.SetTrigger("off");
+        }
+
         ImageManager.LoadImageStates();
 
         ApplyName();
