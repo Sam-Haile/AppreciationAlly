@@ -18,7 +18,7 @@ MonoBehaviour:
   silverThreshold: 5
   goldThreshold: 10
   platinumThreshold: 25
-  currentUserProgress: 0
+  currentUserProgress: 2
   milestoneOneDesc: Complete your first journal entry
   milestoneTwoDesc: Complete 5 journal entries
   milestoneThreeDesc: Complete 10 journal entries
