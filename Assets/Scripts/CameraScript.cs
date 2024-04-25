@@ -6,24 +6,17 @@ public class CameraScript : MonoBehaviour
 {
     public RawImage image;
     public AspectRatioFitter imageFitter;
-    public Button captureButton; // Assign this in the Unity Editor
     public ImageManager imgManager;
 
     WebCamTexture camTexture;
+    public Quaternion baseRotation;
+    WebCamDevice[] devices; 
 
     void Start()
     {
-        if (WebCamTexture.devices.Length > 0)
-        {
-            camTexture = new WebCamTexture();
-            image.texture = camTexture;
-            image.material.mainTexture = camTexture;
-            camTexture.Play();
-            UpdateCameraRender();
+        devices = WebCamTexture.devices;
+        camTexture = new WebCamTexture();
 
-            captureButton.onClick.AddListener(CaptureAndSaveImage);
-
-        }
     }
 
     void UpdateCameraRender()
@@ -38,7 +31,13 @@ public class CameraScript : MonoBehaviour
         image.uvRect = camTexture.videoVerticallyMirrored ? new Rect(1, 0, -1, 1) : new Rect(0, 0, 1, 1);
     }
 
-    void CaptureAndSaveImage()
+    void Update()
+    {
+        image.transform.rotation = baseRotation * Quaternion.AngleAxis(camTexture.videoRotationAngle, Vector3.up);
+    }
+
+
+    public void CaptureAndSaveImage()
     {
         Texture2D photo = new Texture2D(camTexture.width, camTexture.height);
         photo.SetPixels(camTexture.GetPixels());
@@ -57,4 +56,32 @@ public class CameraScript : MonoBehaviour
         imgManager.LoadUserImagesFromPersistentData();
         imgManager.RefreshImagesUI();
     }
+
+    public void OnCameraClick()
+    {
+        if (WebCamTexture.devices.Length > 0)
+        {
+            image.texture = camTexture;
+            camTexture.filterMode = FilterMode.Trilinear;
+            camTexture.Play();
+            UpdateCameraRender();
+        }
+
+    }
+
+    public void ReverseCamera()
+    {
+        if(devices.Length > 1)
+        {
+            camTexture.Stop();
+            if(devices.Length > 1)
+            {
+                camTexture.Stop();
+                camTexture.deviceName = (camTexture.deviceName == devices[0].name) ? devices[1].name : devices[0].name;
+                camTexture.Play();
+            }
+
+        }
+    }
+
 }
