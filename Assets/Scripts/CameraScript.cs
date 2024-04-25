@@ -16,7 +16,6 @@ public class CameraScript : MonoBehaviour
     {
         devices = WebCamTexture.devices;
         camTexture = new WebCamTexture();
-
     }
 
     void UpdateCameraRender()

@@ -46,10 +46,14 @@ public class ProfileUpdate : MonoBehaviour
 
     public void OnApplyName()
     {
-        string nameNoSpace = updateNamed.text.Replace(" ", "");
-        PlayerPrefs.SetString("Name", nameNoSpace);
-        loadPreferences.ApplyName();
-        PlayerPrefs.Save();
+        if(updateNamed.text.Length > 3)
+        {
+            string nameNoSpace = updateNamed.text.Replace(" ", "");
+            PlayerPrefs.SetString("Name", nameNoSpace);
+            loadPreferences.ApplyName();
+            PlayerPrefs.Save();
+        }
+
     }
 
     public void SetPfp(ProfilePicture selectedPfp)
