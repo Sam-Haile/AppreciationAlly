@@ -41,7 +41,7 @@ public class iOSNotificationsController : MonoBehaviour
 
         var timeTrigger = new iOSNotificationTimeIntervalTrigger()
         {
-            TimeInterval = new TimeSpan(timeUntilNoon.Days, timeUntilNoon.Hours, timeUntilNoon.Minutes),
+            TimeInterval = TimeSpan.FromHours(24),
             Repeats = true
         };
 

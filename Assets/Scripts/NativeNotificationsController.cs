@@ -35,7 +35,7 @@ public class NativeNotificationsController : MonoBehaviour
         if (PlayerPrefs.GetInt("notifications", 1) == 1) // Default to 1 (on) if not set
         {
             iOSNotificationsController.SendNotification("Brighten Your Day!",
-                "Your daily tasks await!", "Tap here to complete your daily tasks and keep your positivity streak going");
+                "Your daily tasks await!", "Tap here to keep your positivity streak going");
         }
     }
 #endif
