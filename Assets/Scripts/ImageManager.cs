@@ -26,7 +26,9 @@ public class ImageManager : MonoBehaviour
         string path = Application.persistentDataPath;
         // Count all image files (.png, .jpg, .jpeg)
         string[] imageFiles = Directory.GetFiles(path, "*.*", SearchOption.TopDirectoryOnly)
-            .Where(file => file.EndsWith(".png") || file.EndsWith(".jpg") || file.EndsWith(".jpeg"))
+            .Where(file => file.EndsWith(".png") || file.EndsWith(".jpg") ||
+                           file.EndsWith(".jpeg") || file.EndsWith(".heic") ||
+                           file.EndsWith(".heif"))
             .ToArray();
 
         // Each file is considered a unique entry; return the count
@@ -53,7 +55,9 @@ public class ImageManager : MonoBehaviour
     public void LoadUserImagesFromPersistentData()
     {
         var info = new DirectoryInfo(Application.persistentDataPath);
-        var fileInfo = info.GetFiles().Where(f => f.Extension.Equals(".png") || f.Extension.Equals(".jpg") || f.Extension.Equals(".jpeg")).ToArray();
+        var fileInfo = info.GetFiles().Where(f => f.Extension.Equals(".png") || f.Extension.Equals(".jpg") ||
+                                                  f.Extension.Equals(".jpeg") || f.Extension.Equals(".heic") ||
+                                                  f.Extension.Equals(".heif")).ToArray();
 
         foreach (var file in fileInfo)
         {

@@ -28,27 +28,6 @@ public class AddImages : MonoBehaviour
 
     }
 
-    //public void PickImage(int maxSize)
-    //{
-    //    NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
-    //    {
-    //        Debug.Log("Image path: " + path);
-    //        if (path != null)
-    //        {
-    //            // Create Texture from selected image
-    //            Texture2D texture = NativeGallery.LoadImageAtPath(path, maxSize);
-    //            if (texture == null)
-    //            {
-    //                Debug.Log("Couldn't load texture from " + path);
-    //                return;
-    //            }
-
-    //            UsePlayersTexture(texture, path);
-
-    //        }
-    //    }, "Select a photo", "image/*");
-
-    //}
 
     private void UsePlayersTexture(Texture2D texture, string path)
     {

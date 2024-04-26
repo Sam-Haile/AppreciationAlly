@@ -72,24 +72,20 @@ public class CameraScript : MonoBehaviour
 
     }
 
-
     public void OnCameraClick()
     {
         if (WebCamTexture.devices.Length > 0)
         {
-
             if (camTexture == null)
             {
                 camTexture = new WebCamTexture();
-                image.texture = camTexture;
-                camTexture.filterMode = FilterMode.Trilinear;
-                camTexture.Play();
-                CheckCamera();
+
             }
 
-            //Invert Horizontally Rect uvRect = isImageInverted ? new Rect(1, 0, -1, 1) : new Rect(0, 0, 1, 1);
-            //Invert Vertically Rect uvRect = isImageInverted ? new Rect(0, 1, 1, -1) : new Rect(0, 0, 1, 1);
-
+            image.texture = camTexture;
+            camTexture.filterMode = FilterMode.Trilinear;
+            CheckCamera();
+            camTexture.Play();
         }
     }
 
@@ -98,15 +94,17 @@ public class CameraScript : MonoBehaviour
         bool isFrontCamera = camTexture.deviceName == WebCamTexture.devices.FirstOrDefault(d => d.isFrontFacing).name;
         if (isFrontCamera)
         {
+            Debug.Log("This is the front camera");
             // Front camera, apply horizontal flip for mirror effect
-            Rect uvRect = isImageInverted ? new Rect(0, 0, 1, 1) : new Rect(1, 0, -1, 1);  // Toggle mirroring
+            Rect uvRect = new Rect(0, 0, 1, 1);
             UpdateCameraRender(uvRect);
         }
         else
         {
+            Debug.Log("This is the rear camera");
             // Rear camera, usually no need to flip, unless explicitly inverted
-            Rect uvRect = isImageInverted ? new Rect(1, 0, -1, 1) : new Rect(0, 0, 1, 1);
-            UpdateCameraRender(uvRect);
+            //Rect uvRect = new Rect(0, 0, -1, 1);
+            //UpdateCameraRender(uvRect);
         }
     }
 
@@ -126,7 +124,5 @@ public class CameraScript : MonoBehaviour
     {
         camTexture.Stop();
     }
-
-
 
 }
