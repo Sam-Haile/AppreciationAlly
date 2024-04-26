@@ -17,7 +17,7 @@ public class CameraScript : MonoBehaviour
         devices = WebCamTexture.devices;
     }
 
-    void UpdateCameraRender(bool mirror)
+    void UpdateCameraRender(Rect rectangle)
     {
         if (camTexture.width < 100)
         {
@@ -26,17 +26,7 @@ public class CameraScript : MonoBehaviour
 
         float aspectRatio = (float)camTexture.width / (float)camTexture.height;
         imageFitter.aspectRatio = aspectRatio;
-
-        if (mirror)
-        {
-            image.uvRect = new Rect(1, 0, -1, 1); 
-
-        }
-        else
-        {
-            image.uvRect = new Rect(0, 0, 1, 1);
-
-        }
+        image.uvRect = rectangle;
     }
 
     void Update()
@@ -97,26 +87,20 @@ public class CameraScript : MonoBehaviour
             image.texture = camTexture;
             camTexture.filterMode = FilterMode.Trilinear;
             camTexture.Play();
-            UpdateCameraRender(true);
+            UpdateCameraRender(new Rect(1, 0, -1, 1));
         }
 
     }
 
 
-
     public void ReverseCamera()
     {
-        if(devices.Length > 1)
-        {
-            camTexture.Stop();
             if(devices.Length > 1)
             {
                 camTexture.Stop();
                 camTexture.deviceName = (camTexture.deviceName == devices[0].name) ? devices[1].name : devices[0].name;
                 camTexture.Play();
-                UpdateCameraRender(false);
-            }
-
+                UpdateCameraRender(new Rect(1, 0, -1, 1));
         }
     }
 
