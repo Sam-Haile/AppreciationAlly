@@ -128,27 +128,5 @@ public class CameraScript : MonoBehaviour
     }
 
 
-    public void PickImage(int maxSize)
-    {
-        NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
-        {
-            Debug.Log("Image path: " + path);
-            if (path != null)
-            {
-                // Create Texture from selected image
-                Texture2D texture = NativeGallery.LoadImageAtPath(path, maxSize);
-                if (texture == null)
-                {
-                    Debug.Log("Couldn't load texture from " + path);
-                    return;
-                }
-
-                // Assign texture to a GameObject, such as a RawImage or a Plane
-                // Example: GetComponent<Renderer>().material.mainTexture = texture;
-            }
-        }, "Select a photo", "image/*");
-
-        Debug.Log("Permission result: " + permission);
-    }
 
 }
