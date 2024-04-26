@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using System.Linq;
 
 public class CameraScript : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class CameraScript : MonoBehaviour
 
     WebCamTexture camTexture;
     public Quaternion baseRotation;
-    WebCamDevice[] devices; 
+    WebCamDevice[] devices;
+    private bool isImageInverted = false;  // New boolean to track inversion state
 
     void Start()
     {
@@ -28,13 +30,6 @@ public class CameraScript : MonoBehaviour
         imageFitter.aspectRatio = aspectRatio;
         image.uvRect = rectangle;
     }
-
-    void Update()
-    {
-        //if(camTexture != null)
-          //image.transform.rotation = baseRotation * Quaternion.AngleAxis(camTexture.videoRotationAngle, Vector3.up);
-    }
-
 
     public void CaptureAndSaveImage()
     {
@@ -78,29 +73,52 @@ public class CameraScript : MonoBehaviour
     }
 
 
-
     public void OnCameraClick()
     {
         if (WebCamTexture.devices.Length > 0)
         {
-            camTexture = new WebCamTexture();
-            image.texture = camTexture;
-            camTexture.filterMode = FilterMode.Trilinear;
-            camTexture.Play();
-            UpdateCameraRender(new Rect(1, 0, -1, 1));
-        }
 
+            if (camTexture == null)
+            {
+                camTexture = new WebCamTexture();
+                image.texture = camTexture;
+                camTexture.filterMode = FilterMode.Trilinear;
+                camTexture.Play();
+                CheckCamera();
+            }
+
+            //Invert Horizontally Rect uvRect = isImageInverted ? new Rect(1, 0, -1, 1) : new Rect(0, 0, 1, 1);
+            //Invert Vertically Rect uvRect = isImageInverted ? new Rect(0, 1, 1, -1) : new Rect(0, 0, 1, 1);
+
+        }
+    }
+
+    private void CheckCamera()
+    {
+        bool isFrontCamera = camTexture.deviceName == WebCamTexture.devices.FirstOrDefault(d => d.isFrontFacing).name;
+        if (isFrontCamera)
+        {
+            // Front camera, apply horizontal flip for mirror effect
+            Rect uvRect = isImageInverted ? new Rect(0, 0, 1, 1) : new Rect(1, 0, -1, 1);  // Toggle mirroring
+            UpdateCameraRender(uvRect);
+        }
+        else
+        {
+            // Rear camera, usually no need to flip, unless explicitly inverted
+            Rect uvRect = isImageInverted ? new Rect(1, 0, -1, 1) : new Rect(0, 0, 1, 1);
+            UpdateCameraRender(uvRect);
+        }
     }
 
 
     public void ReverseCamera()
     {
-            if(devices.Length > 1)
-            {
-                camTexture.Stop();
-                camTexture.deviceName = (camTexture.deviceName == devices[0].name) ? devices[1].name : devices[0].name;
-                camTexture.Play();
-                UpdateCameraRender(new Rect(1, 0, -1, 1));
+        if (devices.Length > 1)
+        {
+            camTexture.Stop();
+            camTexture.deviceName = (camTexture.deviceName == devices[0].name) ? devices[1].name : devices[0].name;
+            CheckCamera();
+            camTexture.Play();
         }
     }
 
@@ -108,4 +126,29 @@ public class CameraScript : MonoBehaviour
     {
         camTexture.Stop();
     }
+
+
+    public void PickImage(int maxSize)
+    {
+        NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
+        {
+            Debug.Log("Image path: " + path);
+            if (path != null)
+            {
+                // Create Texture from selected image
+                Texture2D texture = NativeGallery.LoadImageAtPath(path, maxSize);
+                if (texture == null)
+                {
+                    Debug.Log("Couldn't load texture from " + path);
+                    return;
+                }
+
+                // Assign texture to a GameObject, such as a RawImage or a Plane
+                // Example: GetComponent<Renderer>().material.mainTexture = texture;
+            }
+        }, "Select a photo", "image/*");
+
+        Debug.Log("Permission result: " + permission);
+    }
+
 }

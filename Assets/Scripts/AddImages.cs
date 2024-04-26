@@ -15,7 +15,7 @@ public class AddImages : MonoBehaviour
             if (path != null)
             {
                 // Load the selected image as a Texture2D
-                Texture2D texture = NativeGallery.LoadImageAtPath(path, 1024); 
+                Texture2D texture = NativeGallery.LoadImageAtPath(path, 256); 
                 if (texture == null)
                 {
                     Debug.LogWarning("Couldn't load texture from " + path);
@@ -27,6 +27,28 @@ public class AddImages : MonoBehaviour
         }, "Select an image", "image/*");
 
     }
+
+    //public void PickImage(int maxSize)
+    //{
+    //    NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
+    //    {
+    //        Debug.Log("Image path: " + path);
+    //        if (path != null)
+    //        {
+    //            // Create Texture from selected image
+    //            Texture2D texture = NativeGallery.LoadImageAtPath(path, maxSize);
+    //            if (texture == null)
+    //            {
+    //                Debug.Log("Couldn't load texture from " + path);
+    //                return;
+    //            }
+
+    //            UsePlayersTexture(texture, path);
+
+    //        }
+    //    }, "Select a photo", "image/*");
+
+    //}
 
     private void UsePlayersTexture(Texture2D texture, string path)
     {
