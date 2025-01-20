@@ -27569,6 +27569,7 @@ GameObject:
   - component: {fileID: 1090951941}
   - component: {fileID: 1090951943}
   - component: {fileID: 1090951942}
+  - component: {fileID: 1090951944}
   m_Layer: 5
   m_Name: ColorWheelSelectionCircle
   m_TagString: Untagged
@@ -27630,7 +27631,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.8022754
+  m_Radius: 7.123367
 --- !u!212 &1090951943
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27683,6 +27684,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1090951944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090951940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48eac99723bd0644bf9fe895907791a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1104511677
 GameObject:
   m_ObjectHideFlags: 0
