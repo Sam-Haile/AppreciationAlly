@@ -13,6 +13,37 @@ public class SelectionDraggingBehavior : MonoBehaviour
 
     [Header("Color Selection Variables")]
     [SerializeField] private SpriteRenderer selectionSpriteRenderer;
+    [SerializeField] private RectTransform colorWheelTexture;
+    //[SerializeField] private GameObject sphere;
+    [SerializeField] private Texture2D refSprite;
+
+    private void OnEnable()
+    {
+        selection = GetComponent<SelectionDraggingBehavior>();
+    }
+
+    private void Update()
+    {
+        UpdateSelectionColor();
+    }
+
+    void UpdateSelectionColor()
+    {
+        Vector3 imagePos = colorWheelTexture.position;
+        float globalPosX = selection.gameObject.transform.position.x - imagePos.x;
+        float globalPosY = selection.gameObject.transform.position.y - imagePos.y;
+
+        int localPosX = (int) (globalPosX * (refSprite.width / colorWheelTexture.rect.width));
+        int localPosY = (int) (globalPosY * (refSprite.height / colorWheelTexture.rect.height));
+
+        //Debug.Log(refSprite.width);
+        //Debug.Log(colorWheelTexture.rect.width);
+        //Debug.Log("globalPosX = " + globalPosX + ". localPosX = " + localPosX + ". refSprite.width / colorWheelTexture.rect.width = " + refSprite.width / colorWheelTexture.rect.width);
+
+        selectionSpriteRenderer.color = refSprite.GetPixel(localPosX, localPosY);
+        //Debug.Log("X is: " + localPosX + ". and Y is: " + localPosY);
+        //Debug.Log("pixel color is: " + refSprite.GetPixel(localPosX, localPosY));
+    }
 
     void FixedUpdate()
     {
@@ -97,10 +128,5 @@ public class SelectionDraggingBehavior : MonoBehaviour
     {
         //Debug.Log("Drop");
         isDragging = false;
-    }
-
-    void UpdateSelectionColor()
-    {
-
     }
 }
