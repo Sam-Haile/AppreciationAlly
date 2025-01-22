@@ -13,7 +13,7 @@ public class SelectionDraggingBehavior : MonoBehaviour
 
     [Header("Color Selection Variables")]
     [SerializeField] private SpriteRenderer selectionSpriteRenderer;
-    //[SerializeField] private RectTransform selectionRectTransform;
+    [SerializeField] private RectTransform selectionRectTransform;
     [SerializeField] private RectTransform colorWheelRectTransform;
     [SerializeField] private Texture2D colorWheelTexture;
 
@@ -29,21 +29,23 @@ public class SelectionDraggingBehavior : MonoBehaviour
 
     void UpdateSelectionColor()
     {
-        Vector3 imagePos = colorWheelRectTransform.position;
-        float globalPosX = selection.gameObject.transform.position.x - imagePos.x;
-        float globalPosY = selection.gameObject.transform.position.y - imagePos.y;
-        //selectionRectTransform.transform.position.y - imagePos.y;
-        Debug.Log("selection pos = " + selection.gameObject.transform.position.x + ". image pos = " + imagePos.x + ". Difference = " + globalPosX);
+        selectionSpriteRenderer.color = colorWheelTexture.GetPixel((int)((selectionRectTransform.localPosition.x + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)), (int)((selectionRectTransform.localPosition.y + colorWheelRectTransform.rect.height / 2f) * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
 
-        int localPosX = (int) (2f * 820f * (globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width)));
-        int localPosY = (int) (2f * 820f * (globalPosY * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
-        //Debug.Log(colorWheelTexture.width);
-        //Debug.Log(colorWheelRectTransform.rect.width);
-        //Debug.Log("globalPosX = " + globalPosX + ". colorWheelTexture.width / colorWheelRectTransform.rect.width = " + colorWheelTexture.width / colorWheelRectTransform.rect.width + "product = " + globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width) + ". localPosX = " + localPosX);
+        //Vector3 imagePos = colorWheelRectTransform.position;
+        //float globalPosX = selection.gameObject.transform.position.x - imagePos.x;
+        //float globalPosY = selection.gameObject.transform.position.y - imagePos.y;
+        ////selectionRectTransform.transform.position.y - imagePos.y;
+        //Debug.Log("selection pos = " + selection.gameObject.transform.position.x + ". image pos = " + imagePos.x + ". Difference = " + globalPosX);
 
-        selectionSpriteRenderer.color = colorWheelTexture.GetPixel(localPosX, localPosY);
-        //Debug.Log("X is: " + localPosX + ". and Y is: " + localPosY);
-        //Debug.Log("pixel color is: " + colorWheelTexture.GetPixel(localPosX, localPosY));
+        //int localPosX = (int) (820f * (globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width)));
+        //int localPosY = (int) (820f * (globalPosY * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
+        ////Debug.Log(colorWheelTexture.width);
+        ////Debug.Log(colorWheelRectTransform.rect.width);
+        ////Debug.Log("globalPosX = " + globalPosX + ". colorWheelTexture.width / colorWheelRectTransform.rect.width = " + colorWheelTexture.width / colorWheelRectTransform.rect.width + "product = " + globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width) + ". localPosX = " + localPosX);
+
+        //selectionSpriteRenderer.color = colorWheelTexture.GetPixel(localPosX, localPosY);
+        ////Debug.Log("X is: " + localPosX + ". and Y is: " + localPosY);
+        ////Debug.Log("pixel color is: " + colorWheelTexture.GetPixel(localPosX, localPosY));
     }
 
     void FixedUpdate()
