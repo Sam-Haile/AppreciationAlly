@@ -27697,9 +27697,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionSpriteRenderer: {fileID: 1090951943}
-  selectionRectTransform: {fileID: 1090951941}
-  colorWheelTexture: {fileID: 863322781}
-  refSprite: {fileID: 2800000, guid: a94b7941c0414bc4eb5ee20b05bd0bc0, type: 3}
+  colorWheelRectTransform: {fileID: 1090951941}
+  colorWheelTexture: {fileID: 2800000, guid: a94b7941c0414bc4eb5ee20b05bd0bc0, type: 3}
 --- !u!1 &1104511677
 GameObject:
   m_ObjectHideFlags: 0
@@ -49861,7 +49860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1959447623
 MonoBehaviour:
   m_ObjectHideFlags: 0

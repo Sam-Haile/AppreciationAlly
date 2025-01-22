@@ -35,8 +35,8 @@ public class SelectionDraggingBehavior : MonoBehaviour
         //selectionRectTransform.transform.position.y - imagePos.y;
         Debug.Log("selection pos = " + selection.gameObject.transform.position.x + ". image pos = " + imagePos.x + ". Difference = " + globalPosX);
 
-        int localPosX = (int) (820f * (globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width)));
-        int localPosY = (int) (820f * (globalPosY * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
+        int localPosX = (int) (2f * 820f * (globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width)));
+        int localPosY = (int) (2f * 820f * (globalPosY * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
         //Debug.Log(colorWheelTexture.width);
         //Debug.Log(colorWheelRectTransform.rect.width);
         //Debug.Log("globalPosX = " + globalPosX + ". colorWheelTexture.width / colorWheelRectTransform.rect.width = " + colorWheelTexture.width / colorWheelRectTransform.rect.width + "product = " + globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width) + ". localPosX = " + localPosX);
