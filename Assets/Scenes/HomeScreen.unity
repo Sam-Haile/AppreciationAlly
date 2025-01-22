@@ -27696,10 +27696,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48eac99723bd0644bf9fe895907791a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selection: {fileID: 0}
   selectionSpriteRenderer: {fileID: 1090951943}
   selectionRectTransform: {fileID: 1090951941}
   colorWheelRectTransform: {fileID: 863322781}
   colorWheelTexture: {fileID: 2800000, guid: a94b7941c0414bc4eb5ee20b05bd0bc0, type: 3}
+  customBackgroundColor: {fileID: 1175991879}
+  newColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1104511677
 GameObject:
   m_ObjectHideFlags: 0
@@ -30008,6 +30011,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1090951944}
+        m_TargetAssemblyTypeName: SelectionDraggingBehavior, Assembly-CSharp
+        m_MethodName: ChangeCustomColor
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

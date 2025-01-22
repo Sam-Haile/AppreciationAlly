@@ -1,26 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Types;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class SelectionDraggingBehavior : MonoBehaviour
 {
-    //Dragging variables
+    [Header("Dragging Variables")]
     private bool isDragging = false;
     private Vector2 screenPosition;
     private Vector3 worldPosition;
-    private SelectionDraggingBehavior selection;
+    [SerializeField] private SelectionDraggingBehavior selection;
 
     [Header("Color Selection Variables")]
     [SerializeField] private SpriteRenderer selectionSpriteRenderer;
     [SerializeField] private RectTransform selectionRectTransform;
     [SerializeField] private RectTransform colorWheelRectTransform;
     [SerializeField] private Texture2D colorWheelTexture;
+    [SerializeField] private BackgroundColor customBackgroundColor;
 
-    private void OnEnable()
-    {
-        selection = GetComponent<SelectionDraggingBehavior>();
-    }
+    [Header("Debug")]
+    [SerializeField] private Color newColor = Color.white;
+
+    //private void OnEnable()
+    //{
+    //    selection = GetComponent<SelectionDraggingBehavior>();
+    //}
 
     private void Update()
     {
@@ -29,23 +34,36 @@ public class SelectionDraggingBehavior : MonoBehaviour
 
     void UpdateSelectionColor()
     {
-        selectionSpriteRenderer.color = colorWheelTexture.GetPixel((int)((selectionRectTransform.localPosition.x + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)), (int)((selectionRectTransform.localPosition.y + colorWheelRectTransform.rect.height / 2f) * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
+        newColor = colorWheelTexture.GetPixel((int)((selectionRectTransform.localPosition.x + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)), (int)((selectionRectTransform.localPosition.y + colorWheelRectTransform.rect.height / 2f) * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
+        //Debug.Log((int)((selectionRectTransform.localPosition.x + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)));
 
-        //Vector3 imagePos = colorWheelRectTransform.position;
-        //float globalPosX = selection.gameObject.transform.position.x - imagePos.x;
-        //float globalPosY = selection.gameObject.transform.position.y - imagePos.y;
-        ////selectionRectTransform.transform.position.y - imagePos.y;
-        //Debug.Log("selection pos = " + selection.gameObject.transform.position.x + ". image pos = " + imagePos.x + ". Difference = " + globalPosX);
+        selectionSpriteRenderer.color = newColor;
+    }
 
-        //int localPosX = (int) (820f * (globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width)));
-        //int localPosY = (int) (820f * (globalPosY * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
-        ////Debug.Log(colorWheelTexture.width);
-        ////Debug.Log(colorWheelRectTransform.rect.width);
-        ////Debug.Log("globalPosX = " + globalPosX + ". colorWheelTexture.width / colorWheelRectTransform.rect.width = " + colorWheelTexture.width / colorWheelRectTransform.rect.width + "product = " + globalPosX * (colorWheelTexture.width / colorWheelRectTransform.rect.width) + ". localPosX = " + localPosX);
+    public void ChangeCustomColor()
+    {
+        //define H, S, and V
+        float H, S, V;
 
-        //selectionSpriteRenderer.color = colorWheelTexture.GetPixel(localPosX, localPosY);
-        ////Debug.Log("X is: " + localPosX + ". and Y is: " + localPosY);
-        ////Debug.Log("pixel color is: " + colorWheelTexture.GetPixel(localPosX, localPosY));
+        //determine H, S, and V from newColor
+        Color.RGBToHSV(newColor, out H, out S, out V);
+
+        //modify V to be darker
+        //V -= ???;
+
+        //convert from HSV to RGB
+        Color PrimaryColorRBG = Color.HSVToRGB(H, S, V);
+
+        //apply modified color to primaryColor
+        customBackgroundColor.primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(PrimaryColorRBG);
+
+        //Color PrimaryColorHSV = Color.RGBToHSV(newColor, out H, out S, out V);
+        //Color newPrimaryColor = Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
+        //Color newPrimaryColor = new Color(newColor.r - 0.72f, newColor.g - 0.72f, newColor.b - 0.72f);
+        //Color newSecondaryColor = new Color(newColor.r - 0.36f, newColor.g - 0.36f, newColor.b - 0.36f);
+        //customBackgroundColor.primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newPrimaryColor);
+        //customBackgroundColor.secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newSecondaryColor);
+        //new Color(newColor.r, newColor.g, newColor.b);
     }
 
     void FixedUpdate()
