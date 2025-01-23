@@ -24,16 +24,6 @@ public class SelectionDraggingBehavior : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private Color newColor = Color.white;
 
-    //private void OnEnable()
-    //{
-    //    selection = GetComponent<SelectionDraggingBehavior>();
-    //}
-
-    private void Update()
-    {
-        UpdateSelectionColor();
-    }
-
     void UpdateSelectionColor()
     {
         newColor = colorWheelTexture.GetPixel((int)((selectionRectTransform.localPosition.x + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)), (int)((selectionRectTransform.localPosition.y + colorWheelRectTransform.rect.height / 2f) * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
@@ -80,6 +70,10 @@ public class SelectionDraggingBehavior : MonoBehaviour
         acceptCustomColorBackgroundColor.secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG);
         customColorGameObject.GetComponent<BackgroundColor>().secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG);
 
+        //***** Save Custom Color to PlayerPrefs *****
+        //PlayerPrefs.SetString("CustomPrimaryColor", UnityEngine.ColorUtility.ToHtmlStringRGB(PrimaryColorRBG));
+        //PlayerPrefs.SetString("CustomSecondaryColor", UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG));
+
         //Color PrimaryColorHSV = Color.RGBToHSV(newColor, out H, out S, out V);
         //Color newPrimaryColor = Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
         //Color newPrimaryColor = new Color(newColor.r - 0.72f, newColor.g - 0.72f, newColor.b - 0.72f);
@@ -89,11 +83,16 @@ public class SelectionDraggingBehavior : MonoBehaviour
         //new Color(newColor.r, newColor.g, newColor.b);
     }
 
-    void FixedUpdate()
+    void Update()
     {
+        UpdateSelectionColor();
+
+        if (Input.GetMouseButtonUp(0))
+            Debug.Log("Left mouse released!");
+        //Debug.Log("isDragging= " + isDragging + ". and Input.GetMouseButtonUp(0)= " + Input.GetMouseButtonUp(0) + ". and Input.GetMouseButton(0)= " + Input.GetMouseButton(0));
         //***** Dropping *****
-        //if left mouse or touch ended while holding the selection,...
-        if(isDragging && (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
+        //if left mouse released or touch ended while holding the selection,...
+        if(isDragging && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
         {
             //drop the selection
             Drop();
@@ -103,7 +102,7 @@ public class SelectionDraggingBehavior : MonoBehaviour
         }
 
         //***** Dragging *****
-        //if left mouse clicked,...
+        //if left mouse held down,...
         if(Input.GetMouseButton(0))
         {
             //Debug.Log("Clicked");
@@ -138,7 +137,6 @@ public class SelectionDraggingBehavior : MonoBehaviour
         //else selection circle is NOT already being dragged,...
         else
         {
-            //, Mathf.Infinity, LayerMask.GetMask("")
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
             if (hit.collider != null)
             {
