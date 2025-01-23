@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Android.Types;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectionDraggingBehavior : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class SelectionDraggingBehavior : MonoBehaviour
     [SerializeField] private RectTransform selectionRectTransform;
     [SerializeField] private RectTransform colorWheelRectTransform;
     [SerializeField] private Texture2D colorWheelTexture;
-    [SerializeField] private BackgroundColor customBackgroundColor;
+    [SerializeField] private BackgroundColor acceptCustomColorBackgroundColor;
+    [SerializeField] private GameObject customColorGameObject;
 
     [Header("Debug")]
     [SerializeField] private Color newColor = Color.white;
@@ -58,7 +60,9 @@ public class SelectionDraggingBehavior : MonoBehaviour
         Color PrimaryColorRBG = Color.HSVToRGB(H, S, V);
 
         //apply modified color to primaryColor
-        customBackgroundColor.primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(PrimaryColorRBG);
+        acceptCustomColorBackgroundColor.primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(PrimaryColorRBG);
+        customColorGameObject.GetComponent<BackgroundColor>().primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(PrimaryColorRBG);
+        customColorGameObject.GetComponent<Image>().color = PrimaryColorRBG;
 
         //***** Modify brightness of secondary color *****
         //determine H, S, and V from newColor
@@ -73,14 +77,15 @@ public class SelectionDraggingBehavior : MonoBehaviour
         Color SecondaryColorRBG = Color.HSVToRGB(H, S, V);
 
         //apply modified color to secondaryColor
-        customBackgroundColor.secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG);
+        acceptCustomColorBackgroundColor.secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG);
+        customColorGameObject.GetComponent<BackgroundColor>().secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG);
 
         //Color PrimaryColorHSV = Color.RGBToHSV(newColor, out H, out S, out V);
         //Color newPrimaryColor = Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
         //Color newPrimaryColor = new Color(newColor.r - 0.72f, newColor.g - 0.72f, newColor.b - 0.72f);
         //Color newSecondaryColor = new Color(newColor.r - 0.36f, newColor.g - 0.36f, newColor.b - 0.36f);
-        //customBackgroundColor.primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newPrimaryColor);
-        //customBackgroundColor.secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newSecondaryColor);
+        //acceptCustomColorBackgroundColor.primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newPrimaryColor);
+        //acceptCustomColorBackgroundColor.secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newSecondaryColor);
         //new Color(newColor.r, newColor.g, newColor.b);
     }
 

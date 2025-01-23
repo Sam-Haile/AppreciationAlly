@@ -27701,7 +27701,8 @@ MonoBehaviour:
   selectionRectTransform: {fileID: 1090951941}
   colorWheelRectTransform: {fileID: 863322781}
   colorWheelTexture: {fileID: 2800000, guid: a94b7941c0414bc4eb5ee20b05bd0bc0, type: 3}
-  customBackgroundColor: {fileID: 1175991879}
+  acceptCustomColorBackgroundColor: {fileID: 1175991879}
+  customColorGameObject: {fileID: 149677820}
   newColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1104511677
 GameObject:
