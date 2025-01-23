@@ -7,10 +7,10 @@ using UnityEngine;
 public class SelectionDraggingBehavior : MonoBehaviour
 {
     [Header("Dragging Variables")]
+    [SerializeField] private SelectionDraggingBehavior selection;
     private bool isDragging = false;
     private Vector2 screenPosition;
     private Vector3 worldPosition;
-    [SerializeField] private SelectionDraggingBehavior selection;
 
     [Header("Color Selection Variables")]
     [SerializeField] private SpriteRenderer selectionSpriteRenderer;
@@ -45,17 +45,35 @@ public class SelectionDraggingBehavior : MonoBehaviour
         //define H, S, and V
         float H, S, V;
 
+        //***** Modify brightness of primary color *****
         //determine H, S, and V from newColor
         Color.RGBToHSV(newColor, out H, out S, out V);
 
         //modify V to be darker
-        //V -= ???;
+        //Debug.Log("Before: " + V);
+        V = 0.65f;
+        //Debug.Log("After: " + V);
 
         //convert from HSV to RGB
         Color PrimaryColorRBG = Color.HSVToRGB(H, S, V);
 
         //apply modified color to primaryColor
         customBackgroundColor.primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(PrimaryColorRBG);
+
+        //***** Modify brightness of secondary color *****
+        //determine H, S, and V from newColor
+        Color.RGBToHSV(newColor, out H, out S, out V);
+
+        //modify V to be a little bit darker
+        //Debug.Log("Before: " + V);
+        V = 0.80f;
+        //Debug.Log("After: " + V);
+
+        //convert from HSV to RGB
+        Color SecondaryColorRBG = Color.HSVToRGB(H, S, V);
+
+        //apply modified color to secondaryColor
+        customBackgroundColor.secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG);
 
         //Color PrimaryColorHSV = Color.RGBToHSV(newColor, out H, out S, out V);
         //Color newPrimaryColor = Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
