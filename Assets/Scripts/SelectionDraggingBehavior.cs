@@ -194,11 +194,21 @@ public class SelectionDraggingBehavior : MonoBehaviour
             }
             //Debug.Log("Load Custom Color");
         }
+
+        if (selectionRectTransform)
+        {
+            selectionRectTransform.localPosition = new Vector3(PlayerPrefs.GetFloat("CustomColorSelectionPositionX", 0f), PlayerPrefs.GetFloat("CustomColorSelectionPositionY", 171f), PlayerPrefs.GetFloat("CustomColorSelectionPositionZ", 0f));
+            //Debug.Log("(" + PlayerPrefs.GetFloat("CustomColorSelectionPositionX", -Mathf.Infinity) + ", " + PlayerPrefs.GetFloat("CustomColorSelectionPositionY", -Mathf.Infinity) + ", " + PlayerPrefs.GetFloat("CustomColorSelectionPositionZ", -Mathf.Infinity) + ")");
+        }
     }
 
     private void SaveCustomColor(Color primaryColorToSave, Color secondaryColorToSave)
     {
         PlayerPrefs.SetString("CustomPrimaryColor", UnityEngine.ColorUtility.ToHtmlStringRGB(primaryColorToSave));
         PlayerPrefs.SetString("CustomSecondaryColor", UnityEngine.ColorUtility.ToHtmlStringRGB(secondaryColorToSave));
+        PlayerPrefs.SetFloat("CustomColorSelectionPositionX", selectionRectTransform.localPosition.x);
+        PlayerPrefs.SetFloat("CustomColorSelectionPositionY", selectionRectTransform.localPosition.y);
+        PlayerPrefs.SetFloat("CustomColorSelectionPositionZ", selectionRectTransform.localPosition.z);
+        //Debug.Log("(" + PlayerPrefs.GetFloat("CustomColorSelectionPositionX", -Mathf.Infinity) + ", " + PlayerPrefs.GetFloat("CustomColorSelectionPositionY", -Mathf.Infinity) + ", " + PlayerPrefs.GetFloat("CustomColorSelectionPositionZ", -Mathf.Infinity) + ")");
     }
 }
