@@ -155,6 +155,7 @@ public class SelectionDraggingBehavior : MonoBehaviour
     {
         //Debug.Log("Drag");
         selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
+        //Debug.Log(selection.transform.position);
     }
 
     void Drop()
