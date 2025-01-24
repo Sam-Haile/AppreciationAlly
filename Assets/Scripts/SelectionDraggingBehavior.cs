@@ -72,14 +72,6 @@ public class SelectionDraggingBehavior : MonoBehaviour
 
         //***** Save Custom Color to PlayerPrefs *****
         SaveCustomColor(PrimaryColorRBG, SecondaryColorRBG);
-
-        //Color PrimaryColorHSV = Color.RGBToHSV(newColor, out H, out S, out V);
-        //Color newPrimaryColor = Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
-        //Color newPrimaryColor = new Color(newColor.r - 0.72f, newColor.g - 0.72f, newColor.b - 0.72f);
-        //Color newSecondaryColor = new Color(newColor.r - 0.36f, newColor.g - 0.36f, newColor.b - 0.36f);
-        //acceptCustomColorBackgroundColor.primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newPrimaryColor);
-        //acceptCustomColorBackgroundColor.secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newSecondaryColor);
-        //new Color(newColor.r, newColor.g, newColor.b);
     }
 
     void Update()
@@ -169,6 +161,12 @@ public class SelectionDraggingBehavior : MonoBehaviour
     {
         //Debug.Log("Drop");
         isDragging = false;
+    }
+
+    public void ResetSelectionPosition()
+    {
+        Drop();
+        selectionRectTransform.localPosition = new Vector3(0f, 171f, 0f);
     }
 
     public void LoadCustomColor()
