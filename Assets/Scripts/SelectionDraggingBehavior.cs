@@ -71,8 +71,7 @@ public class SelectionDraggingBehavior : MonoBehaviour
         customColorGameObject.GetComponent<BackgroundColor>().secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG);
 
         //***** Save Custom Color to PlayerPrefs *****
-        //PlayerPrefs.SetString("CustomPrimaryColor", UnityEngine.ColorUtility.ToHtmlStringRGB(PrimaryColorRBG));
-        //PlayerPrefs.SetString("CustomSecondaryColor", UnityEngine.ColorUtility.ToHtmlStringRGB(SecondaryColorRBG));
+        SaveCustomColor(PrimaryColorRBG, SecondaryColorRBG);
 
         //Color PrimaryColorHSV = Color.RGBToHSV(newColor, out H, out S, out V);
         //Color newPrimaryColor = Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
@@ -87,8 +86,8 @@ public class SelectionDraggingBehavior : MonoBehaviour
     {
         UpdateSelectionColor();
 
-        if (Input.GetMouseButtonUp(0))
-            Debug.Log("Left mouse released!");
+        //if (Input.GetMouseButtonUp(0))
+        //    Debug.Log("Left mouse released!");
         //Debug.Log("isDragging= " + isDragging + ". and Input.GetMouseButtonUp(0)= " + Input.GetMouseButtonUp(0) + ". and Input.GetMouseButton(0)= " + Input.GetMouseButton(0));
         //***** Dropping *****
         //if left mouse released or touch ended while holding the selection,...
@@ -170,5 +169,36 @@ public class SelectionDraggingBehavior : MonoBehaviour
     {
         //Debug.Log("Drop");
         isDragging = false;
+    }
+
+    public void LoadCustomColor()
+    {
+        if (customColorGameObject)
+        {
+            Color newCol;
+
+            if (UnityEngine.ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("CustomPrimaryColor", "6C6C6C"), out newCol))
+            {
+                customColorGameObject.GetComponent<Image>().color = newCol;
+
+                customColorGameObject.GetComponent<BackgroundColor>().primaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newCol);
+                //Debug.Log("Load Primary");
+            }
+
+            if (UnityEngine.ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("CustomSecondaryColor", "C8C8C8"), out newCol))
+            {
+                customColorGameObject.GetComponent<Image>().color = newCol;
+
+                customColorGameObject.GetComponent<BackgroundColor>().secondaryColor = UnityEngine.ColorUtility.ToHtmlStringRGB(newCol);
+                //Debug.Log("Load Secondary");
+            }
+            //Debug.Log("Load Custom Color");
+        }
+    }
+
+    private void SaveCustomColor(Color primaryColorToSave, Color secondaryColorToSave)
+    {
+        PlayerPrefs.SetString("CustomPrimaryColor", UnityEngine.ColorUtility.ToHtmlStringRGB(primaryColorToSave));
+        PlayerPrefs.SetString("CustomSecondaryColor", UnityEngine.ColorUtility.ToHtmlStringRGB(secondaryColorToSave));
     }
 }
