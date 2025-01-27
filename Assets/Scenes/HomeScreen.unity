@@ -27972,6 +27972,7 @@ MonoBehaviour:
   acceptCustomColorBackgroundColor: {fileID: 1175991879}
   customColorGameObject: {fileID: 149677820}
   initialOffset: {x: 0, y: 171}
+  circleRadius: 2.5
 --- !u!1 &1104511677
 GameObject:
   m_ObjectHideFlags: 0

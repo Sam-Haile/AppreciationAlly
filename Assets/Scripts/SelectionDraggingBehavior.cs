@@ -22,6 +22,7 @@ public class SelectionDraggingBehavior : MonoBehaviour
     [SerializeField] private GameObject customColorGameObject;
     [SerializeField] private Vector2 initialOffset = Vector2.zero;
     private Color newColor = Color.white;
+    [SerializeField] private float circleRadius = 0f;
 
     void UpdateSelectionColor()
     {
@@ -153,6 +154,7 @@ public class SelectionDraggingBehavior : MonoBehaviour
     void Drag()
     {
         //Debug.Log("Drag");
+        isInCircle(selection.transform.position, colorWheelRectTransform.transform.position);
         selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
         //Debug.Log(selection.transform.position);
     }
@@ -167,6 +169,11 @@ public class SelectionDraggingBehavior : MonoBehaviour
     {
         Drop();
         selectionRectTransform.localPosition = new Vector3(0f, 171f, 0f);
+    }
+
+    private bool isInCircle(Vector2 selectionPos, Vector2 circleCenter)
+    {
+        return Vector2.Distance(selectionPos, circleCenter) <= circleRadius ? true : false;
     }
 
     public void LoadCustomColor()
