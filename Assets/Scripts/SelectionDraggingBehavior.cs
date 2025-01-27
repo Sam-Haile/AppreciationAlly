@@ -20,14 +20,13 @@ public class SelectionDraggingBehavior : MonoBehaviour
     [SerializeField] private Texture2D colorWheelTexture;
     [SerializeField] private BackgroundColor acceptCustomColorBackgroundColor;
     [SerializeField] private GameObject customColorGameObject;
-
-    [Header("Debug")]
-    [SerializeField] private Color newColor = Color.white;
+    [SerializeField] private Vector2 initialOffset = Vector2.zero;
+    private Color newColor = Color.white;
 
     void UpdateSelectionColor()
     {
-        newColor = colorWheelTexture.GetPixel((int)((selectionRectTransform.localPosition.x + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)), (int)((selectionRectTransform.localPosition.y + colorWheelRectTransform.rect.height / 2f) * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
-        //Debug.Log((int)((selectionRectTransform.localPosition.x + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)));
+        newColor = colorWheelTexture.GetPixel((int)(((selectionRectTransform.localPosition.x - initialOffset.x) + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)), (int)(((selectionRectTransform.localPosition.y - initialOffset.y) + colorWheelRectTransform.rect.height / 2f) * (colorWheelTexture.height / colorWheelRectTransform.rect.height)));
+        //Debug.Log("(" + (int)((selectionRectTransform.localPosition.x + colorWheelRectTransform.rect.width / 2f) * (colorWheelTexture.width / colorWheelRectTransform.rect.width)) + ", " + (int)((selectionRectTransform.localPosition.y + colorWheelRectTransform.rect.height / 2f) * (colorWheelTexture.height / colorWheelRectTransform.rect.height)) + ")");
 
         selectionSpriteRenderer.color = newColor;
     }
