@@ -4,6 +4,7 @@ using Unity.Android.Types;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class SelectionDraggingBehavior : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class SelectionDraggingBehavior : MonoBehaviour
     [SerializeField] private Vector2 initialOffset = Vector2.zero;
     private Color newColor = Color.white;
     [SerializeField] private float circleRadius = 0f;
+
+    [Header("Debug")]
+    [SerializeField] private Vector2 lastValidPos = Vector2.zero;
 
     void UpdateSelectionColor()
     {
@@ -154,8 +158,25 @@ public class SelectionDraggingBehavior : MonoBehaviour
     void Drag()
     {
         //Debug.Log("Drag");
-        isInCircle(selection.transform.position, colorWheelRectTransform.transform.position);
-        selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
+        //if 
+        if (isInCircle(selection.transform.position, colorWheelRectTransform.transform.position))
+        {
+            //Debug.Log("In Circle");
+            //selectionRectTransform.position = Camera.main.WorldToViewportPoint(worldPosition);
+            selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
+            //lastValidPos = selection.transform.position;
+            //Debug.Log(worldPosition);
+        }
+        else
+        {
+            //Debug.Log("Outside Circle");
+            //selection.transform.position = lastValidPos;
+            //selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
+            //selection.transform.position
+            selectionRectTransform.position = (selectionRectTransform.position - colorWheelRectTransform.position).normalized * circleRadius;
+        }
+        Debug.Log("Nearest point on circle = " + (canvasToWorldPos(selectionRectTransform.position) - canvasToWorldPos(colorWheelRectTransform.position)).normalized * circleRadius);
+
         //Debug.Log(selection.transform.position);
     }
 
@@ -170,11 +191,11 @@ public class SelectionDraggingBehavior : MonoBehaviour
         Drop();
         selectionRectTransform.localPosition = new Vector3(0f, 171f, 0f);
     }
+    private bool isInCircle(Vector2 point, Vector2 circleCenter) => Vector2.Distance(point, circleCenter) <= circleRadius ? true : false;
 
-    private bool isInCircle(Vector2 selectionPos, Vector2 circleCenter)
-    {
-        return Vector2.Distance(selectionPos, circleCenter) <= circleRadius ? true : false;
-    }
+    private Vector2 nearestPointOnCircle(Vector2 point, Vector2 circleCenter) => (circleCenter + (point - circleCenter)) / ((point - circleCenter).magnitude * circleRadius);
+
+    private Vector2 canvasToWorldPos(Vector2 canvasPos) => Camera.main.WorldToViewportPoint(Camera.main.ViewportToWorldPoint(canvasPos));
 
     public void LoadCustomColor()
     {
@@ -215,5 +236,13 @@ public class SelectionDraggingBehavior : MonoBehaviour
         PlayerPrefs.SetFloat("CustomColorSelectionPositionY", selectionRectTransform.localPosition.y);
         PlayerPrefs.SetFloat("CustomColorSelectionPositionZ", selectionRectTransform.localPosition.z);
         //Debug.Log("(" + PlayerPrefs.GetFloat("CustomColorSelectionPositionX", -Mathf.Infinity) + ", " + PlayerPrefs.GetFloat("CustomColorSelectionPositionY", -Mathf.Infinity) + ", " + PlayerPrefs.GetFloat("CustomColorSelectionPositionZ", -Mathf.Infinity) + ")");
+    }
+
+    void OnDrawGizmos()
+    {
+        // Draw a red line from circle center to selection
+        Gizmos.color = Color.red;
+        //Gizmos.DrawLine(canvasToWorldPos(colorWheelRectTransform.position), canvasToWorldPos(selectionRectTransform.position));
+        Gizmos.DrawLine((canvasToWorldPos(selectionRectTransform.position) - canvasToWorldPos(colorWheelRectTransform.position)).normalized * circleRadius, canvasToWorldPos(selectionRectTransform.position));
     }
 }
