@@ -27973,6 +27973,7 @@ MonoBehaviour:
   customColorGameObject: {fileID: 149677820}
   initialOffset: {x: 0, y: 171}
   circleRadius: 2.5
+  lastValidPos: {x: 0, y: 0}
 --- !u!1 &1104511677
 GameObject:
   m_ObjectHideFlags: 0
