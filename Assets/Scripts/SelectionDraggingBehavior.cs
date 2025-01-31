@@ -24,6 +24,7 @@ public class SelectionDraggingBehavior : MonoBehaviour
     [SerializeField] private Vector2 initialOffset = Vector2.zero;
     private Color newColor = Color.white;
     [SerializeField] private float circleRadius = 0f;
+    [SerializeField] private float falseCircleRadius = 0f;
 
     [Header("Debug")]
     [SerializeField] private Vector2 lastValidPos = Vector2.zero;
@@ -158,23 +159,24 @@ public class SelectionDraggingBehavior : MonoBehaviour
     void Drag()
     {
         //Debug.Log("Drag");
-        selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
-        //if (isInCircle(selection.transform.position, colorWheelRectTransform.transform.position))
-        //{
-        //    //Debug.Log("In Circle");
-        //    //selectionRectTransform.position = Camera.main.WorldToViewportPoint(worldPosition);
-        //    selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
-        //    //lastValidPos = selection.transform.position;
-        //    //Debug.Log(worldPosition);
-        //}
-        //else
-        //{
-        //    //Debug.Log("Outside Circle");
-        //    //selection.transform.position = lastValidPos;
-        //    //selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
-        //    //selection.transform.position
-        //    selectionRectTransform.position = canvasToWorldPos(selectionRectTransform.localPosition - colorWheelRectTransform.localPosition).normalized * circleRadius;
-        //}
+        //selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
+        if (isInCircle(selection.transform.position, colorWheelRectTransform.transform.position))
+        {
+            Debug.Log("In Circle");
+            //selectionRectTransform.position = Camera.main.WorldToViewportPoint(worldPosition);
+            selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
+            //lastValidPos = selection.transform.position;
+            //Debug.Log(worldPosition);
+        }
+        else
+        {
+            Debug.Log("Outside Circle");
+            //selection.transform.position = lastValidPos;
+            //selection.transform.position = new Vector2(worldPosition.x, worldPosition.y);
+            //selection.transform.position = nearestPointOnCircle(selectionRectTransform.localPosition, colorWheelRectTransform.localPosition, falseCircleRadius);
+            selection.transform.position = nearestPointOnCircle(selection.transform.position, colorWheelRectTransform.transform.position, circleRadius);
+            //selectionRectTransform.position = canvasToWorldPos(selectionRectTransform.localPosition - colorWheelRectTransform.localPosition).normalized * falseCircleRadius;
+        }
         //Debug.Log("Nearest point on circle = " + (canvasToWorldPos(selectionRectTransform.position) - canvasToWorldPos(colorWheelRectTransform.position)).normalized * circleRadius);
 
         //Debug.Log(selection.transform.position);
@@ -193,7 +195,7 @@ public class SelectionDraggingBehavior : MonoBehaviour
     }
     private bool isInCircle(Vector2 point, Vector2 circleCenter) => Vector2.Distance(point, circleCenter) <= circleRadius ? true : false;
 
-    private Vector2 nearestPointOnCircle(Vector2 point, Vector2 circleCenter) => (circleCenter + (point - circleCenter)) / ((point - circleCenter).magnitude * circleRadius);
+    private Vector2 nearestPointOnCircle(Vector2 point, Vector2 circleCenter, float radius) => ((circleCenter + (point - circleCenter)) / ((point - circleCenter).magnitude * radius));
 
     private Vector2 canvasToWorldPos(Vector2 canvasPos) => Camera.main.WorldToViewportPoint(Camera.main.ViewportToWorldPoint(canvasPos));
 
@@ -241,9 +243,10 @@ public class SelectionDraggingBehavior : MonoBehaviour
     void OnDrawGizmos()
     {
         // Draw a red line from circle center to selection
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.black;
         //Gizmos.DrawLine(canvasToWorldPos(colorWheelRectTransform.position), canvasToWorldPos(selectionRectTransform.position));
         //Gizmos.DrawLine((canvasToWorldPos(selectionRectTransform.position) - canvasToWorldPos(colorWheelRectTransform.position)).normalized * circleRadius, canvasToWorldPos(selectionRectTransform.position));
-        Gizmos.DrawLine(colorWheelRectTransform.position, nearestPointOnCircle(selectionRectTransform.position, colorWheelRectTransform.position));
+        Gizmos.DrawLine(colorWheelRectTransform.position, nearestPointOnCircle(selectionRectTransform.localPosition, colorWheelRectTransform.localPosition, falseCircleRadius));
+        Gizmos.DrawWireSphere(nearestPointOnCircle(selectionRectTransform.localPosition, colorWheelRectTransform.localPosition, falseCircleRadius), 0.1f);
     }
 }
