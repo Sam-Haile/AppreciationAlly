@@ -20,6 +20,8 @@ public class LoadPreferences : MonoBehaviour
     public Toggle tog;
     public Animator notifTog;
 
+    public bool isDarkMode;
+    public Toggle darkModeToggle;
 
     private void Start()
     {
@@ -49,6 +51,8 @@ public class LoadPreferences : MonoBehaviour
         ApplyPfp();
 
         ApplyColors();
+
+        ApplyDarkMode();
     }
 
 
@@ -159,6 +163,54 @@ public class LoadPreferences : MonoBehaviour
                 tog.isOn = true;
             else
                 tog.isOn = false;
+        }
+    }
+
+    public void ToggleDarkMode()
+    {
+        //toggle between light mode and dark mode
+        isDarkMode = !isDarkMode;
+        //Debug.Log(isDarkMode);
+
+        //save isDarkMode
+        if (isDarkMode)
+            PlayerPrefs.SetInt("isDarkModeEnabled", 1);
+        else
+            PlayerPrefs.SetInt("isDarkModeEnabled", 0);
+
+        //apply dark mode
+        ApplyDarkMode();
+    }
+
+    public void ApplyDarkMode()
+    {
+        //make sure that dark mode toggle is displaying correctly
+        CheckDarkModeToggle();
+
+        //if loaded isDarkMode value is set to true,...
+        if (PlayerPrefs.GetInt("isDarkModeEnabled", 0) == 1)
+        {
+            isDarkMode = true;
+
+            //Debug.Log("dark mode is ON");
+        }
+        //else loaded isDarkMode value is set to false,...
+        else
+        {
+            isDarkMode = false;
+
+            //Debug.Log("dark mode is OFF");
+        }
+    }
+
+    public void CheckDarkModeToggle()
+    {
+        if(darkModeToggle != null)
+        {
+            if(PlayerPrefs.GetInt("isDarkModeEnabled", 0) == 1)
+                darkModeToggle.isOn = true;
+            else
+                darkModeToggle.isOn= false;
         }
     }
 }
