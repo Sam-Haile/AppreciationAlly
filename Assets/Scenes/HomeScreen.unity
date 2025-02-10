@@ -1279,7 +1279,7 @@ GameObject:
   - component: {fileID: 66551303}
   m_Layer: 5
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5048,7 +5048,7 @@ GameObject:
   - component: {fileID: 194490390}
   m_Layer: 5
   m_Name: FooterButtons
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41058,7 +41058,7 @@ GameObject:
   - component: {fileID: 1584974727}
   m_Layer: 5
   m_Name: HorizontalBar
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

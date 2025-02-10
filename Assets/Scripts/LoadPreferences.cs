@@ -191,15 +191,55 @@ public class LoadPreferences : MonoBehaviour
         if (PlayerPrefs.GetInt("isDarkModeEnabled", 0) == 1)
         {
             isDarkMode = true;
-
             //Debug.Log("dark mode is ON");
+
+            var uiElementsPrimary = GameObject.FindGameObjectsWithTag("BackgroundColor");
+
+            foreach (var uiElement in uiElementsPrimary)
+            {
+                var imageComponent = uiElement.GetComponent<Image>();
+                if (imageComponent != null)
+                {
+                    //Debug.Log("Found image with name: " + uiElement.name);
+                    imageComponent.color = Color.gray;
+                }
+                else
+                {
+                    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                    if (textMeshComponent != null)
+                    {
+                        //Debug.Log("Found mesh with name: " + uiElement.name);
+                        textMeshComponent.color = Color.gray;
+                    }
+                }
+            }
         }
         //else loaded isDarkMode value is set to false,...
         else
         {
             isDarkMode = false;
-
             //Debug.Log("dark mode is OFF");
+
+            var uiElementsPrimary = GameObject.FindGameObjectsWithTag("BackgroundColor");
+
+            foreach (var uiElement in uiElementsPrimary)
+            {
+                var imageComponent = uiElement.GetComponent<Image>();
+                if (imageComponent != null)
+                {
+                    //Debug.Log("Found image with name: " + uiElement.name);
+                    imageComponent.color = Color.white;
+                }
+                else
+                {
+                    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                    if (textMeshComponent != null)
+                    {
+                        //Debug.Log("Found mesh with name: " + uiElement.name);
+                        textMeshComponent.color = Color.white;
+                    }
+                }
+            }
         }
     }
 
