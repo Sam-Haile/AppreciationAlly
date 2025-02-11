@@ -193,9 +193,10 @@ public class LoadPreferences : MonoBehaviour
             isDarkMode = true;
             //Debug.Log("dark mode is ON");
 
-            var uiElementsPrimary = GameObject.FindGameObjectsWithTag("BackgroundColor");
+            //***** Make all "BackgroundColor" elements gray *****
+            var uiElementsBackground = GameObject.FindGameObjectsWithTag("BackgroundColor");
 
-            foreach (var uiElement in uiElementsPrimary)
+            foreach (var uiElement in uiElementsBackground)
             {
                 var imageComponent = uiElement.GetComponent<Image>();
                 if (imageComponent != null)
@@ -203,14 +204,26 @@ public class LoadPreferences : MonoBehaviour
                     //Debug.Log("Found image with name: " + uiElement.name);
                     imageComponent.color = Color.gray;
                 }
-                else
+                //else
+                //{
+                //    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                //    if (textMeshComponent != null)
+                //    {
+                //        //Debug.Log("Found mesh with name: " + uiElement.name);
+                //        textMeshComponent.color = Color.gray;
+                //    }
+                //}
+            }
+
+            //***** Make all "TextColor" elements white *****
+            var uiElementsText = GameObject.FindGameObjectsWithTag("TextColor");
+
+            foreach (var uiElement in uiElementsText)
+            {
+                var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                if(textMeshComponent != null)
                 {
-                    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
-                    if (textMeshComponent != null)
-                    {
-                        //Debug.Log("Found mesh with name: " + uiElement.name);
-                        textMeshComponent.color = Color.gray;
-                    }
+                    textMeshComponent.color = Color.white;
                 }
             }
         }
@@ -220,9 +233,10 @@ public class LoadPreferences : MonoBehaviour
             isDarkMode = false;
             //Debug.Log("dark mode is OFF");
 
-            var uiElementsPrimary = GameObject.FindGameObjectsWithTag("BackgroundColor");
+            //***** Make all "BackgroundColor" elements white *****
+            var uiElementsBackground = GameObject.FindGameObjectsWithTag("BackgroundColor");
 
-            foreach (var uiElement in uiElementsPrimary)
+            foreach (var uiElement in uiElementsBackground)
             {
                 var imageComponent = uiElement.GetComponent<Image>();
                 if (imageComponent != null)
@@ -230,14 +244,26 @@ public class LoadPreferences : MonoBehaviour
                     //Debug.Log("Found image with name: " + uiElement.name);
                     imageComponent.color = Color.white;
                 }
-                else
+                //else
+                //{
+                //    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                //    if (textMeshComponent != null)
+                //    {
+                //        //Debug.Log("Found mesh with name: " + uiElement.name);
+                //        textMeshComponent.color = Color.white;
+                //    }
+                //}
+            }
+
+            //***** Make all "TextColor" elements black *****
+            var uiElementsText = GameObject.FindGameObjectsWithTag("TextColor");
+
+            foreach (var uiElement in uiElementsText)
+            {
+                var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                if (textMeshComponent != null)
                 {
-                    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
-                    if (textMeshComponent != null)
-                    {
-                        //Debug.Log("Found mesh with name: " + uiElement.name);
-                        textMeshComponent.color = Color.white;
-                    }
+                    textMeshComponent.color = Color.black;
                 }
             }
         }

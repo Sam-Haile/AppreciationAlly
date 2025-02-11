@@ -12,6 +12,7 @@ TagManager:
   - 1
   - 0
   - BackgroundColor
+  - TextColor
   layers:
   - Default
   - TransparentFX

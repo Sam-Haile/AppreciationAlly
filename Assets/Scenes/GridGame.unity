@@ -2564,7 +2564,7 @@ GameObject:
   - component: {fileID: 686100765}
   m_Layer: 5
   m_Name: GridGame.txt
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5417,7 +5417,7 @@ GameObject:
   - component: {fileID: 1383027227}
   m_Layer: 5
   m_Name: GridGame.txt
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
