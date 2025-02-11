@@ -202,17 +202,10 @@ public class LoadPreferences : MonoBehaviour
                 if (imageComponent != null)
                 {
                     //Debug.Log("Found image with name: " + uiElement.name);
-                    imageComponent.color = Color.gray;
+                    Color newCol;
+                    if (ColorUtility.TryParseHtmlString("#333333", out newCol))
+                        imageComponent.color = newCol;
                 }
-                //else
-                //{
-                //    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
-                //    if (textMeshComponent != null)
-                //    {
-                //        //Debug.Log("Found mesh with name: " + uiElement.name);
-                //        textMeshComponent.color = Color.gray;
-                //    }
-                //}
             }
 
             //***** Make all "TextColor" elements white *****
@@ -220,10 +213,30 @@ public class LoadPreferences : MonoBehaviour
 
             foreach (var uiElement in uiElementsText)
             {
+                var imageComponent = uiElement.GetComponent<Image>();
+                if(imageComponent != null)
+                {
+                    imageComponent.color = Color.white;
+                }
+                //if (uiElement.name == "Settings")
+                //    Debug.Log("Found" + uiElement.name);
                 var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
                 if(textMeshComponent != null)
                 {
+                    //textMeshComponent.overrideColorTags = true;
                     textMeshComponent.color = Color.white;
+                }
+            }
+
+            //***** Make all "ReverseTextColor" elements black *****
+            var uiElementsReverseText = GameObject.FindGameObjectsWithTag("ReverseTextColor");
+
+            foreach (var uiElement in uiElementsReverseText)
+            {
+                var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                if (textMeshComponent != null)
+                {
+                    textMeshComponent.color = Color.black;
                 }
             }
         }
@@ -244,15 +257,6 @@ public class LoadPreferences : MonoBehaviour
                     //Debug.Log("Found image with name: " + uiElement.name);
                     imageComponent.color = Color.white;
                 }
-                //else
-                //{
-                //    var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
-                //    if (textMeshComponent != null)
-                //    {
-                //        //Debug.Log("Found mesh with name: " + uiElement.name);
-                //        textMeshComponent.color = Color.white;
-                //    }
-                //}
             }
 
             //***** Make all "TextColor" elements black *****
@@ -260,10 +264,28 @@ public class LoadPreferences : MonoBehaviour
 
             foreach (var uiElement in uiElementsText)
             {
+                var imageComponent = uiElement.GetComponent<Image>();
+                if (imageComponent != null)
+                {
+                    imageComponent.color = Color.black;
+                }
+
                 var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
                 if (textMeshComponent != null)
                 {
                     textMeshComponent.color = Color.black;
+                }
+            }
+
+            //***** Make all "ReverseTextColor" elements white *****
+            var uiElementsReverseText = GameObject.FindGameObjectsWithTag("ReverseTextColor");
+
+            foreach (var uiElement in uiElementsReverseText)
+            {
+                var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
+                if (textMeshComponent != null)
+                {
+                    textMeshComponent.color = Color.white;
                 }
             }
         }

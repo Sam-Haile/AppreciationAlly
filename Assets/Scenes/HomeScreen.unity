@@ -14750,7 +14750,7 @@ GameObject:
   - component: {fileID: 530675655}
   m_Layer: 5
   m_Name: x
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34900,7 +34900,7 @@ GameObject:
   - component: {fileID: 1343317156}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34937,14 +34937,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f396e16ec6886864fbbc17c947033b99, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 251cecdef781b0b4590ad430bc2475a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -44477,7 +44477,7 @@ GameObject:
   - component: {fileID: 1749564613}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44514,14 +44514,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5f38652810c7d9941bfe7c3d35d6b399, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 580555586f23136419fbe3bb7bffa463, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -55971,7 +55971,7 @@ GameObject:
   - component: {fileID: 2140961941}
   m_Layer: 5
   m_Name: Months(Back)
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56737,14 +56737,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ca5f504ef44fde04faf7d9186647f11f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 378e488976c3d674596b56c069f6dd5a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
