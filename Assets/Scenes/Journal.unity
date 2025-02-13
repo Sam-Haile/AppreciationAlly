@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 25131268}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 57741450}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 64333847}
   m_Layer: 5
   m_Name: Relax
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 82199790}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1119,7 +1119,7 @@ GameObject:
   - component: {fileID: 98193217}
   m_Layer: 5
   m_Name: Food
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1344,7 +1344,7 @@ GameObject:
   - component: {fileID: 103249793}
   m_Layer: 5
   m_Name: GridGame.txt
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1568,7 +1568,7 @@ GameObject:
   - component: {fileID: 133462770}
   m_Layer: 5
   m_Name: Family
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1719,7 +1719,7 @@ GameObject:
   - component: {fileID: 141428973}
   m_Layer: 5
   m_Name: Music
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2099,7 +2099,7 @@ GameObject:
   - component: {fileID: 155812228}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2233,7 +2233,7 @@ GameObject:
   - component: {fileID: 163049892}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2748,7 +2748,7 @@ GameObject:
   - component: {fileID: 292029190}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2884,7 +2884,7 @@ GameObject:
   - component: {fileID: 293868225}
   m_Layer: 5
   m_Name: Nature
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3071,7 +3071,7 @@ GameObject:
   - component: {fileID: 313434860}
   m_Layer: 5
   m_Name: Art
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3562,7 +3562,7 @@ GameObject:
   - component: {fileID: 372576353}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3727,7 +3727,7 @@ GameObject:
   - component: {fileID: 443031750}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4003,7 +4003,7 @@ GameObject:
   - component: {fileID: 473253580}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4110,6 +4110,8 @@ MonoBehaviour:
   tutorialScreen: {fileID: 0}
   tog: {fileID: 0}
   notifTog: {fileID: 0}
+  isDarkMode: 0
+  darkModeToggle: {fileID: 0}
 --- !u!95 &477905186
 Animator:
   serializedVersion: 5
@@ -4675,7 +4677,7 @@ GameObject:
   - component: {fileID: 550665306}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5109,7 +5111,7 @@ GameObject:
   - component: {fileID: 610554040}
   m_Layer: 5
   m_Name: Book
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5526,7 +5528,7 @@ GameObject:
   - component: {fileID: 648569085}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5804,7 +5806,7 @@ GameObject:
   - component: {fileID: 669059933}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6147,7 +6149,7 @@ GameObject:
   - component: {fileID: 723641430}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6461,7 +6463,7 @@ GameObject:
   - component: {fileID: 829206317}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6729,7 +6731,7 @@ GameObject:
   - component: {fileID: 859340949}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7240,7 +7242,7 @@ GameObject:
   - component: {fileID: 982654176}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7711,7 +7713,7 @@ GameObject:
   - component: {fileID: 1072660189}
   m_Layer: 5
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8181,7 +8183,7 @@ GameObject:
   - component: {fileID: 1163514661}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8317,7 +8319,7 @@ GameObject:
   - component: {fileID: 1173106567}
   m_Layer: 5
   m_Name: Movies
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8682,7 +8684,7 @@ GameObject:
   - component: {fileID: 1297690379}
   m_Layer: 5
   m_Name: Sports
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9031,7 +9033,7 @@ GameObject:
   - component: {fileID: 1338346628}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9108,7 +9110,7 @@ GameObject:
   - component: {fileID: 1353471216}
   m_Layer: 5
   m_Name: Pets
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9489,9 +9491,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 477905185}
+        m_TargetAssemblyTypeName: LoadPreferences, Assembly-CSharp
+        m_MethodName: ApplyDarkMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9552,7 +9554,7 @@ GameObject:
   - component: {fileID: 1398327793}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9627,7 +9629,7 @@ GameObject:
   - component: {fileID: 1416152380}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9985,7 +9987,7 @@ GameObject:
   - component: {fileID: 1579779356}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10174,7 +10176,7 @@ GameObject:
   - component: {fileID: 1638524415}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10534,7 +10536,7 @@ GameObject:
   - component: {fileID: 1705975956}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10802,7 +10804,7 @@ GameObject:
   - component: {fileID: 1768505896}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10936,7 +10938,7 @@ GameObject:
   - component: {fileID: 1784865627}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11072,7 +11074,7 @@ GameObject:
   - component: {fileID: 1804396619}
   m_Layer: 5
   m_Name: School
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11683,7 +11685,7 @@ GameObject:
   - component: {fileID: 1842453559}
   m_Layer: 5
   m_Name: Gaming
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11832,7 +11834,7 @@ GameObject:
   - component: {fileID: 1844176064}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12670,7 +12672,7 @@ GameObject:
   - component: {fileID: 1994016622}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12964,7 +12966,7 @@ GameObject:
   - component: {fileID: 2047790413}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13100,7 +13102,7 @@ GameObject:
   - component: {fileID: 2080159555}
   m_Layer: 5
   m_Name: Exercise
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13288,7 +13290,7 @@ GameObject:
   - component: {fileID: 2112123263}
   m_Layer: 5
   m_Name: Friends
-  m_TagString: Untagged
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13501,7 +13503,7 @@ GameObject:
   - component: {fileID: 2147004176}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13811,6 +13813,18 @@ MonoBehaviour:
       - m_Target: {fileID: 477905191}
         m_TargetAssemblyTypeName: Journal, Assembly-CSharp
         m_MethodName: JournalClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 477905185}
+        m_TargetAssemblyTypeName: LoadPreferences, Assembly-CSharp
+        m_MethodName: ApplyDarkMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
