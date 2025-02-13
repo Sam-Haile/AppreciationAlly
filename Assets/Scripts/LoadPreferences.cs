@@ -227,18 +227,6 @@ public class LoadPreferences : MonoBehaviour
                     textMeshComponent.color = Color.white;
                 }
             }
-
-            //***** Make all "ReverseTextColor" elements black *****
-            var uiElementsReverseText = GameObject.FindGameObjectsWithTag("ReverseTextColor");
-
-            foreach (var uiElement in uiElementsReverseText)
-            {
-                var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
-                if (textMeshComponent != null)
-                {
-                    textMeshComponent.color = Color.black;
-                }
-            }
         }
         //else loaded isDarkMode value is set to false,...
         else
@@ -274,18 +262,6 @@ public class LoadPreferences : MonoBehaviour
                 if (textMeshComponent != null)
                 {
                     textMeshComponent.color = Color.black;
-                }
-            }
-
-            //***** Make all "ReverseTextColor" elements white *****
-            var uiElementsReverseText = GameObject.FindGameObjectsWithTag("ReverseTextColor");
-
-            foreach (var uiElement in uiElementsReverseText)
-            {
-                var textMeshComponent = uiElement.GetComponent<TextMeshProUGUI>();
-                if (textMeshComponent != null)
-                {
-                    textMeshComponent.color = Color.white;
                 }
             }
         }
