@@ -84,7 +84,8 @@ public class Journal : MonoBehaviour
         step2Ungrtfl = new JournalStep("", null, stepUIs[1], 1);
         step2Grtfl = new JournalStep("", null, stepUIs[1], 1);
         JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose up to 3 ", stepUIs[2], 2);
-        JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
+        //JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
+        JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[1], 1);
         JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
         JournalStep step6 = new JournalStep("Your day", null, null, 5);
         JournalStep step7 = new JournalStep("", null, null, 6);
