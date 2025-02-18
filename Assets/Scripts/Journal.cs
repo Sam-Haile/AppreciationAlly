@@ -43,7 +43,6 @@ public class Journal : MonoBehaviour
 
     //Step 4
     public TextMeshProUGUI journalPromptMesh;
-    public TMP_InputField responseInputField;
 
     //Step 5
     public List<GratefulButton> selectedButtons;
