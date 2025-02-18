@@ -41,6 +41,10 @@ public class Journal : MonoBehaviour
     //Step 3
     public List<GratefulButton> gratefulButtons;
 
+    //Step 4
+    public TextMeshProUGUI journalPromptMesh;
+    public TMP_InputField responseInputField;
+
     //Step 5
     public List<GratefulButton> selectedButtons;
     public TMP_InputField[] gratefulFor;
@@ -70,6 +74,13 @@ public class Journal : MonoBehaviour
                                             "Lovely to hear you're feeling this way. Can you share a highlight?",
                                             "That's awesome! What's something good that stood out to you today?"};
 
+    private string[] journalPrompts = {
+        "What are three things you’re grateful for today?",
+        "Write about a person who has positively impacted your life and why you’re thankful for them.",
+        "What is a recent experience that made you feel truly grateful?",
+        "Describe a place that makes you feel peaceful and grateful.",
+        "What are three things you’re grateful for today?"
+    };
 
     void Start()
     {
@@ -85,7 +96,7 @@ public class Journal : MonoBehaviour
         step2Grtfl = new JournalStep("", null, stepUIs[1], 1);
         JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose up to 3 ", stepUIs[2], 2);
         //JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
-        JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[1], 1);
+        JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
         JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
         JournalStep step6 = new JournalStep("Your day", null, null, 5);
         JournalStep step7 = new JournalStep("", null, null, 6);
@@ -147,6 +158,10 @@ public class Journal : MonoBehaviour
         else if(currentStep.currentStepIndex == 1)
         {
             chromoAnim.SetBool("speaking", true);
+        }
+        else if(currentStep.currentStepIndex == 3)
+        {
+            SetJournalPrompt();
         }
         else if(currentStep.currentStepIndex == 5)
         {
@@ -469,4 +484,16 @@ public class Journal : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the journal prompt to be displayed in the journal prompt step
+    /// </summary>
+    private void SetJournalPrompt()
+    {
+        //if journalPromptMesh is real,...
+        if (journalPromptMesh != null)
+        {
+            //update journalPromptMesh's text with a random jounral prompt
+            journalPromptMesh.text = journalPrompts[UnityEngine.Random.Range(0, journalPrompts.Length - 1)];
+        }
+    }
 }
