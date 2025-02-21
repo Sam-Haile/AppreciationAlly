@@ -533,6 +533,7 @@ public class Journal : MonoBehaviour
     /// </summary>
     private void SetJournalPrompt()
     {
+        //DailyTasks.Instance.GetLastUsageDate();
         //if journalPromptMesh is real,...
         if (journalPromptMesh != null)
         {
