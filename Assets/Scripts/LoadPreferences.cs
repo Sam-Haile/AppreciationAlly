@@ -16,6 +16,7 @@ public class LoadPreferences : MonoBehaviour
     public static string userName;
 
     public GameObject tutorialScreen;
+    public GameObject gridGameTutorialScreen;
 
     public Toggle tog;
     public Animator notifTog;
@@ -31,6 +32,14 @@ public class LoadPreferences : MonoBehaviour
                 tutorialScreen.SetActive(true);
             else
                 tutorialScreen.SetActive(false);
+        }
+
+        if(gridGameTutorialScreen != null)
+        {
+            if(PlayerPrefs.GetInt("GridGameTutorialDone", 0) == 0)
+                gridGameTutorialScreen.SetActive(true);
+            else
+                gridGameTutorialScreen.SetActive(false);
         }
 
         CheckToggle();
