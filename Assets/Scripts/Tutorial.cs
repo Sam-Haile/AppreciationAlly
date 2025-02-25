@@ -27,8 +27,8 @@ public class Tutorial : MonoBehaviour
         TutorialStep step2 = new TutorialStep("This is the grid game, play it whenever you want to practice gratitude!", 2);
         TutorialStep step3 = new TutorialStep("This is your Journal! Every day, you can add what your grateful for.", 3);
         TutorialStep step4 = new TutorialStep("This calendar lets you track and view your journal entries.", 4);
-        TutorialStep step5 = new TutorialStep("Theres so much to explore in Appreciation Ally! Have fun!", 5);
-        TutorialStep step6 = new TutorialStep("Theres so much to explore in Appreciation Ally! Have fun!", 6);
+        TutorialStep step5 = new TutorialStep("There is so much to explore in Appreciation Ally! Have fun!", 5);
+        TutorialStep step6 = new TutorialStep("There is so much to explore in Appreciation Ally! Have fun!", 6);
 
         step0.NextStep = step1;
         step1.NextStep = step2;
