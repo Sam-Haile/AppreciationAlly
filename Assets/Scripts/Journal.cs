@@ -126,6 +126,10 @@ public class Journal : MonoBehaviour
         "Reflect on how practicing gratitude has impacted your life and mindset."
     };
 
+    private string[] availablePrompts = {
+
+    };
+
     void Start()
     {
         SetupJournal();
@@ -533,7 +537,9 @@ public class Journal : MonoBehaviour
     /// </summary>
     private void SetJournalPrompt()
     {
-        //DailyTasks.Instance.GetLastUsageDate();
+        //Debug.Log(DateTime.Now.Date);
+        //Debug.Log(DailyTasks.Instance.journal_Completed);
+
         //if journalPromptMesh is real,...
         if (journalPromptMesh != null)
         {
