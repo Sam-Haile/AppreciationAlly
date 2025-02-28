@@ -2048,103 +2048,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528769352}
   m_CullTransparentMesh: 1
---- !u!1 &551964353
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 551964354}
-  - component: {fileID: 551964357}
-  - component: {fileID: 551964356}
-  - component: {fileID: 551964355}
-  m_Layer: 5
-  m_Name: Arrow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &551964354
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551964353}
-  m_LocalRotation: {x: -0, y: -0, z: 0.3494224, w: 0.93696535}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.298201, y: 1.298201, z: 1.298201}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1092710545}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40.904}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 660, y: 228}
-  m_SizeDelta: {x: 163.56, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &551964355
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551964353}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a47acdd3ea3706f428696429e2b88fd6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &551964356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551964353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 00e6817ec43e8854280da31aae23c7d3, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &551964357
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551964353}
-  m_CullTransparentMesh: 1
 --- !u!1 &559791068
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,7 +4436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1092710545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4550,7 +4453,6 @@ RectTransform:
   - {fileID: 1394846836}
   - {fileID: 1486424371}
   - {fileID: 2095125071}
-  - {fileID: 551964354}
   - {fileID: 1880057822}
   m_Father: {fileID: 966315551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4571,11 +4473,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfe0ae8d840fb27429257973c404966a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialPage: {fileID: 0}
-  blackBg: {fileID: 0}
-  tutorialAnimator: {fileID: 0}
-  speechBubble: {fileID: 0}
-  calendarUI: {fileID: 0}
+  tutorialPage: {fileID: 1092710544}
+  blackBg: {fileID: 1394846835}
+  tutorialAnimator: {fileID: 1092710547}
+  speechBubble: {fileID: 2095125072}
 --- !u!95 &1092710547
 Animator:
   serializedVersion: 5
@@ -4586,7 +4487,7 @@ Animator:
   m_GameObject: {fileID: 1092710544}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 06017a77b6f88dc46989975dff91ed4b, type: 2}
+  m_Controller: {fileID: 9100000, guid: d61cb2433b426134ca4f59f3576e5590, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8372,8 +8273,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
+      - m_Target: {fileID: 1092710546}
+        m_TargetAssemblyTypeName: GridGameTutorial, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -10193,7 +10094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Theres so much to explore in Appreciation Alley! Have fun!
+  m_text: Come back every day to practice some appreciation
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 752283431d678b24fa83b005cdafeae8, type: 2}
   m_sharedMaterial: {fileID: -8970492765813724413, guid: 752283431d678b24fa83b005cdafeae8, type: 2}

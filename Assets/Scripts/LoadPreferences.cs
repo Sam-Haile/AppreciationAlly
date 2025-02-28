@@ -26,6 +26,7 @@ public class LoadPreferences : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("TutorialDone", 0);
         if (tutorialScreen != null)
         {
             if (PlayerPrefs.GetInt("TutorialDone", 0) == 0)
@@ -34,7 +35,8 @@ public class LoadPreferences : MonoBehaviour
                 tutorialScreen.SetActive(false);
         }
 
-        if(gridGameTutorialScreen != null)
+        PlayerPrefs.SetInt("GridGameTutorialDone", 0);
+        if (gridGameTutorialScreen != null)
         {
             if(PlayerPrefs.GetInt("GridGameTutorialDone", 0) == 0)
                 gridGameTutorialScreen.SetActive(true);
