@@ -12,6 +12,7 @@ public class GridGameTutorial : MonoBehaviour
     public Animator tutorialAnimator;
     private TutorialStep currentStep;
     public TextMeshProUGUI speechBubble;
+    public GameObject gameStart;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +52,15 @@ public class GridGameTutorial : MonoBehaviour
         }
         else
         {
+            //activate gameStart
+            gameStart.SetActive(true);
+
+            //apply colors
+            LoadPreferences.ApplyColors();
+
+            //deactivate tutorial page
             tutorialPage.gameObject.SetActive(false);
+
             //Save the grid game tutorial completion status using PlayerPrefs.
             PlayerPrefs.SetInt("GridGameTutorialDone", 1);
             PlayerPrefs.Save();
