@@ -51,6 +51,8 @@ public class Journal : MonoBehaviour
     public List<GratefulButton> final_Buttons;
     public TextMeshProUGUI[] final_slots;
     public string[] final_slots_strings;
+    public TextMeshProUGUI final_prompt;
+    public string final_prompt_string;
     private int activeSlots = 0; // Keeps track of how many slots have text and should be visible.
 
     //Final Display fields
@@ -123,7 +125,58 @@ public class Journal : MonoBehaviour
         "List three things you’re grateful for that money can’t buy.",
         "Write about a time when you felt supported by your community.",
         "What’s something you’ve learned about gratitude itself?",
-        "Reflect on how practicing gratitude has impacted your life and mindset."
+        "Reflect on how practicing gratitude has impacted your life and mindset.",
+
+        "Visualize a place where you feel completely safe and secure. Describe this space in detail. How does it make you feel? What are you doing in this safe place?",
+        "Imagine a warm, healing light surrounding you. What color is the light? Where does it enter your body, and how does it make you feel as it spreads?",
+        "Visualize a moment where you are completely free from stress. What does your environment look like? How do you feel physically and emotionally?",
+        "Picture yourself standing strong, grounded, and confident. Where are you? How do you carry yourself? What does strength look like for you in this moment?",
+        "Visualize yourself releasing all tension from your body. Where do you feel the most tension, and what do you see or sense as you let it go?",
+        "Imagine yourself sitting by a calm stream. What does the water sound like? What thoughts or feelings float away on the current?",
+        "Take a mental journey to a place of peace. What does this place look like? What emotions are you experiencing as you journey there?",
+        "Visualize yourself walking through a beautiful garden full of flowers. What scents fill the air? What colors do you see, and how does the garden make you feel?",
+        "Picture yourself taking a deep breath and inhaling a sense of calm. Where in your body does the calmness spread to first? How does it affect your mind?",
+        "Visualize a place where you feel completely grateful. What is it about this place that fills you with appreciation? Write about the gratitude you feel.",
+        "Imagine a gentle, healing energy flowing through you, starting from your heart and spreading throughout your body. How does this energy feel, and what changes do you notice in your mind and body?",
+        "Picture yourself walking through nature. What do you hear around you? What sights do you take in, and how do you feel as you connect with the natural world?",
+        "Visualize a future version of yourself who feels empowered and strong. What are you doing? How do you hold yourself? How do others see you in this future vision?",
+        "Create a sanctuary in your mind—a place where you can go to retreat when you need rest. Describe its features, and what feelings of comfort or solace it brings you.",
+        "Imagine yourself standing in a clearing with a strong wind blowing. Feel the wind clear away any negative or distracting thoughts. What remains after the storm of your mind settles?",
+        "Visualize your heart expanding with compassion, first for yourself and then for others. What does this compassion feel like? How does it impact your emotions?",
+        "Picture yourself standing as the sun rises. What does the warmth of the sun feel like on your skin? How does the dawn symbolize new beginnings for you?",
+        "Visualize yourself in a cocoon of protection, safe from external stressors. How does it feel to be in this safe place, and what do you need to fully relax?",
+        "Imagine a physical or emotional wound that has been bothering you. Picture the wound healing in real-time—how does it heal? What sensations or thoughts accompany this healing?",
+        "Visualize yourself floating peacefully in the calm ocean. What is the color of the water? What thoughts come to mind as you drift? How does the ocean embrace you?",
+        "Picture a fear or anxiety that is holding you back. Visualize yourself overcoming it—what does that victory look like? How does it feel to be free from that fear?",
+        "Visualize a space filled with unconditional love. Who is with you in this space, or what loving energy surrounds you? What does it feel like to be enveloped in love?",
+        "Imagine a peaceful night of sleep. What is the environment like, and how do you feel as you prepare for rest? Write about the relaxation that accompanies this imagery.",
+        "Visualize yourself walking through soft clouds. How do they feel under your feet? What emotions arise as you move through this serene landscape?",
+        "Picture a situation that made you angry. Now, visualize releasing that anger into the wind or water. How does the anger leave your body, and how do you feel afterward?",
+        "Imagine surrounding yourself with a protective shield of light. What color is the light? How does this shield make you feel safe and secure?",
+        "Visualize a moment of absolute stillness. Where are you, and what is the environment like? How does the stillness affect your thoughts and feelings?",
+        "Picture your favorite place in the world. What sounds, smells, and colors fill the space? How does this place bring you a sense of joy or peace?",
+        "Visualize something that helps ground and center you. It could be a word, image, or feeling. Write about how this anchor helps you during difficult moments.",
+        "Imagine a sound that soothes your soul, whether it's the sound of nature, music, or a loved one’s voice. Describe the sound and how it helps you find peace.",
+        "Picture yourself leaning against a tall, ancient tree. What do you feel as you connect with the tree? What wisdom or healing energy does the tree offer you?",
+        "Visualize yourself embracing self-love. What does this love look like? How does it change the way you treat yourself and others?",
+        "Take a journey through your mind. What truths about yourself are you discovering? Write about the wisdom that is revealed during this journey.",
+        "Visualize a dark tunnel, and as you walk through it, a soft light appears at the end. Describe the light and the sense of relief as you move toward it.",
+        "Picture the perfect morning routine that sets you up for a calm and fulfilling day. What are you doing? How does each action contribute to your overall well-being?",
+        "Visualize yourself walking along a quiet path surrounded by trees. How does your body feel as you walk? What are you thinking about, and how does the path guide your thoughts?",
+        "Picture yourself fully immersed in the present moment. What sights, sounds, and feelings are you experiencing right now? How does it feel to be truly present?",
+        "Imagine creating a light bubble around you, protecting you from negativity and stress. How does this bubble make you feel? What changes when you are inside this bubble?",
+        "Visualize yourself as the ideal version of yourself. How does this version of you look, act, and feel? What does your ideal self do every day to stay balanced?",
+        "Visualize yourself breathing in healing energy and exhaling stress. How does each breath help to release what no longer serves you?",
+        "Picture your heart as vibrant and full of energy. What color is the light around it? How does your heart feel after being renewed?",
+        "Visualize a bridge you must cross to achieve emotional freedom. What does the bridge look like, and what emotions do you leave behind as you cross it?",
+        "Picture yourself as a mountain—strong, steadfast, and unwavering. How does it feel to embody the qualities of a mountain? What challenges can you face with this strength?",
+        "Imagine being wrapped in a warm embrace from someone you love. What feelings arise from this hug, and how does it help you feel comforted?",
+        "Visualize a bright blue sky with no clouds in sight. How does the vastness of the sky reflect your mental state? Write about the clarity it brings to your thoughts.",
+        "Visualize a calming ritual you perform to relax and unwind. What steps do you take? How does it help restore your peace of mind?",
+        "Picture a shield around your mind, protecting you from negative thoughts or worries. How does this shield feel, and how does it allow you to focus on positivity?",
+        "Recall a moment in your life when you felt at peace. Where were you? What were you doing? Describe the experience in detail.",
+        "Visualize a positive change happening in your life. How do you feel about this change, and how do you embrace the growth it brings?",
+        "Visualize meeting your inner child and offering them love and compassion. What does your inner child need right now? How do you provide comfort and care?"
     };
 
     private string[] availablePrompts = {
@@ -406,9 +459,11 @@ public class Journal : MonoBehaviour
                 final_slots_strings[i] = "";
         }
 
+        final_prompt_string = final_prompt.text;
+
         // Create a new JournalEntry with the collected data
         string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
-        JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, buttonDataList, final_slots_strings);
+        JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, buttonDataList, final_slots_strings, final_prompt_string);
 
         // Serialize the JournalEntry to JSON
         string json = JsonUtility.ToJson(entry, true); // Added 'true' for pretty print, optional
@@ -504,6 +559,10 @@ public class Journal : MonoBehaviour
                 activeSlots++;
             }
         }
+
+        // Update final_prompt and final_prompt_string
+        final_prompt.text = journalPromptMesh.text;
+        final_prompt_string = journalPromptMesh.text;
     }
 
 

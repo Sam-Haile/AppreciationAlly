@@ -331,6 +331,13 @@ public class Calendar : MonoBehaviour
             if (i < entry.finalSlotsStrings.Length && !string.IsNullOrEmpty(entry.finalSlotsStrings[i]) && entry.finalSlotsStrings[i] != "New Text")
             {
                 gratefulFor_str_txt.SetActive(true);
+
+                //
+                if (!string.IsNullOrEmpty(entry.finalPromptText))
+                    gratefulFor_str_txt.GetComponent<TextMeshProUGUI>().text = entry.finalPromptText;
+                else
+                    gratefulFor_str_txt.GetComponent<TextMeshProUGUI>().text = "GRATEFUL FOR";
+
                 LoadPreferences.ApplyColors();
                 grateful_strings[i].text = entry.finalSlotsStrings[i];
                 grateful_strings[i].transform.parent.gameObject.SetActive(true); // Show the text field or its container.
