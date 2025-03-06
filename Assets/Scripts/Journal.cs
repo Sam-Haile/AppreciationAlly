@@ -4,6 +4,7 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Journal : MonoBehaviour
 {
@@ -561,8 +562,20 @@ public class Journal : MonoBehaviour
         }
 
         // Update final_prompt and final_prompt_string
-        final_prompt.text = journalPromptMesh.text;
-        final_prompt_string = journalPromptMesh.text;
+        //if journal prompt is NOT empty or null,...
+        if (!string.IsNullOrEmpty(journalPromptMesh.text))
+        {
+            final_prompt.fontSize = 30.95f;
+            final_prompt.text = journalPromptMesh.text;
+            final_prompt_string = journalPromptMesh.text;
+        }
+        //else journal prompt is empty or null,...
+        else
+        {
+            final_prompt.fontSize = 82.8f;
+            final_prompt.text = "GRATEFUL FOR";
+            final_prompt_string = "GRATEFUL FOR";
+        }
     }
 
 
