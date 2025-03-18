@@ -27239,6 +27239,7 @@ MonoBehaviour:
   greeting: {fileID: 1016638558}
   settingsName: {fileID: 2086757268}
   tutorialScreen: {fileID: 244134257}
+  gridGameTutorialScreen: {fileID: 0}
   tog: {fileID: 1878439649}
   notifTog: {fileID: 1346055144}
   isDarkMode: 0
@@ -52597,7 +52598,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2053076769}
   m_Direction: 2
   m_Value: 1.0000012
-  m_Size: 0.6927048
+  m_Size: 0.69270486
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
