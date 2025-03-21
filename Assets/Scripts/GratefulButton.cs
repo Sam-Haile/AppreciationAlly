@@ -16,6 +16,12 @@ public class GratefulButton : MonoBehaviour
 
     private void Start()
     {
+        //selectedButtons.Clear();
+        //Debug.Log("Selected Buttons: ");
+        //for (int i = 0; i < selectedButtons.Count; i++)
+        //{
+        //    Debug.Log(selectedButtons[i].grtfl_text.text);
+        //}
         ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("SecondaryColor"), out parsedSecondaryColor);
     }
 
@@ -32,10 +38,32 @@ public class GratefulButton : MonoBehaviour
         else
         {
             selected = false;
-            this.GetComponent<Image>().color = Color.white;
-            icon.color = Color.black;
-            grtfl_text.color = Color.black;
+
+            //if loaded isDarkMode value is set to true,...
+            if (PlayerPrefs.GetInt("isDarkModeEnabled", 0) == 1)
+            {
+                Color newCol;
+                if (ColorUtility.TryParseHtmlString("#333333", out newCol))
+                    this.GetComponent<Image>().color = newCol;
+                icon.color = Color.white;
+                grtfl_text.color = Color.white;
+            }
+            //else loaded isDarkMode value is set to false,...
+            else
+            {
+                //set color to white
+                this.GetComponent<Image>().color = Color.white;
+                icon.color = Color.black;
+                grtfl_text.color = Color.black;
+            }
+
             selectedButtons.Remove(this);
+        }
+        //Debug.Log(gameObject.name + " " + selected);
+        Debug.Log("Selected Buttons: ");
+        for (int i = 0; i < selectedButtons.Count; i++)
+        {
+            Debug.Log(selectedButtons[i].grtfl_text.text);
         }
     }
 }

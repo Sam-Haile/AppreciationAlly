@@ -55,7 +55,7 @@ public class Journal : MonoBehaviour
     private string[] ungratefulResponses = { "Feeling that way is okay. Let's find small good things in your day",
                                              "It's okay to have off days. Can you name one small thing you liked recently?",
                                              "Feeling less grateful sometimes is normal. Did you see something pretty or interesting recently?",
-                                             "Not every day feels great, and that’s okay. Did something make you feel a little better recently?",
+                                             "Not every day feels great, and that?s okay. Did something make you feel a little better recently?",
                                              "It's fine to not always feel thankful. Can you think of something that you didn't mind doing recently?",
                                              "You don't have to feel grateful all the time. What's one small thing you enjoyed or appreciated recently?"
     };
@@ -468,4 +468,18 @@ public class Journal : MonoBehaviour
         }
     }
 
+    public void ClearSelectedButtons()
+    {
+        //clear selectedButtons
+        selectedButtons.Clear();
+
+        //clear gratefulButtons
+        gratefulButtons.Clear();
+
+        Debug.Log("Selected Buttons: ");
+        for (int i = 0; i < selectedButtons.Count; i++)
+        {
+            Debug.Log(selectedButtons[i].grtfl_text.text);
+        }
+    }
 }
