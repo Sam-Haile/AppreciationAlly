@@ -155,6 +155,8 @@ public class Journal : MonoBehaviour
 
     public void NextStep()
     {
+        ApplyAllSelectionColors();
+
         if (currentStep.currentStepIndex == 0)
         {
             sad = chromoAnim.GetBool("sad");
@@ -278,6 +280,8 @@ public class Journal : MonoBehaviour
 
     public void SaveInformation()
     {
+        //DEBUG MESSAGE
+        Debug.Log("SaveInformation called");
         switch (currentStep.currentStepIndex)
         {
             case 0:
@@ -287,12 +291,13 @@ public class Journal : MonoBehaviour
                 backButton.SetActive(true);
                 break;
             case 3:
-                selectedButtons.Clear();
-                foreach (GratefulButton selectedButton in gratefulButtons)
-                {
-                    if (selectedButton.selected)
-                        selectedButtons.Add(selectedButton);
-                }
+                ClearSelectedButtons();
+                //selectedButtons.Clear();
+                //foreach (GratefulButton selectedButton in gratefulButtons)
+                //{
+                //    if (selectedButton.selected)
+                //        selectedButtons.Add(selectedButton);
+                //}
                 break;
             case 4:
                 DisplayFinalEntry();
@@ -320,6 +325,8 @@ public class Journal : MonoBehaviour
 
     public void Save()
     {
+        //DEBUG MESSAGE
+        Debug.Log("Save Called");
         List<GratefulButtonData> buttonDataList = new List<GratefulButtonData>();
         foreach (GratefulButton button in selectedButtons)
         {
@@ -476,10 +483,22 @@ public class Journal : MonoBehaviour
         //clear gratefulButtons
         gratefulButtons.Clear();
 
-        Debug.Log("Selected Buttons: ");
+        //DEBUG MESSAGE
+        string debugMessage = "";
         for (int i = 0; i < selectedButtons.Count; i++)
         {
-            Debug.Log(selectedButtons[i].grtfl_text.text);
+            debugMessage = debugMessage + " " + selectedButtons[i].grtfl_text.text;
+        }
+        Debug.Log("ClearSelectedButtons Called | Selected Buttons: " + debugMessage);
+    }
+
+    public void ApplyAllSelectionColors()
+    {
+        //for each GratefulButton in the scene,...
+        foreach (GratefulButton button in FindObjectsOfType<GratefulButton>())
+        {
+            //apply the color based on if the button is selected or not
+            button.ApplySelectionColor();
         }
     }
 }
