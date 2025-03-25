@@ -42,7 +42,6 @@ public class Journal : MonoBehaviour
     public List<GratefulButton> gratefulButtons;
 
     //Step 5
-    public List<GratefulButton> selectedButtons;
     public TMP_InputField[] gratefulFor;
     public Slider finalSlider;
     public List<GratefulButton> final_Buttons;
@@ -73,6 +72,8 @@ public class Journal : MonoBehaviour
 
     void Start()
     {
+        ClearSelectedButtons();
+
         SetupJournal();
     }
 
@@ -155,7 +156,7 @@ public class Journal : MonoBehaviour
 
     public void NextStep()
     {
-        ApplyAllSelectionColors();
+        //ApplyAllSelectionColors();
 
         if (currentStep.currentStepIndex == 0)
         {
@@ -291,13 +292,12 @@ public class Journal : MonoBehaviour
                 backButton.SetActive(true);
                 break;
             case 3:
-                ClearSelectedButtons();
-                //selectedButtons.Clear();
-                //foreach (GratefulButton selectedButton in gratefulButtons)
-                //{
-                //    if (selectedButton.selected)
-                //        selectedButtons.Add(selectedButton);
-                //}
+                foreach (GratefulButton button in gratefulButtons)
+                {
+                    //if the button is selected and is not already in the selectedButtons list, then add it to the selectedButtons list
+                    if (button.selected && !GratefulButton.selectedButtons.Contains(button))
+                        GratefulButton.selectedButtons.Add(button);
+                }
                 break;
             case 4:
                 DisplayFinalEntry();
@@ -328,7 +328,7 @@ public class Journal : MonoBehaviour
         //DEBUG MESSAGE
         Debug.Log("Save Called");
         List<GratefulButtonData> buttonDataList = new List<GratefulButtonData>();
-        foreach (GratefulButton button in selectedButtons)
+        foreach (GratefulButton button in GratefulButton.selectedButtons)
         {
             GratefulButtonData data = new GratefulButtonData
             {
@@ -407,10 +407,10 @@ public class Journal : MonoBehaviour
         // Now, update based on current selections.
         for (int i = 0; i < final_Buttons.Count; i++)
         {
-            if (i < selectedButtons.Count && selectedButtons[i] != null)
+            if (i < GratefulButton.selectedButtons.Count && GratefulButton.selectedButtons[i] != null)
             {
-                final_Buttons[i].icon.sprite = selectedButtons[i].icon.sprite;
-                final_Buttons[i].grtfl_text.text = selectedButtons[i].grtfl_text.text;
+                final_Buttons[i].icon.sprite = GratefulButton.selectedButtons[i].icon.sprite;
+                final_Buttons[i].grtfl_text.text = GratefulButton.selectedButtons[i].grtfl_text.text;
                 final_Buttons[i].gameObject.SetActive(true); // Only make the button visible if it's being used.
             }
         }
@@ -478,18 +478,15 @@ public class Journal : MonoBehaviour
     public void ClearSelectedButtons()
     {
         //clear selectedButtons
-        selectedButtons.Clear();
+        GratefulButton.selectedButtons.Clear();
 
-        //clear gratefulButtons
-        gratefulButtons.Clear();
-
-        //DEBUG MESSAGE
-        string debugMessage = "";
-        for (int i = 0; i < selectedButtons.Count; i++)
+        //set each button to deselected
+        //for each GratefulButton in the scene,...
+        foreach (GratefulButton button in FindObjectsOfType<GratefulButton>())
         {
-            debugMessage = debugMessage + " " + selectedButtons[i].grtfl_text.text;
+            //set button to deselected
+            button.selected = false;
         }
-        Debug.Log("ClearSelectedButtons Called | Selected Buttons: " + debugMessage);
     }
 
     public void ApplyAllSelectionColors()
@@ -501,4 +498,20 @@ public class Journal : MonoBehaviour
             button.ApplySelectionColor();
         }
     }
+
+    //private void Update()
+    //{
+    //    //DEBUG MESSAGE
+    //    string debugMessage1 = "";
+    //    for (int i = 0; i < GratefulButton.selectedButtons.Count; i++)
+    //    {
+    //        debugMessage1 = debugMessage1 + " " + GratefulButton.selectedButtons[i].grtfl_text.text;
+    //    }
+    //    string debugMessage2 = "";
+    //    for (int i = 0; i < gratefulButtons.Count; i++)
+    //    {
+    //        debugMessage2 = debugMessage2 + " " + gratefulButtons[i].grtfl_text.text;
+    //    }
+    //    Debug.Log("# Selected Buttons: " + GratefulButton.selectedButtons.Count + "| Selected Buttons: " + debugMessage1 + "| Grateful Buttons: " + debugMessage2);
+    //}
 }
