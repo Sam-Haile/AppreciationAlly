@@ -200,7 +200,10 @@ public class Journal : MonoBehaviour
             }
             if (currentStep.currentStepIndex == 2)
             {
-                chromoAnim.SetTrigger("back");
+                chromoAnim.SetTrigger("startOver");
+                //chromoAnim.SetTrigger("back");
+                //chromoAnim.SetBool("happy", true);
+                //chromoAnim.SetBool("sad", false);
                 canvasAnim.SetTrigger("fadeOut");
             }
 
