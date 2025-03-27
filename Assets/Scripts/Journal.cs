@@ -180,9 +180,7 @@ public class Journal : MonoBehaviour
         "Visualize meeting your inner child and offering them love and compassion. What does your inner child need right now? How do you provide comfort and care?"
     };
 
-    private string[] availablePrompts = {
-
-    };
+    private string[] availablePrompts = {};
 
     void Start()
     {
@@ -612,11 +610,21 @@ public class Journal : MonoBehaviour
         //Debug.Log(DateTime.Now.Date);
         //Debug.Log(DailyTasks.Instance.journal_Completed);
 
+        //if availablePrompts is empty,...
+        //refill available prompts
+
+        //if it is a new day,...
+        //give a new random journal prompt
+        //else it is the same day,...
+        //give the same journal prompt associated with today
+
         //if journalPromptMesh is real,...
         if (journalPromptMesh != null)
         {
             //update journalPromptMesh's text with a random jounral prompt
             journalPromptMesh.text = journalPrompts[UnityEngine.Random.Range(0, journalPrompts.Length - 1)];
         }
+
+        //remove chosen prompt from availablePrompts
     }
 }
