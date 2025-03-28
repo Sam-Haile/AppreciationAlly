@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Journal : MonoBehaviour
 {
@@ -43,18 +41,12 @@ public class Journal : MonoBehaviour
     //Step 3
     public List<GratefulButton> gratefulButtons;
 
-    //Step 4
-    public TextMeshProUGUI journalPromptMesh;
-
     //Step 5
-    public List<GratefulButton> selectedButtons;
     public TMP_InputField[] gratefulFor;
     public Slider finalSlider;
     public List<GratefulButton> final_Buttons;
     public TextMeshProUGUI[] final_slots;
     public string[] final_slots_strings;
-    public TextMeshProUGUI final_prompt;
-    public string final_prompt_string;
     private int activeSlots = 0; // Keeps track of how many slots have text and should be visible.
 
     //Final Display fields
@@ -62,7 +54,7 @@ public class Journal : MonoBehaviour
     private string[] ungratefulResponses = { "Feeling that way is okay. Let's find small good things in your day",
                                              "It's okay to have off days. Can you name one small thing you liked recently?",
                                              "Feeling less grateful sometimes is normal. Did you see something pretty or interesting recently?",
-                                             "Not every day feels great, and that�s okay. Did something make you feel a little better recently?",
+                                             "Not every day feels great, and that?s okay. Did something make you feel a little better recently?",
                                              "It's fine to not always feel thankful. Can you think of something that you didn't mind doing recently?",
                                              "You don't have to feel grateful all the time. What's one small thing you enjoyed or appreciated recently?"
     };
@@ -77,112 +69,11 @@ public class Journal : MonoBehaviour
                                             "Lovely to hear you're feeling this way. Can you share a highlight?",
                                             "That's awesome! What's something good that stood out to you today?"};
 
-    private string[] journalPrompts = {
-        "What are three things you�re grateful for today?",
-        "Write about a person who has positively impacted your life and why you�re thankful for them.",
-        "What is a recent experience that made you feel truly grateful?",
-        "Describe a place that makes you feel peaceful and grateful.",
-        "What is a lesson you�ve learned recently that you�re thankful for?",
-        "List five small things in your daily life that bring you joy.",
-        "Write about a challenge you�ve faced and how it helped you grow.",
-        "What�s a childhood memory you�re grateful for?",
-        "Describe a simple pleasure that makes you feel thankful.",
-        "What is a quality you love about yourself and why are you grateful for it?",
-        "Write about an act of kindness you received recently.",
-        "What�s a piece of advice you�re thankful someone gave you?",
-        "List three things you love about your home.",
-        "Write about a skill you�ve learned and how it�s improved your life.",
-        "Who made you smile today, and why are you grateful for them?",
-        "What�s something in nature that makes you feel awe and gratitude?",
-        "Write about a book, movie, or song that changed your perspective and why you�re thankful for it.",
-        "What�s a favorite tradition you�re grateful to have?",
-        "What are three things your body allows you to do that you�re grateful for?",
-        "Describe a time when someone supported you and why you�re thankful for them.",
-        "Write about a meal you�ve enjoyed recently and why it brought you gratitude.",
-        "What�s a mistake you made that ended up teaching you something valuable?",
-        "Write about a moment when you felt completely at peace.",
-        "What�s something you used to take for granted but now deeply appreciate?",
-        "Write about a friendship that has positively shaped your life.",
-        "What is a modern convenience you�re thankful for and why?",
-        "Write about a time when someone expressed gratitude to you.",
-        "What�s a favorite hobby or activity that brings you joy?",
-        "Write about a time you accomplished something difficult and how it made you feel.",
-        "What is your favorite time of day, and why are you grateful for it?",
-        "Write about a teacher, mentor, or leader who inspired you.",
-        "What�s a piece of technology you�re grateful for and how it helps you?",
-        "Describe a holiday or celebration you�re grateful to have experienced.",
-        "Write about your favorite season and why you�re thankful for it.",
-        "What�s a recent compliment you received that you�re grateful for?",
-        "Write about a goal you�ve achieved and the journey it took to get there.",
-        "List three people you�re grateful to have in your life and why.",
-        "Write about a pet or animal that has brought joy into your life.",
-        "What is something you�ve done for someone else that made you feel grateful?",
-        "Write about a time when you felt truly appreciated.",
-        "What�s a unique trait or ability you have that you�re thankful for?",
-        "Write about a tradition or custom from your culture that fills you with gratitude.",
-        "What�s something about your current job or studies that you�re grateful for?",
-        "Write about a smell, sound, or taste that reminds you of something positive.",
-        "What�s a recent opportunity or experience that you�re grateful you had?",
-        "Write about a dream or goal you�re working toward and why you�re thankful for the journey.",
-        "List three things you�re grateful for that money can�t buy.",
-        "Write about a time when you felt supported by your community.",
-        "What�s something you�ve learned about gratitude itself?",
-        "Reflect on how practicing gratitude has impacted your life and mindset.",
-
-        "Visualize a place where you feel completely safe and secure. Describe this space in detail. How does it make you feel? What are you doing in this safe place?",
-        "Imagine a warm, healing light surrounding you. What color is the light? Where does it enter your body, and how does it make you feel as it spreads?",
-        "Visualize a moment where you are completely free from stress. What does your environment look like? How do you feel physically and emotionally?",
-        "Picture yourself standing strong, grounded, and confident. Where are you? How do you carry yourself? What does strength look like for you in this moment?",
-        "Visualize yourself releasing all tension from your body. Where do you feel the most tension, and what do you see or sense as you let it go?",
-        "Imagine yourself sitting by a calm stream. What does the water sound like? What thoughts or feelings float away on the current?",
-        "Take a mental journey to a place of peace. What does this place look like? What emotions are you experiencing as you journey there?",
-        "Visualize yourself walking through a beautiful garden full of flowers. What scents fill the air? What colors do you see, and how does the garden make you feel?",
-        "Picture yourself taking a deep breath and inhaling a sense of calm. Where in your body does the calmness spread to first? How does it affect your mind?",
-        "Visualize a place where you feel completely grateful. What is it about this place that fills you with appreciation? Write about the gratitude you feel.",
-        "Imagine a gentle, healing energy flowing through you, starting from your heart and spreading throughout your body. How does this energy feel, and what changes do you notice in your mind and body?",
-        "Picture yourself walking through nature. What do you hear around you? What sights do you take in, and how do you feel as you connect with the natural world?",
-        "Visualize a future version of yourself who feels empowered and strong. What are you doing? How do you hold yourself? How do others see you in this future vision?",
-        "Create a sanctuary in your mind�a place where you can go to retreat when you need rest. Describe its features, and what feelings of comfort or solace it brings you.",
-        "Imagine yourself standing in a clearing with a strong wind blowing. Feel the wind clear away any negative or distracting thoughts. What remains after the storm of your mind settles?",
-        "Visualize your heart expanding with compassion, first for yourself and then for others. What does this compassion feel like? How does it impact your emotions?",
-        "Picture yourself standing as the sun rises. What does the warmth of the sun feel like on your skin? How does the dawn symbolize new beginnings for you?",
-        "Visualize yourself in a cocoon of protection, safe from external stressors. How does it feel to be in this safe place, and what do you need to fully relax?",
-        "Imagine a physical or emotional wound that has been bothering you. Picture the wound healing in real-time�how does it heal? What sensations or thoughts accompany this healing?",
-        "Visualize yourself floating peacefully in the calm ocean. What is the color of the water? What thoughts come to mind as you drift? How does the ocean embrace you?",
-        "Picture a fear or anxiety that is holding you back. Visualize yourself overcoming it�what does that victory look like? How does it feel to be free from that fear?",
-        "Visualize a space filled with unconditional love. Who is with you in this space, or what loving energy surrounds you? What does it feel like to be enveloped in love?",
-        "Imagine a peaceful night of sleep. What is the environment like, and how do you feel as you prepare for rest? Write about the relaxation that accompanies this imagery.",
-        "Visualize yourself walking through soft clouds. How do they feel under your feet? What emotions arise as you move through this serene landscape?",
-        "Picture a situation that made you angry. Now, visualize releasing that anger into the wind or water. How does the anger leave your body, and how do you feel afterward?",
-        "Imagine surrounding yourself with a protective shield of light. What color is the light? How does this shield make you feel safe and secure?",
-        "Visualize a moment of absolute stillness. Where are you, and what is the environment like? How does the stillness affect your thoughts and feelings?",
-        "Picture your favorite place in the world. What sounds, smells, and colors fill the space? How does this place bring you a sense of joy or peace?",
-        "Visualize something that helps ground and center you. It could be a word, image, or feeling. Write about how this anchor helps you during difficult moments.",
-        "Imagine a sound that soothes your soul, whether it's the sound of nature, music, or a loved one�s voice. Describe the sound and how it helps you find peace.",
-        "Picture yourself leaning against a tall, ancient tree. What do you feel as you connect with the tree? What wisdom or healing energy does the tree offer you?",
-        "Visualize yourself embracing self-love. What does this love look like? How does it change the way you treat yourself and others?",
-        "Take a journey through your mind. What truths about yourself are you discovering? Write about the wisdom that is revealed during this journey.",
-        "Visualize a dark tunnel, and as you walk through it, a soft light appears at the end. Describe the light and the sense of relief as you move toward it.",
-        "Picture the perfect morning routine that sets you up for a calm and fulfilling day. What are you doing? How does each action contribute to your overall well-being?",
-        "Visualize yourself walking along a quiet path surrounded by trees. How does your body feel as you walk? What are you thinking about, and how does the path guide your thoughts?",
-        "Picture yourself fully immersed in the present moment. What sights, sounds, and feelings are you experiencing right now? How does it feel to be truly present?",
-        "Imagine creating a light bubble around you, protecting you from negativity and stress. How does this bubble make you feel? What changes when you are inside this bubble?",
-        "Visualize yourself as the ideal version of yourself. How does this version of you look, act, and feel? What does your ideal self do every day to stay balanced?",
-        "Visualize yourself breathing in healing energy and exhaling stress. How does each breath help to release what no longer serves you?",
-        "Picture your heart as vibrant and full of energy. What color is the light around it? How does your heart feel after being renewed?",
-        "Visualize a bridge you must cross to achieve emotional freedom. What does the bridge look like, and what emotions do you leave behind as you cross it?",
-        "Picture yourself as a mountain�strong, steadfast, and unwavering. How does it feel to embody the qualities of a mountain? What challenges can you face with this strength?",
-        "Imagine being wrapped in a warm embrace from someone you love. What feelings arise from this hug, and how does it help you feel comforted?",
-        "Visualize a bright blue sky with no clouds in sight. How does the vastness of the sky reflect your mental state? Write about the clarity it brings to your thoughts.",
-        "Visualize a calming ritual you perform to relax and unwind. What steps do you take? How does it help restore your peace of mind?",
-        "Picture a shield around your mind, protecting you from negative thoughts or worries. How does this shield feel, and how does it allow you to focus on positivity?",
-        "Recall a moment in your life when you felt at peace. Where were you? What were you doing? Describe the experience in detail.",
-        "Visualize a positive change happening in your life. How do you feel about this change, and how do you embrace the growth it brings?",
-        "Visualize meeting your inner child and offering them love and compassion. What does your inner child need right now? How do you provide comfort and care?"
-    };
 
     void Start()
     {
+        ClearSelectedButtons();
+
         SetupJournal();
     }
 
@@ -194,7 +85,6 @@ public class Journal : MonoBehaviour
         step2Ungrtfl = new JournalStep("", null, stepUIs[1], 1);
         step2Grtfl = new JournalStep("", null, stepUIs[1], 1);
         JournalStep step3 = new JournalStep("What are you Grateful for Today?", "Choose up to 3 ", stepUIs[2], 2);
-        //JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
         JournalStep step4 = new JournalStep("Let's Reflect on Your Day?", null, stepUIs[3], 3);
         JournalStep step5 = new JournalStep("Your day", null, stepUIs[4], 4);
         JournalStep step6 = new JournalStep("Your day", null, null, 5);
@@ -258,10 +148,6 @@ public class Journal : MonoBehaviour
         {
             chromoAnim.SetBool("speaking", true);
         }
-        else if(currentStep.currentStepIndex == 3)
-        {
-            SetJournalPrompt();
-        }
         else if(currentStep.currentStepIndex == 5)
         {
             chromoAnim.SetTrigger("end");
@@ -270,6 +156,8 @@ public class Journal : MonoBehaviour
 
     public void NextStep()
     {
+        //ApplyAllSelectionColors();
+
         if (currentStep.currentStepIndex == 0)
         {
             sad = chromoAnim.GetBool("sad");
@@ -393,6 +281,8 @@ public class Journal : MonoBehaviour
 
     public void SaveInformation()
     {
+        //DEBUG MESSAGE
+        Debug.Log("SaveInformation called");
         switch (currentStep.currentStepIndex)
         {
             case 0:
@@ -402,11 +292,11 @@ public class Journal : MonoBehaviour
                 backButton.SetActive(true);
                 break;
             case 3:
-                selectedButtons.Clear();
-                foreach (GratefulButton selectedButton in gratefulButtons)
+                foreach (GratefulButton button in gratefulButtons)
                 {
-                    if (selectedButton.selected)
-                        selectedButtons.Add(selectedButton);
+                    //if the button is selected and is not already in the selectedButtons list, then add it to the selectedButtons list
+                    if (button.selected && !GratefulButton.selectedButtons.Contains(button))
+                        GratefulButton.selectedButtons.Add(button);
                 }
                 break;
             case 4:
@@ -435,8 +325,10 @@ public class Journal : MonoBehaviour
 
     public void Save()
     {
+        //DEBUG MESSAGE
+        Debug.Log("Save Called");
         List<GratefulButtonData> buttonDataList = new List<GratefulButtonData>();
-        foreach (GratefulButton button in selectedButtons)
+        foreach (GratefulButton button in GratefulButton.selectedButtons)
         {
             GratefulButtonData data = new GratefulButtonData
             {
@@ -457,11 +349,9 @@ public class Journal : MonoBehaviour
                 final_slots_strings[i] = "";
         }
 
-        final_prompt_string = final_prompt.text;
-
         // Create a new JournalEntry with the collected data
         string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
-        JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, buttonDataList, final_slots_strings, final_prompt_string);
+        JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, buttonDataList, final_slots_strings);
 
         // Serialize the JournalEntry to JSON
         string json = JsonUtility.ToJson(entry, true); // Added 'true' for pretty print, optional
@@ -517,10 +407,10 @@ public class Journal : MonoBehaviour
         // Now, update based on current selections.
         for (int i = 0; i < final_Buttons.Count; i++)
         {
-            if (i < selectedButtons.Count && selectedButtons[i] != null)
+            if (i < GratefulButton.selectedButtons.Count && GratefulButton.selectedButtons[i] != null)
             {
-                final_Buttons[i].icon.sprite = selectedButtons[i].icon.sprite;
-                final_Buttons[i].grtfl_text.text = selectedButtons[i].grtfl_text.text;
+                final_Buttons[i].icon.sprite = GratefulButton.selectedButtons[i].icon.sprite;
+                final_Buttons[i].grtfl_text.text = GratefulButton.selectedButtons[i].grtfl_text.text;
                 final_Buttons[i].gameObject.SetActive(true); // Only make the button visible if it's being used.
             }
         }
@@ -557,22 +447,6 @@ public class Journal : MonoBehaviour
                 activeSlots++;
             }
         }
-
-        // Update final_prompt and final_prompt_string
-        //if journal prompt is NOT empty or null,...
-        if (!string.IsNullOrEmpty(journalPromptMesh.text))
-        {
-            final_prompt.fontSize = 30.95f;
-            final_prompt.text = journalPromptMesh.text;
-            final_prompt_string = journalPromptMesh.text;
-        }
-        //else journal prompt is empty or null,...
-        else
-        {
-            final_prompt.fontSize = 82.8f;
-            final_prompt.text = "GRATEFUL FOR";
-            final_prompt_string = "GRATEFUL FOR";
-        }
     }
 
 
@@ -601,60 +475,43 @@ public class Journal : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Set the journal prompt to be displayed in the journal prompt step
-    /// </summary>
-    private void SetJournalPrompt()
+    public void ClearSelectedButtons()
     {
-        //if journalPromptMesh is real,...
-        if (journalPromptMesh != null)
+        //clear selectedButtons
+        GratefulButton.selectedButtons.Clear();
+
+        //set each button to deselected
+        //for each GratefulButton in the scene,...
+        foreach (GratefulButton button in FindObjectsOfType<GratefulButton>())
         {
-            //get the last shown date
-            DateTime lastShownDate = GetPromptLastShownDate();
-
-            //get current date with time stripped
-            DateTime currentDate = DateTime.Now.Date;
-
-            //if current Date is after the last shown date,...
-            if (lastShownDate < currentDate)
-            {
-                //get a new random index
-                int index = UnityEngine.Random.Range(0, journalPrompts.Length);
-
-                //store the index of the selected quote
-                PlayerPrefs.SetInt("LastPromptIndex", index);
-
-                //update the last shown date
-                UpdatePromptLastShownDate(currentDate); 
-
-                //display the journal prompt
-                journalPromptMesh.text = journalPrompts[index];
-            }
-            //else it is the same day,...
-            else
-            {
-                //retrieve and display the last shown quote
-                int lastPromptIndex = PlayerPrefs.GetInt("LastPromptIndex", 0); // Default to 0 if not found
-
-                //display the journal prompt
-                journalPromptMesh.text = journalPrompts[lastPromptIndex];
-            }
+            //set button to deselected
+            button.selected = false;
         }
     }
 
-    private DateTime GetPromptLastShownDate()
+    public void ApplyAllSelectionColors()
     {
-        string lastShownDateString = PlayerPrefs.GetString("PromptLastShownDate", "");
-        if (string.IsNullOrEmpty(lastShownDateString))
+        //for each GratefulButton in the scene,...
+        foreach (GratefulButton button in FindObjectsOfType<GratefulButton>())
         {
-            return DateTime.MinValue;
+            //apply the color based on if the button is selected or not
+            button.ApplySelectionColor();
         }
-        return DateTime.Parse(lastShownDateString);
     }
 
-    private void UpdatePromptLastShownDate(DateTime date)
-    {
-        PlayerPrefs.SetString("PromptLastShownDate", date.ToString());
-        PlayerPrefs.Save();
-    }
+    //private void Update()
+    //{
+    //    //DEBUG MESSAGE
+    //    string debugMessage1 = "";
+    //    for (int i = 0; i < GratefulButton.selectedButtons.Count; i++)
+    //    {
+    //        debugMessage1 = debugMessage1 + " " + GratefulButton.selectedButtons[i].grtfl_text.text;
+    //    }
+    //    string debugMessage2 = "";
+    //    for (int i = 0; i < gratefulButtons.Count; i++)
+    //    {
+    //        debugMessage2 = debugMessage2 + " " + gratefulButtons[i].grtfl_text.text;
+    //    }
+    //    Debug.Log("# Selected Buttons: " + GratefulButton.selectedButtons.Count + "| Selected Buttons: " + debugMessage1 + "| Grateful Buttons: " + debugMessage2);
+    //}
 }
