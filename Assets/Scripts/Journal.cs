@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -622,9 +623,52 @@ public class Journal : MonoBehaviour
         if (journalPromptMesh != null)
         {
             //update journalPromptMesh's text with a random jounral prompt
-            journalPromptMesh.text = journalPrompts[UnityEngine.Random.Range(0, journalPrompts.Length - 1)];
+            journalPromptMesh.text = GetRandomPrompt();
+            //journalPrompts[UnityEngine.Random.Range(0, journalPrompts.Length - 1)];
         }
 
         //remove chosen prompt from availablePrompts
+    }
+
+    private string GetRandomPrompt()
+    {
+        DateTime lastShownDate = GetPromptLastShownDate();
+        DateTime currentDate = DateTime.Now.Date; // Get current date with time stripped
+
+        if (lastShownDate < currentDate)
+        {
+            int index = UnityEngine.Random.Range(0, journalPrompts.Length);   
+
+            // Store the index of the selected quote
+            PlayerPrefs.SetInt("LastPromptIndex", index);
+            UpdatePromptLastShownDate(currentDate); // Update the last shown date
+
+            return journalPrompts[index];
+            //quote.text = randomQuote; // Display the quote in the UI
+        }
+        else
+        {
+            // It's the same day, so retrieve and display the last shown quote
+            int lastPromptIndex = PlayerPrefs.GetInt("LastPromptIndex", 0); // Default to 0 if not found
+
+            return journalPrompts[lastPromptIndex];
+            //quote.text = quotes[lastQuoteIndex];
+        }
+    }
+
+    private DateTime GetPromptLastShownDate()
+    {
+        string lastShownDateString = PlayerPrefs.GetString("PromptLastShownDate", "");
+        if (string.IsNullOrEmpty(lastShownDateString))
+        {
+            return DateTime.MinValue;
+        }
+        return DateTime.Parse(lastShownDateString);
+    }
+
+    private void UpdatePromptLastShownDate(DateTime date)
+    {
+        PlayerPrefs.SetString("PromptLastShownDate", date.ToString());
+        PlayerPrefs.Save();
     }
 }
