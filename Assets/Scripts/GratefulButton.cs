@@ -24,46 +24,18 @@ public class GratefulButton : MonoBehaviour
         if (!selected && selectedButtons.Count < 3)
         {
             selected = true;
-
+            this.GetComponent<Image>().color = parsedSecondaryColor;
+            icon.color = Color.white;
+            grtfl_text.color = Color.white;
             selectedButtons.Add(this);
         }
         else
         {
             selected = false;
-
+            this.GetComponent<Image>().color = Color.white;
+            icon.color = Color.black;
+            grtfl_text.color = Color.black;
             selectedButtons.Remove(this);
-        }
-
-        ApplySelectionColor();
-    }
-
-    public void ApplySelectionColor()
-    {
-        if (selected)
-        {
-            this.GetComponent<Image>().color = parsedSecondaryColor;
-            icon.color = Color.white;
-            grtfl_text.color = Color.white;
-        }
-        else
-        {
-            //if loaded isDarkMode value is set to true,...
-            if (PlayerPrefs.GetInt("isDarkModeEnabled", 0) == 1)
-            {
-                Color newCol;
-                if (ColorUtility.TryParseHtmlString("#333333", out newCol))
-                    this.GetComponent<Image>().color = newCol;
-                icon.color = Color.white;
-                grtfl_text.color = Color.white;
-            }
-            //else loaded isDarkMode value is set to false,...
-            else
-            {
-                //set color to white
-                this.GetComponent<Image>().color = Color.white;
-                icon.color = Color.black;
-                grtfl_text.color = Color.black;
-            }
         }
     }
 }
