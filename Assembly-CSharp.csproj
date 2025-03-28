@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\ImageDisplay.cs" />
     <Compile Include="Assets\Scripts\DailyTaskChecker.cs" />
     <Compile Include="Assets\Scripts\SelectedBadge.cs" />
+    <Compile Include="Assets\Scripts\GridGameTutorial.cs" />
     <Compile Include="Assets\Scripts\SaveAchievements.cs" />
     <Compile Include="Assets\Scripts\GratefulButtonData.cs" />
     <Compile Include="Assets\Scripts\GratefulButton.cs" />
