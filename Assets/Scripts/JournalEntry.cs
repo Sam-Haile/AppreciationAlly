@@ -10,13 +10,12 @@ public class JournalEntry
     public string[] finalSlotsStrings;
     public string finalPromptText;
 
-    public JournalEntry(string date, float sliderValue, List<GratefulButtonData> finalButtonsData, string[] finalSlotsStrings, string finalPromptText)
+    public JournalEntry(string date, float sliderValue, List<GratefulButtonData> finalButtonsData, string[] finalSlotsStrings)
     {
         this.date = date;
         this.gratitudeLevel = sliderValue;
         this.finalButtonsData = finalButtonsData;
         this.finalSlotsStrings = finalSlotsStrings;
-        this.finalPromptText = finalPromptText;
     }
 }
 

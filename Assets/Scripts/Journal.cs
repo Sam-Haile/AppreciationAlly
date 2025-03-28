@@ -9,9 +9,9 @@ public class Journal : MonoBehaviour
 {
     private Color ungratefulColor = new Color(233f / 255f, 49f / 255f, 50f / 255f);
     private Color littleGratefulColor = new Color(236f / 255f, 95f / 255f, 46f / 255f);
-    private Color kindOfGratefulColor = new Color(255f / 255f, 214f/ 255f, 120f / 255f); 
+    private Color kindOfGratefulColor = new Color(255f / 255f, 214f / 255f, 120f / 255f);
     private Color gratefulColor = new Color(187f / 255f, 220f / 255f, 66f / 255f);
-    private Color superGratefulColor = new Color(117f / 255f, 239f / 255f, 49f / 255f); 
+    private Color superGratefulColor = new Color(117f / 255f, 239f / 255f, 49f / 255f);
 
     public Animator canvasAnim;
     public Animator chromoAnim;
@@ -26,7 +26,7 @@ public class Journal : MonoBehaviour
 
     public TextMeshProUGUI journalHeader;
     public TextMeshProUGUI journalSubheader;
-    [HideInInspector]public JournalStep currentStep;
+    [HideInInspector] public JournalStep currentStep;
     public GameObject[] stepUIs;
 
     //Step 1s
@@ -120,7 +120,7 @@ public class Journal : MonoBehaviour
 
     public void UpdateUI()
     {
-        
+
         if (currentStep.headerText != null)
             journalHeader.text = currentStep.headerText;
         else
@@ -139,16 +139,16 @@ public class Journal : MonoBehaviour
                 step.SetActive(true);
         }
 
-        if(currentStep.currentStepIndex == 0)
+        if (currentStep.currentStepIndex == 0)
         {
             chromoAnim.SetBool("happy", happy);
             chromoAnim.SetBool("sad", sad);
         }
-        else if(currentStep.currentStepIndex == 1)
+        else if (currentStep.currentStepIndex == 1)
         {
             chromoAnim.SetBool("speaking", true);
         }
-        else if(currentStep.currentStepIndex == 5)
+        else if (currentStep.currentStepIndex == 5)
         {
             chromoAnim.SetTrigger("end");
         }
@@ -176,7 +176,7 @@ public class Journal : MonoBehaviour
                 UpdateUI();
             }
         }
-        else if(currentStep.currentStepIndex < 7)
+        else if (currentStep.currentStepIndex < 7)
         {
             // Add a condition to check if we're moving from step index 1 to step index 2
             if (currentStep.currentStepIndex == 1 && currentStep.NextStep.currentStepIndex == 2)
@@ -200,7 +200,7 @@ public class Journal : MonoBehaviour
             }
             if (currentStep.currentStepIndex == 2)
             {
-                chromoAnim.SetTrigger("back");
+                chromoAnim.SetTrigger("startOver");
                 canvasAnim.SetTrigger("fadeOut");
             }
 
@@ -282,7 +282,8 @@ public class Journal : MonoBehaviour
     public void SaveInformation()
     {
         //DEBUG MESSAGE
-        Debug.Log("SaveInformation called");
+        //Debug.Log("SaveInformation called");
+
         switch (currentStep.currentStepIndex)
         {
             case 0:
@@ -326,7 +327,8 @@ public class Journal : MonoBehaviour
     public void Save()
     {
         //DEBUG MESSAGE
-        Debug.Log("Save Called");
+        //Debug.Log("Save Called");
+
         List<GratefulButtonData> buttonDataList = new List<GratefulButtonData>();
         foreach (GratefulButton button in GratefulButton.selectedButtons)
         {
@@ -399,7 +401,7 @@ public class Journal : MonoBehaviour
         // Used if user goes back to modify selections
         foreach (var finalButton in final_Buttons)
         {
-            finalButton.icon.sprite = null; 
+            finalButton.icon.sprite = null;
             finalButton.grtfl_text.text = "";
             finalButton.gameObject.SetActive(false); // Hide the button as the default state.
         }
@@ -459,7 +461,7 @@ public class Journal : MonoBehaviour
                 " If you're looking for a mood boost, why not try the grid game next?";
         }
         // If the grid game WAS played
-        else if(DailyTasks.Instance.gridGame_Completed)
+        else if (DailyTasks.Instance.gridGame_Completed)
         {
             chromos2ndSpeechBubble.text = "Great job reflecting today!" +
                 " Remember that choosing to focus on things you are grateful for can help you feel your best and combat stress.";
@@ -468,7 +470,7 @@ public class Journal : MonoBehaviour
 
     public void JournalClose()
     {
-        if(currentStep.currentStepIndex == 6)
+        if (currentStep.currentStepIndex == 6)
         {
             DailyTasks.Instance.MarkTaskAsCompleted("Journal");
             this.gameObject.GetComponent<Animator>().SetTrigger("quit");
@@ -498,20 +500,4 @@ public class Journal : MonoBehaviour
             button.ApplySelectionColor();
         }
     }
-
-    //private void Update()
-    //{
-    //    //DEBUG MESSAGE
-    //    string debugMessage1 = "";
-    //    for (int i = 0; i < GratefulButton.selectedButtons.Count; i++)
-    //    {
-    //        debugMessage1 = debugMessage1 + " " + GratefulButton.selectedButtons[i].grtfl_text.text;
-    //    }
-    //    string debugMessage2 = "";
-    //    for (int i = 0; i < gratefulButtons.Count; i++)
-    //    {
-    //        debugMessage2 = debugMessage2 + " " + gratefulButtons[i].grtfl_text.text;
-    //    }
-    //    Debug.Log("# Selected Buttons: " + GratefulButton.selectedButtons.Count + "| Selected Buttons: " + debugMessage1 + "| Grateful Buttons: " + debugMessage2);
-    //}
 }
