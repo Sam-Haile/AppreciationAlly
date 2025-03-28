@@ -181,8 +181,6 @@ public class Journal : MonoBehaviour
         "Visualize meeting your inner child and offering them love and compassion. What does your inner child need right now? How do you provide comfort and care?"
     };
 
-    private string[] availablePrompts = {};
-
     void Start()
     {
         SetupJournal();
@@ -608,51 +606,39 @@ public class Journal : MonoBehaviour
     /// </summary>
     private void SetJournalPrompt()
     {
-        //Debug.Log(DateTime.Now.Date);
-        //Debug.Log(DailyTasks.Instance.journal_Completed);
-
-        //if availablePrompts is empty,...
-        //refill available prompts
-
-        //if it is a new day,...
-        //give a new random journal prompt
-        //else it is the same day,...
-        //give the same journal prompt associated with today
-
         //if journalPromptMesh is real,...
         if (journalPromptMesh != null)
         {
-            //update journalPromptMesh's text with a random jounral prompt
-            journalPromptMesh.text = GetRandomPrompt();
-            //journalPrompts[UnityEngine.Random.Range(0, journalPrompts.Length - 1)];
-        }
+            //get the last shown date
+            DateTime lastShownDate = GetPromptLastShownDate();
 
-        //remove chosen prompt from availablePrompts
-    }
+            //get current date with time stripped
+            DateTime currentDate = DateTime.Now.Date;
 
-    private string GetRandomPrompt()
-    {
-        DateTime lastShownDate = GetPromptLastShownDate();
-        DateTime currentDate = DateTime.Now.Date; // Get current date with time stripped
+            //if current Date is after the last shown date,...
+            if (lastShownDate < currentDate)
+            {
+                //get a new random index
+                int index = UnityEngine.Random.Range(0, journalPrompts.Length);
 
-        if (lastShownDate < currentDate)
-        {
-            int index = UnityEngine.Random.Range(0, journalPrompts.Length);   
+                //store the index of the selected quote
+                PlayerPrefs.SetInt("LastPromptIndex", index);
 
-            // Store the index of the selected quote
-            PlayerPrefs.SetInt("LastPromptIndex", index);
-            UpdatePromptLastShownDate(currentDate); // Update the last shown date
+                //update the last shown date
+                UpdatePromptLastShownDate(currentDate); 
 
-            return journalPrompts[index];
-            //quote.text = randomQuote; // Display the quote in the UI
-        }
-        else
-        {
-            // It's the same day, so retrieve and display the last shown quote
-            int lastPromptIndex = PlayerPrefs.GetInt("LastPromptIndex", 0); // Default to 0 if not found
+                //display the journal prompt
+                journalPromptMesh.text = journalPrompts[index];
+            }
+            //else it is the same day,...
+            else
+            {
+                //retrieve and display the last shown quote
+                int lastPromptIndex = PlayerPrefs.GetInt("LastPromptIndex", 0); // Default to 0 if not found
 
-            return journalPrompts[lastPromptIndex];
-            //quote.text = quotes[lastQuoteIndex];
+                //display the journal prompt
+                journalPromptMesh.text = journalPrompts[lastPromptIndex];
+            }
         }
     }
 
