@@ -314,10 +314,8 @@ public class Journal : MonoBehaviour
             {
                 chromoAnim.SetTrigger("startOver");
                 canvasAnim.SetTrigger("fadeOut");
-            }
-            if(currentStep.currentStepIndex == 3)
-            {
-                GratefulButton.selectedButtons.Clear();
+
+                ClearSelectedButtons();
             }
 
             nextButton.text = "NEXT";
@@ -427,7 +425,8 @@ public class Journal : MonoBehaviour
 
                 break;
             case 6:
-                GratefulButton.selectedButtons.Clear();
+                ClearSelectedButtons();
+
                 if (!DailyTasks.Instance.journal_Completed)
                 {
                     AchievementManager.IncrementTracker("GratefulEntries", activeSlots);
@@ -675,11 +674,13 @@ public class Journal : MonoBehaviour
 
         //set each button to deselected
         //for each GratefulButton in the scene,...
-        foreach (GratefulButton button in FindObjectsOfType<GratefulButton>())
+        foreach (GratefulButton button in gratefulButtons)
         {
             //set button to deselected
             button.selected = false;
         }
+
+        //Debug.Log("selectedButtons = " + GratefulButton.selectedButtons.Count);
     }
 
     public void ApplyAllSelectionColors()
