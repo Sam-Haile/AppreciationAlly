@@ -38,4 +38,9 @@ public class GratefulButton : MonoBehaviour
             selectedButtons.Remove(this);
         }
     }
+
+    public void ApplySelectionColor()
+    {
+
+    }
 }
