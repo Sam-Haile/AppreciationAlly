@@ -256,6 +256,10 @@ public class Journal : MonoBehaviour
         {
             chromoAnim.SetBool("speaking", true);
         }
+        else if (currentStep.currentStepIndex == 3)
+        {
+            SetJournalPrompt();
+        }
         else if (currentStep.currentStepIndex == 5)
         {
             chromoAnim.SetTrigger("end");
@@ -264,7 +268,7 @@ public class Journal : MonoBehaviour
 
     public void NextStep()
     {
-        //ApplyAllSelectionColors();
+        ApplyAllSelectionColors();
 
         if (currentStep.currentStepIndex == 0)
         {
@@ -310,6 +314,10 @@ public class Journal : MonoBehaviour
             {
                 chromoAnim.SetTrigger("startOver");
                 canvasAnim.SetTrigger("fadeOut");
+            }
+            if(currentStep.currentStepIndex == 3)
+            {
+                GratefulButton.selectedButtons.Clear();
             }
 
             nextButton.text = "NEXT";
@@ -459,9 +467,11 @@ public class Journal : MonoBehaviour
                 final_slots_strings[i] = "";
         }
 
+        final_prompt_string = final_prompt.text;
+
         // Create a new JournalEntry with the collected data
         string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
-        JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, buttonDataList, final_slots_strings);
+        JournalEntry entry = new JournalEntry(currentDate, finalSlider.value, buttonDataList, final_slots_strings, final_prompt_string);
 
         // Serialize the JournalEntry to JSON
         string json = JsonUtility.ToJson(entry, true); // Added 'true' for pretty print, optional
@@ -601,7 +611,7 @@ public class Journal : MonoBehaviour
         }
     }
 
-        /// <summary>
+    /// <summary>
     /// Set the journal prompt to be displayed in the journal prompt step
     /// </summary>
     private void SetJournalPrompt()

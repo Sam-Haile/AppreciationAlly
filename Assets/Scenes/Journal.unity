@@ -4876,6 +4876,7 @@ MonoBehaviour:
   - {fileID: 1804396619}
   - {fileID: 610554040}
   - {fileID: 98193217}
+  journalPromptMesh: {fileID: 288175099}
   gratefulFor:
   - {fileID: 140966968}
   - {fileID: 20369604}
@@ -4890,6 +4891,8 @@ MonoBehaviour:
   - {fileID: 1669022830}
   - {fileID: 1970453205}
   final_slots_strings: []
+  final_prompt: {fileID: 985112640}
+  final_prompt_string: 
 --- !u!1 &479249070
 GameObject:
   m_ObjectHideFlags: 0
