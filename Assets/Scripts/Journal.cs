@@ -29,6 +29,8 @@ public class Journal : MonoBehaviour
     [HideInInspector] public JournalStep currentStep;
     public GameObject[] stepUIs;
 
+    public LoadPreferences loadPreferences;
+
     //Step 1s
     public Slider emotionSlider;
     public TextMeshProUGUI emotionRating;
@@ -319,6 +321,9 @@ public class Journal : MonoBehaviour
 
     public void NextStep()
     {
+        loadPreferences.ApplyDarkMode();
+        LoadPreferences.ApplyColors();
+
         ApplyAllSelectionColors();
 
         if (currentStep.currentStepIndex == 0)

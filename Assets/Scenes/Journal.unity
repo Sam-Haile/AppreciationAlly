@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 75413280}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1718,7 +1718,7 @@ GameObject:
   - component: {fileID: 140966968}
   m_Layer: 5
   m_Name: InputField (TMP)
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1828,7 +1828,7 @@ MonoBehaviour:
       m_Calls: []
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
-  m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
+  m_SelectionColor: {r: 0, g: 0, b: 0, a: 0.7529412}
   m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
@@ -3861,7 +3861,7 @@ GameObject:
   - component: {fileID: 350771007}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4089,7 +4089,7 @@ GameObject:
   - component: {fileID: 365793336}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4859,6 +4859,7 @@ MonoBehaviour:
   - {fileID: 104357114}
   - {fileID: 1725378840}
   - {fileID: 1249170756}
+  loadPreferences: {fileID: 477905185}
   emotionSlider: {fileID: 1618514937}
   emotionRating: {fileID: 605038942}
   gratefulButtons:
@@ -6269,7 +6270,7 @@ GameObject:
   - component: {fileID: 647237716}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7933,7 +7934,7 @@ GameObject:
   - component: {fileID: 955797931}
   m_Layer: 5
   m_Name: Placeholder
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8006,8 +8007,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2151364406
-  m_fontColor: {r: 0.2121626, g: 0.21595122, b: 0.233, a: 0.5}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8936,7 +8937,7 @@ GameObject:
   - component: {fileID: 1079035776}
   m_Layer: 5
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9078,7 +9079,7 @@ GameObject:
   - component: {fileID: 1137343503}
   m_Layer: 5
   m_Name: Slot 1
-  m_TagString: SecondaryColor
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10305,7 +10306,7 @@ GameObject:
   - component: {fileID: 1380256235}
   m_Layer: 5
   m_Name: Slot 2
-  m_TagString: SecondaryColor
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10813,7 +10814,7 @@ GameObject:
   - component: {fileID: 1478979601}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11652,7 +11653,7 @@ GameObject:
   - component: {fileID: 1669022830}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11714,7 +11715,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11788,7 +11789,7 @@ GameObject:
   - component: {fileID: 1705408888}
   m_Layer: 5
   m_Name: Slot 3
-  m_TagString: SecondaryColor
+  m_TagString: BackgroundColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12889,7 +12890,7 @@ GameObject:
   - component: {fileID: 1829733812}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13713,7 +13714,7 @@ GameObject:
   - component: {fileID: 1884367361}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14217,7 +14218,7 @@ GameObject:
   - component: {fileID: 1970453205}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: TextColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14252,7 +14253,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
