@@ -23,11 +23,11 @@ public class LoadPreferences : MonoBehaviour
     public bool isDarkMode;
     public Toggle darkModeToggle;
 
-    //DEBUGGING
-    private void Awake()
-    {
-        PlayerPrefs.SetInt("TutorialDone", 0);
-    }
+    ////DEBUGGING
+    //private void Awake()
+    //{
+    //    PlayerPrefs.SetInt("TutorialDone", 0);
+    //}
 
     private void Start()
     {
