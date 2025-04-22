@@ -4040,7 +4040,6 @@ GameObject:
   - component: {fileID: 966315547}
   - component: {fileID: 966315546}
   - component: {fileID: 966315552}
-  - component: {fileID: 966315553}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4222,23 +4221,6 @@ MonoBehaviour:
   - {fileID: 1747304693}
   - {fileID: 609604288}
   - {fileID: 1442015736}
---- !u!114 &966315553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966315545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe0ae8d840fb27429257973c404966a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tutorialPage: {fileID: 1092710544}
-  blackBg: {fileID: 0}
-  tutorialAnimator: {fileID: 0}
-  speechBubble: {fileID: 2095125072}
-  gameStart: {fileID: 0}
 --- !u!1001 &988942638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4490,11 +4472,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfe0ae8d840fb27429257973c404966a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialPage: {fileID: 0}
-  blackBg: {fileID: 0}
-  tutorialAnimator: {fileID: 0}
-  speechBubble: {fileID: 0}
-  gameStart: {fileID: 0}
+  tutorialPage: {fileID: 1092710544}
+  blackBg: {fileID: 1394846835}
+  tutorialAnimator: {fileID: 1218283562}
+  speechBubble: {fileID: 2095125072}
+  gameStart: {fileID: 1724096885}
 --- !u!95 &1092710547
 Animator:
   serializedVersion: 5
@@ -5053,6 +5035,11 @@ PrefabInstance:
 --- !u!4 &1218283561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1389441240724591646, guid: 25fd8fe18c002db4ea251a6aac04ed20, type: 3}
+  m_PrefabInstance: {fileID: 1218283560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1218283562 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 337193837567625261, guid: 25fd8fe18c002db4ea251a6aac04ed20, type: 3}
   m_PrefabInstance: {fileID: 1218283560}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1244378507
