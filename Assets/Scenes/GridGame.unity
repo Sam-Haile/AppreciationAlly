@@ -4086,6 +4086,7 @@ MonoBehaviour:
   greeting: {fileID: 0}
   settingsName: {fileID: 0}
   tutorialScreen: {fileID: 0}
+  gridGameTutorialScreen: {fileID: 1092710544}
   tog: {fileID: 0}
   notifTog: {fileID: 0}
   isDarkMode: 0
@@ -4474,7 +4475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialPage: {fileID: 1092710544}
   blackBg: {fileID: 1394846835}
-  tutorialAnimator: {fileID: 1218283562}
+  tutorialAnimator: {fileID: 1092710547}
   speechBubble: {fileID: 2095125072}
   gameStart: {fileID: 1724096885}
 --- !u!95 &1092710547
@@ -5035,11 +5036,6 @@ PrefabInstance:
 --- !u!4 &1218283561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1389441240724591646, guid: 25fd8fe18c002db4ea251a6aac04ed20, type: 3}
-  m_PrefabInstance: {fileID: 1218283560}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1218283562 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 337193837567625261, guid: 25fd8fe18c002db4ea251a6aac04ed20, type: 3}
   m_PrefabInstance: {fileID: 1218283560}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1244378507

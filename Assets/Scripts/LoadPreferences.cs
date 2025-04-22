@@ -16,6 +16,7 @@ public class LoadPreferences : MonoBehaviour
     public static string userName;
 
     public GameObject tutorialScreen;
+    public GameObject gridGameTutorialScreen;
 
     public Toggle tog;
     public Animator notifTog;
@@ -23,20 +24,24 @@ public class LoadPreferences : MonoBehaviour
     public bool isDarkMode;
     public Toggle darkModeToggle;
 
-    ////DEBUGGING
-    //private void Awake()
-    //{
-    //    PlayerPrefs.SetInt("TutorialDone", 0);
-    //}
-
     private void Start()
     {
+        //PlayerPrefs.SetInt("TutorialDone", 0);
         if (tutorialScreen != null)
         {
             if (PlayerPrefs.GetInt("TutorialDone", 0) == 0)
                 tutorialScreen.SetActive(true);
             else
                 tutorialScreen.SetActive(false);
+        }
+
+        //PlayerPrefs.SetInt("GridGameTutorialDone", 0);
+        if (gridGameTutorialScreen != null)
+        {
+            if (PlayerPrefs.GetInt("GridGameTutorialDone", 0) == 0)
+                gridGameTutorialScreen.SetActive(true);
+            else
+                gridGameTutorialScreen.SetActive(false);
         }
 
         CheckToggle();
