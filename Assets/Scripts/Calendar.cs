@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Transactions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -331,6 +332,20 @@ public class Calendar : MonoBehaviour
             if (i < entry.finalSlotsStrings.Length && !string.IsNullOrEmpty(entry.finalSlotsStrings[i]) && entry.finalSlotsStrings[i] != "New Text")
             {
                 gratefulFor_str_txt.SetActive(true);
+
+                //if journal prompt is NOT empty or null,...
+                if (!string.IsNullOrEmpty(entry.finalPromptText))
+                {
+                    gratefulFor_str_txt.GetComponent<TextMeshProUGUI>().fontSize = 36f;
+                    gratefulFor_str_txt.GetComponent<TextMeshProUGUI>().text = entry.finalPromptText;
+                }
+                //else journal prompt is empty or null,...
+                else
+                {
+                    gratefulFor_str_txt.GetComponent<TextMeshProUGUI>().fontSize = 75f;
+                    gratefulFor_str_txt.GetComponent<TextMeshProUGUI>().text = "GRATEFUL FOR";
+                }
+
                 LoadPreferences.ApplyColors();
                 grateful_strings[i].text = entry.finalSlotsStrings[i];
                 grateful_strings[i].transform.parent.gameObject.SetActive(true); // Show the text field or its container.

@@ -13,7 +13,6 @@ TagManager:
   - 0
   - BackgroundColor
   - TextColor
-  - ReverseTextColor
   layers:
   - Default
   - TransparentFX
