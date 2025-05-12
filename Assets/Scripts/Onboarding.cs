@@ -31,6 +31,11 @@ public class Onboarding : MonoBehaviour
     public Image circle;
     #endregion
 
+    #region Step 3
+    public GameObject Onboarding3InputField;
+    public GameObject Onboarding3ProfilePics;
+    #endregion
+
     private void Start()
     {
         SetupOnboardingSteps();
@@ -84,6 +89,11 @@ public class Onboarding : MonoBehaviour
     {
         if ( currentStep.currentStepIndex < 6 && currentStep.ToString() != null && currentStep.NextStep.ToString() != null)
         {
+            if(currentStep.currentStepIndex == 3)
+            {
+                TurnOffPage(Onboarding3InputField);
+                TurnOffPage(Onboarding3ProfilePics);
+            }
 
             if (currentStep.currentStepIndex == 5 && userChoice)
             {
