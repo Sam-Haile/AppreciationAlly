@@ -47,9 +47,22 @@ public class GratefulButton : MonoBehaviour
         }
         else
         {
-            this.GetComponent<Image>().color = Color.white;
-            icon.color = Color.black;
-            grtfl_text.color = Color.black;
+            //if Dark mode is DISABLED,...
+            if (PlayerPrefs.GetInt("isDarkModeEnabled") == 0)
+            {
+                this.GetComponent<Image>().color = Color.white;
+                icon.color = Color.black;
+                grtfl_text.color = Color.black;
+            }
+            //else Dark mode is ENABLED,...
+            else
+            {
+                Color newCol;
+                if (ColorUtility.TryParseHtmlString("#333333", out newCol))
+                    this.GetComponent<Image>().color = newCol;
+                icon.color = Color.white;
+                grtfl_text.color = Color.white;
+            }
         }
     }
 }
