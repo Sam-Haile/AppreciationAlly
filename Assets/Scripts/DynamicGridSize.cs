@@ -23,13 +23,16 @@ public class DynamicGridSize : MonoBehaviour
 
         // Calculate the size of each cell to make them square and fit 3 across the screen width
         float screenWidth = Screen.width;
+        //Debug.Log("screenWidth = " + screenWidth);
 
         // Adjust for padding and spacing to get total usable space
         float usableWidth = screenWidth - paddingHorizontal - (spacing * 2); // Assuming 2 spaces (3 columns)
         float cellSize = usableWidth / 3; // Divide by 3 to get the size for each cell
+        //Debug.Log("cellSize = " + cellSize);
 
         // Set the calculated cell size
-        gridLayoutGroup.cellSize = new Vector2(cellSize, cellSize);
+        //gridLayoutGroup.cellSize = new Vector2(cellSize, cellSize);
+        gridLayoutGroup.cellSize = new Vector2(260, 260);
 
         // Optionally adjust spacing and padding if needed
         gridLayoutGroup.spacing = new Vector2(spacing, spacing);
